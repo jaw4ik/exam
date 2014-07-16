@@ -1,0 +1,27 @@
+﻿<section class="multiple-select-question">
+    <header class="content-header">
+        <div class="content-header-inner">
+            <div class="question-counter">
+                <span data-bind="text: (index + 1) + ' of ' + questionsCount"></span>
+            </div>
+            <div class="content-title question-text">
+                <span class="selectable" data-bind="text: title"></span>
+            </div>
+        </div>
+    </header>
+    <div class="question-content-wrapper" data-bind="visible: hasContent">
+        <div class="question-content" data-bind="html: content"></div>
+    </div>
+    <ul class="content-block unstyled">
+        <!-- ko foreach: answers -->
+        <li class="question-answer" data-bind="click: toggleCheck">
+            <div>
+                <a class="question-answer-checkbox" data-bind="css: { checked: isChecked() }">
+                    <input class="custom-checkbox" type="checkbox" />
+                </a>
+            </div>
+            <div class="question-answer-text"><span class="selectable answer-text" data-bind="text: text"></span></div>
+        </li>
+        <!-- /ko -->
+    </ul>
+</section>

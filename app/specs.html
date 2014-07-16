@@ -1,0 +1,102 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>Jasmine Spec Runner For Exam Template</title>
+
+    <link rel="stylesheet" type="text/css" href="../css/jasmine.css">
+
+    <!-- Testing tool scripts -->
+    <script type="text/javascript" src="../js/jasmine/jasmine-1.3.1.js"></script>
+    <script type="text/javascript" src="../js/jasmine/jasmine-1.3.1-html.js"></script>
+    <script type="text/javascript" src="../js/jasmine/jasmine-1.3.1-console.js"></script>
+    <script type="text/javascript" src="../js/jasmine/jasmine-matchers.js"></script>
+                                           
+    <!-- Libraries -->                     
+    <script type="text/javascript" src="../js/jquery-1.9.1.js"></script>
+    <script type="text/javascript" src="../js/knockout-2.2.1.js"></script>
+    <script type="text/javascript" src="../js/q.js"></script>
+    <script type="text/javascript" src="../js/underscore-1.5.1.js"></script>
+    <script type="text/javascript" src="../js/underscore.extensions.js"></script>
+
+    <!-- Source scripts -->
+    <script type="text/javascript" src="../js/require.js"></script>
+
+    <script type="text/javascript">
+
+        (function () {
+            require.config({
+                paths: {
+                    'text': '../js/text',
+                    'durandal': '../js/durandal',
+                    'plugins': '../js/durandal/plugins',
+                    'transitions': '../js/durandal/transitions'
+                },
+                urlArgs: 'v=' + Math.random()
+            });
+
+            require(['plugins/router'], function (router) {
+                router.replace = function () { };
+                router.updateDocumentTitle = function (instance, instruction) { };
+            });
+            
+            define('jquery', function () { return jQuery; });
+            define('knockout', function () { return ko; });
+
+            var specs = [
+                'guard.spec',
+                'viewmodels/questions.spec',
+                'viewmodels/introduction.spec',
+                'viewmodels/shell.spec',
+                'viewmodels/summary.spec',
+                'modulesInitializer.spec',
+                'moduleLoader.spec',
+                'guard.spec',
+                'windowOperations.spec',
+                'eventManager.spec',
+                'xApi/viewModels/login.spec',
+                'xApi/viewmodels/xAPIError.spec',
+                'xApi/viewmodels/xAPINotSupported.spec',
+                'xApi/base64.spec',
+                'xApi/guard.spec',
+                'xApi/xApiInitializer.spec',
+                'xApi/activityProvider.spec',
+                'xApi/errorsHandler.spec',
+                'xApi/utils/dateTimeConverter.spec',
+                'xApi/configuration/xApiSettings.spec',
+                'modules/graphicalCustomization.spec',
+                'models/answer.spec',
+                'models/course.spec',
+                'models/objective.spec',
+                'models/question.spec',
+                'repositories/questionRepository.spec',
+                'repositories/objectiveRepository.spec',
+                'repositories/courseRepository.spec',
+                'eventDataBuilders/courseEventDataBuilder.spec',
+                'bootstrapper.spec',
+                'modules/courseSettings.spec'
+            ];
+            
+            require(specs, function () {
+                var jasmineEnv = jasmine.getEnv();
+                jasmineEnv.updateInterval = 1000;
+
+                var htmlReporter = new jasmine.HtmlReporter();
+                var consoleReporter = new jasmine.ConsoleReporter();
+
+                jasmineEnv.addReporter(htmlReporter);
+                jasmineEnv.addReporter(consoleReporter);
+
+                jasmineEnv.specFilter = function (spec) {
+                    return htmlReporter.specFilter(spec);
+                };
+
+                jasmine.DEFAULT_TIMEOUT_INTERVAL = 100;
+
+                jasmineEnv.execute();
+            });
+        })();
+    </script>
+</head>
+<body>
+</body>
+</html>

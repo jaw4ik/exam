@@ -1,0 +1,16 @@
+﻿<section id="introduction" class="unselectable">
+    <div class="intro-header content">
+        <div class="intro-title-holder"><span class="intro-title">Course: </span><span data-bind="text: title"></span></div>
+        <div class="intro-start-holder">
+            <a class="btn default" href="#questions" data-bind="click: startCourse">Start exam</a>
+        </div>
+    </div>
+
+    <!-- ko if: content -->
+    <div class="content-holder">
+        <div class="intro-content-wrapper">
+            <div class="intro content" data-bind="html: content"></div>
+        </div>
+    </div>
+    <!-- /ko -->
+</section>

@@ -1,0 +1,17 @@
+﻿<section id="homePage">
+    <div class="page-title-holder">
+        <h1 class="page-title selectable" data-bind="text: courseTitle"></h1>
+    </div>
+    <div data-bind="scroll: { enabled: !isFullyLoaded(), loadFunc: loadQuestions, offset: 200 }">
+        <ul class="content-list-wrapper unstyled">
+            <!-- ko foreach: questions -->
+            <li class="content-holder" data-bind="attr: { id: $data.id }">
+                <!-- ko compose: $data --><!-- /ko -->
+            </li>
+            <!-- /ko -->
+        </ul>
+    </div>
+    <div class="question-submit" data-bind="visible: isFullyLoaded()">
+        <a class="btn default justified" data-bind="click: submit">Submit</a>
+    </div>
+</section>

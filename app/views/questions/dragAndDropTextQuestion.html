@@ -1,0 +1,38 @@
+﻿<section class="fill-in-the-blanks-question">
+    <header class="content-header">
+        <div class="content-header-inner">
+            <div class="question-counter">
+                <span data-bind="text: (index + 1) + ' of ' + questionsCount"></span>
+            </div>
+            <div class="content-title question-text">
+                <span class="selectable" data-bind="text: title"></span>
+            </div>
+        </div>
+    </header>
+    <div class="question-content-wrapper">
+        <div class="drag-and-drop-text-draggable-container" style="" data-bind="draggableTextContainer: {}, scope: id">
+            <!-- ko foreach: texts -->
+            <div class="drag-and-drop-text-draggable" data-bind="draggableText: {}, scope: $parent.id">
+                <div data-bind="text: text">
+                </div>
+            </div>
+            <!-- /ko -->
+        </div>
+        <div style="" class="drag-and-drop-text-background-wrapper">
+            <div data-bind="background : background" class="drag-and-drop-text-background">
+
+                <!-- ko foreach: dropspots -->
+
+                <div class="drag-and-drop-text-dropspot" data-bind="dropspot: $data, scope: $parent.id">
+                    <div class="drag-and-drop-text-dropspot-tooltip-image">
+                    </div>
+                    <div class="drag-and-drop-text-dropspot-tooltip-text">
+                        Drop here
+                    </div>
+                </div>
+
+                <!-- /ko -->
+            </div>
+        </div>
+    </div>
+</section>

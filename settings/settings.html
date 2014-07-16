@@ -1,0 +1,221 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>XAPI settings</title>
+    
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <link href="css/settings.min.css" rel="stylesheet" />
+    <script src="js/vendor.js"></script>
+</head>
+<body>
+    <div class="page-container">
+        <div id="settingsForm" class="user-form">
+            <div class="content-row top-row">
+                <button class="save-btn" data-bind="click: saveChanges">
+                    <span class="save-btn-title">Apply</span>
+                </button>
+                <div class="save-message-wrapper success" data-bind="style: { display: isSaved() ? 'block' : 'none' }">
+                    <span class="save-message">Settings have been saved succesfully</span>
+                </div>
+                <div class="save-message-wrapper error" data-bind="style: { display: isFailed() ? 'block' : 'none' }">
+                    <span class="save-message">Something went wrong. Try again</span>
+                </div>
+            </div>
+            <div class="content-container">
+                <div class="content-header">
+                    <div class="page-title-wrapper">
+                        <h1 class="page-title brush">Custom course logo</h1>
+                    </div>
+                </div>
+                <div class="content-wrapper">
+                    <div class="content-row top-row">
+                        <label for="imgUrl" class="content-label">Image URL</label>
+                        <div class="content-col-right">
+                            <input type="text" class="content-text-input" id="imgUrl" data-bind="value: logo.url, valueUpdate: ['afterkeydown', 'afterpaste'], enable: hasStarterPlan" />
+                        </div>
+                    </div>
+                    <div class="content-row logo">
+                        <div class="logo-wrapper">
+                            <div class="logo-content default" data-bind="style: { display: logo.hasLogo() ? 'none' : 'block' }">
+                                <span class="logo-default-text">Your logo will appear here</span><br />
+                                <span class="logo-recomended-size">(recomended size 300 x 50 px)</span>
+                            </div>
+                            <div class="logo-img-wrapper" data-bind="style: { display: logo.hasLogo() ? 'block' : 'none' }">
+                                <img src="" class="logo" data-bind="attr: { src: logo.url }" />
+                                <div class="logo-clear" data-bind="click: logo.clear"></div>
+                            </div>
+                            <div class="logo-content layout error" data-bind="style: { display: logo.isError() ? 'block' : 'none' }">
+                                <span class="logo-default-text" data-bind="text: logo.errorText">Unsupported image format</span><br />
+                                <span class="logo-recomended-size" data-bind="text: logo.errorDescription">(Supported formats: jpg, png, bmp)</span>
+                            </div>
+                            <div class="logo-content layout loader" data-bind="style: { display: logo.isLoading() ? 'block' : 'none' }"></div>
+                        </div>
+                        <form id="logoForm" method="post" enctype="multipart/form-data" encoding="multipart/form-data" target="logoFrame">
+                            <a class="image-upload-button disabled">
+                                Browse
+                                <input type="file" id="logoInput" name="file" disabled="disabled">
+                            </a>
+                        </form>
+                        <iframe class="invisible" id="logoFrame" name="logoFrame"></iframe>
+                    </div>
+                    <div class="logo-unavailable" data-bind="fadeVisible: !hasStarterPlan()">
+                        <div class="lock"></div>
+                        <div class="text">
+                            You have to
+                            <a target="_blank" href="/account/upgrade">upgrade your account</a>
+                            in order to set custom course logo
+                        </div>
+                    </div>
+                </div>
+                <div class="content-header">
+                    <div class="page-title-wrapper">
+                        <h1 class="page-title masteryscore">Mastery score settings</h1>
+                    </div>
+                </div>
+                <div class="content-wrapper">
+                    <div class="content-row top-row">
+                        <label for="masteryScore" class="content-label spinner-label">Mastery score (for each learning objective):</label>
+                        <div data-trigger="spinner" class="spinner" data-bind="spinner: masteryScore">
+                            <a class="spinner-button spinner-down" data-spin="down" data-bind="disableDragNDrop: {}"></a>
+                            <input type="text" maxlength="3" id="masteryScore" class="content-text-input" data-rule="quantity" data-max="100" data-min="0" data-bind="value: masteryScore, valueUpdate: 'afterkeydown', number: {}">
+                            <a class="spinner-button spinner-up" data-spin="up" data-bind="disableDragNDrop: {}"></a>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="content-header">
+                    <div class="page-title-wrapper">
+                        <h1 class="page-title settings">Track'n'Trace settings</h1>
+                    </div>
+                    <div class="info-tooltip-btn">
+                        <div class="info-tooltip-wrapper">
+                            <div class="info-tooltip">
+                                <span class="info-tooltip-text">
+                                    You can track and trace the results of your
+                                    learners through the Xapi. You need to set up your own Xapi
+                                    Learning record store (LRS). See <a href="http://www.scorm.com/" target="blank" class="info-tooltip-link">www.scorm.com</a>
+                                    or <a href="http://www.saltbox.com/" target="blank" class="info-tooltip-link">www.saltbox.com</a>.
+                                    When you have created your LRS you can enable the Xapi. In this window
+                                    you can provide the url and admin login and password from your LRS.
+                                </span>
+                            </div>
+                            <div class="info-tooltip-triangle-holder">
+                                <div class="info-tooltip-triangle-border"></div>
+                                <div class="info-tooltip-triangle">&nbsp;</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="content-wrapper">
+                    <label class="content-row top-row">
+                        <span class="content-checkbox">
+                            <input type="checkbox" class="content-checkbox-input" data-bind="checked: enableXAPI">
+                            <span class="content-checkbox-checked"></span>
+                        </span>
+                        <span class="input-label">Enable XAPI</span>
+                    </label>
+                    <div class="content-row">
+                        <label for="lrsUrl" class="content-label">LRS URL</label>
+                        <div class="content-col-right">
+                            <input type="text" class="content-text-input" id="lrsUrl" data-bind="value: lrsUrl, enable: enableXAPI">
+                        </div>
+                    </div>
+                    <div class="content-row checkbox">
+                        <div class="content-col-right">
+                            <label data-bind="css: { disabled: !enableXAPI() }">
+                                <span class="content-checkbox">
+                                    <input class="content-checkbox-input" type="checkbox" data-bind="checked: authenticationRequired, enable: enableXAPI">
+                                    <span class="content-checkbox-checked"></span>
+                                </span>
+                                <span class="input-label">Authentication required</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="content-row">
+                        <label for="lapLogin" class="content-label">LAP login</label>
+                        <div class="content-col-right">
+                            <input type="text" class="content-text-input" id="lapLogin" data-bind="value: lapLogin, enable: credentialsEnabled">
+                        </div>
+                    </div>
+
+                    <div class="content-row">
+                        <label for="lapPassword" class="content-label">LAP password</label>
+                        <div class="content-col-right">
+                            <input type="password" class="content-text-input" id="lapPassword" data-bind="value: lapPassword, enable: credentialsEnabled">
+                        </div>
+                    </div>
+
+
+                    <div class="content-splitter-line">
+                        <span class="content-splitter-text">Use statements:</span>
+                    </div>
+
+                    <div class="content-row">
+                        <label data-bind="css: { disabled: !enableXAPI() }">
+                            <span class="content-checkbox">
+                                <input type="checkbox" class="content-checkbox-input" data-bind="checked: statements.started, enable: enableXAPI">
+                                <span class="content-checkbox-checked"></span>
+                            </span>
+                            <span class="input-label">Started</span>
+                        </label>
+                        <label class="content-col-right" data-bind="css: { disabled: !enableXAPI() }">
+                            <span class="content-checkbox">
+                                <input type="checkbox" class="content-checkbox-input" data-bind="checked: statements.stopped, enable: enableXAPI">
+                                <span class="content-checkbox-checked"></span>
+                            </span>
+                            <span class="input-label">Stopped</span>
+                        </label>
+                    </div>
+
+                    <div class="content-row">
+                        <label data-bind="css: { disabled: !enableXAPI() }">
+                            <span class="content-checkbox">
+                                <input type="checkbox" class="content-checkbox-input" data-bind="checked: statements.answered, enable: enableXAPI">
+                                <span class="content-checkbox-checked"></span>
+                            </span>
+                            <span class="input-label">Answered</span>
+                        </label>
+                        <label class="content-col-right" data-bind="css: { disabled: !enableXAPI() }">
+                            <span class="content-checkbox">
+                                <input type="checkbox" class="content-checkbox-input" data-bind="checked: statements.mastered, enable: enableXAPI">
+                                <span class="content-checkbox-checked"></span>
+                            </span>
+                            <span class="input-label">Mastered</span>
+                        </label>
+                    </div>
+
+                    <div class="content-row">
+                        <label data-bind="css: { disabled: !enableXAPI() }">
+                            <span class="content-checkbox">
+                                <input type="checkbox" class="content-checkbox-input" data-bind="checked: statements.passed, enable: enableXAPI">
+                                <span class="content-checkbox-checked"></span>
+                            </span>
+                            <span class="input-label">Passed</span>
+                        </label>
+                        <label class="content-col-right" data-bind="css: { disabled: !enableXAPI() }">
+                            <span class="content-checkbox">
+                                <input type="checkbox" class="content-checkbox-input" data-bind="checked: statements.failed, enable: enableXAPI">
+                                <span class="content-checkbox-checked"></span>
+                            </span>
+                            <span class="input-label">Failed</span>
+                        </label>
+                    </div>
+
+
+                    <div class="content-splitter-line">
+                        <span class="content-splitter-text">Easygenerator recommends</span>
+                    </div>
+                    <div class="content-row banner">
+                        <a href="https://www.waxlrs.com/?utm_medium=affiliate&utm_source=easy_generator" target="_blank">
+                            <img src="img/saltbox-banner.png" class="saltbox-banner" alt="Saltbox banner" />
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

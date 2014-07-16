@@ -1,0 +1,15 @@
+﻿<section class="fill-in-the-blanks-question">
+    <header class="content-header">
+        <div class="content-header-inner">
+            <div class="question-counter">
+                <span data-bind="text: (index + 1) + ' of ' + questionsCount"></span>
+            </div>
+            <div class="content-title question-text">
+                <span class="selectable" data-bind="text: title"></span>
+            </div>
+        </div>
+    </header>
+    <div class="question-content-wrapper" data-bind="visible: hasContent">
+        <div class="question-content" data-bind="html: content, fillInTheBlankAnswers: answers"></div>
+    </div>
+</section>

@@ -1,0 +1,23 @@
+﻿<section class="single-select-text-question">
+    <header class="content-header">
+        <div class="content-header-inner">
+            <div class="question-counter">
+                <span data-bind="text: (index + 1) + ' of ' + questionsCount"></span>
+            </div>
+            <div class="content-title question-text">
+                <span class="selectable" data-bind="text: title"></span>
+            </div>
+        </div>
+    </header>
+    <div class="question-content-wrapper" data-bind="visible: hasContent">
+        <div class="question-content" data-bind="html: content"></div>
+    </div>
+    <ul class="question-answers-list" data-bind="foreach: answers">
+        <li class="question-answer-item" data-bind="click: $parent.checkItem, css: { checked: isChecked() }">
+            <div class="question-answer-wrapper">
+                <a class="question-answer-radiobutton" data-bind="css: { checked: isChecked() }">&nbsp;</a>
+            </div>
+            <div class="question-answer-text selectable" data-bind="text: text">answer</div>
+        </li>
+    </ul>
+</section>

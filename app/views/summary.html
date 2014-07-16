@@ -1,0 +1,66 @@
+﻿<section id="summary">
+    <div class="summary-header">
+        <div class="clearfix summary-progress inline">
+            <div class="circle-progressbar-wrapper">
+                <canvas class="circle-progressbar" width="90" height="90" data-bind="circleProgress: { progress: overallScore }"></canvas>
+                <span class="progress-score" data-bind="text: overallScore + '%'"></span>
+            </div>
+            <div class="page-title">Results</div>
+        </div>
+    </div>
+
+    <div class="content-holder">
+        <header class="content-header">
+            <div class="content-header-inner">
+                <h3 class="content-title summary-title">
+                    <span class="selectable">Result per objective</span>
+                </h3>
+            </div>
+        </header>
+        <ul class="unstyled summary-list">
+            <!-- ko foreach: objectives -->
+            <li class="summary-list-item divided">
+                <div class="summary-list-item-inner">
+                    <div class="summary-objective-title">
+                        <div class="objective-progress-title">
+                            <span class="selectable" data-bind="text: title"></span>
+                        </div>
+                    </div>
+                    <div class="progressbar-holder">
+                        <div class="progressbar-informer-wrapper">
+                            <div class="progressbar-informer" data-bind="text: score + '%'"></div>
+                            <div class="progressbar-triangle-border">
+                                <div class="progressbar-triangle">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="progressbar-block">
+                            <div class="progressbar-bg-line"></div>
+                            <div class="progressbar-score-line" data-bind="style: { width: score + '%', display: score < 1 ? 'none' : 'block' }"></div>
+                            <div class="progressbar-masteryscore-indicator" data-bind="style: { left: $parent.masteryScore + '%' }">
+                                <div class="progressbar-masteryscore-indicator-value"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </li>
+            <!-- /ko -->
+        </ul>
+    </div>
+    <div class="summary-btn-holder clearfix">
+        <!-- ko ifnot: status() == statuses.readyToFinish -->
+        <a class="btn default" data-bind="css: 'disabled'">Finish</a>
+        <!-- /ko -->
+        <!-- ko if: status() == statuses.readyToFinish -->
+        <a class="btn default" data-bind="click: finish">Finish</a>
+        <!-- /ko -->
+    </div>
+    <!-- ko if: status() == statuses.sendingRequests -->
+    <div class="request-loader-holder">
+        <div class="request-loader-wrapper">
+            <span class="request-loader">Reporting progress...</span>
+        </div>
+    </div>
+    <!-- /ko  -->
+
+</section>

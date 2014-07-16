@@ -1,0 +1,50 @@
+﻿<section id="login" class="login content unselectable">
+
+    <div class="container" data-bind="focusHandler: {}">
+        <div class="content-holder">
+            <header class="content-header">
+                <div class="content-header-inner">
+                    <h3 class="content-title xapi-title">
+                        <span class="selectable">Your credentials for progress tracking</span>
+                    </h3>
+                </div>
+            </header>
+            <div class="xapi-form-holder">
+                <div class="xapi-form-info-message">
+                    <span class="xapi-form-info-text">
+                        Please enter your credentials and click "Start and report my progress" to enable progress tracking. Otherwise, click "Do not report, just start".
+                    </span>
+                </div>
+                <div class="xapi-form-row name" data-bind="css: { error: !username.isValid() && username.isModified() }">
+                    <div class="xapi-form-row-left">
+                        <span class="xapi-form-row-title">Your name</span>
+                    </div>
+                    <div class="xapi-form-row-right">
+                        <div class="xapi-form-input-holder">
+                            <span class="xapi-form-input-wrapper"></span>
+                            <input tabindex="5" class="xapi-form-input selectable" type="text" ondrop="return false;" data-bind="value: username, valueUpdate: 'afterkeydown', event: { blur: function () { username.markAsModified().trim(); } }">
+                            <span class="xapi-form-message" data-bind="visible: !username.isValid() && username.isModified()">Fill in your name</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="xapi-form-row email" data-bind="css: { error: !usermail.isValid() && usermail.isModified() }">
+                    <div class="xapi-form-row-left">
+                        <span class="xapi-form-row-title">Your e-mail</span>
+                    </div>
+                    <div class="xapi-form-row-right">
+                        <div class="xapi-form-input-holder">
+                            <span class="xapi-form-input-wrapper"></span>
+                            <input tabindex="5" class="xapi-form-input selectable" type="text" ondrop="return false;" data-bind="value: usermail, valueUpdate: 'afterkeydown', event: { blur: function () { usermail.markAsModified().trim(); } }">
+                            <span class="xapi-form-message" data-bind="visible: !usermail.isValid() && usermail.isModified()">Enter a valid e-mail</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="xapi-form-btn-holder clearfix">
+                    <a class="link default pull-left" data-bind="click: skip">Do not report, just start</a>
+                    <a class="btn default pull-right" data-bind="click: login">Start and report my progress</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</section>

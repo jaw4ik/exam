@@ -1,0 +1,51 @@
+﻿.xapi-error-section {
+    position: relative;
+    width: 100%;
+    height: 230px;
+    margin-top: 120px;
+}
+
+    .xapi-error-section .xapi-error-container {
+        max-width: 630px;
+        min-width: 600px;
+        margin: 0 auto;
+    }
+
+    .xapi-error-section .xapi-error-container-img {
+        display: inline-block;
+        float: left;
+        width: 128px;
+        height: 127px;
+        margin: 0 50px 0 50px;
+        background: url(images/xapierror.png?v=exam) 0 0 no-repeat;
+        background-size: 100%;
+    }
+
+    .xapi-error-section .xapi-error-container-header {
+        font-family: Tahoma, sans-serif;
+        font-size: 23px;
+        font-weight: normal;
+        text-transform: uppercase;
+        padding: 15px 0;
+        margin: 0;
+    }
+
+    .xapi-error-section .xapi-error-container-description {
+        font-family: Arial, sans-serif;
+        font-size: 18px;
+        line-height: 25px;
+    }
+
+    .xapi-error-section .summary-btn-holder {
+        padding-top: 70px;
+    }
+
+        .xapi-error-section .summary-btn-holder > .btn {
+            width: 47.5%;
+        }
+
+@media (max-width: 640px) {
+    .xapi-error-section {
+        margin-top: 60px;
+    }
+}
