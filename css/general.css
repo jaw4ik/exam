@@ -983,6 +983,7 @@ body {
         text-overflow: ellipsis;
         overflow: hidden;
         padding-left: 16px;
+        min-width: 70px;
     }
 
         .drag-and-drop-text-draggable > div:before {
@@ -1026,7 +1027,7 @@ body {
     font-size: 12px;
     font-family: 'OpenSans';
     height: 18px;
-    margin-top: -9px;
+    margin-top: -12px;
     white-space: nowrap;
     text-align: center;
     width: 100%;
