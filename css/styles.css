@@ -476,7 +476,7 @@ body {
 
     .question-answer:hover {
         background-color: rgba(247,247,247, 0.75);
-        border-radius: 10px;
+        border-radius: 4px;
     }
 
     .question-answer > * {
@@ -1087,7 +1087,7 @@ body {
 
     .question-answer-item:hover {
         background-color: rgba(247,247,247, 0.75);
-        border-radius: 10px;
+        border-radius: 4px;
     }
 
     .question-answer-item + .question-answer-item {
