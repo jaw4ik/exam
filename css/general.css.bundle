@@ -16,5 +16,7 @@
     <file>/css/login.css</file>
     <file>/css/xAPINotSupported.css</file>
     <file>/css/xAPIError.css</file>
+    <file>/css/singleSelectImage.css</file>
+    <file>/css/imagePreview.css</file>
   </files>
 </bundle>

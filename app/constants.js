@@ -8,7 +8,8 @@
             multipleSelect: 'multipleSelect',
             fillInTheBlanks: 'fillInTheBlank',
             dragAndDropText: 'dragAndDropText',
-            singleSelectText: 'singleSelectText'
+            singleSelectText: 'singleSelectText',
+            singleSelectImage: 'singleSelectImage'
         }
     }
 

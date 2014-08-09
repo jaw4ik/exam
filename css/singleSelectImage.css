@@ -1,0 +1,118 @@
+﻿
+.checkbox, .radio {
+    display: table;
+    margin-top: 10px;
+    padding: 10px;
+    width: 100%;
+    -ms-border-radius: 3px;
+    border-radius: 3px;
+    cursor: default;
+}
+
+    .checkbox:hover, .radio:hover {
+        background-color: #f9f9f9;
+    }
+
+
+
+.checkbox-icon-wrapper, .checkbox-text, .radio-icon-wrapper, .radio-text {
+    display: table-cell;
+    vertical-align: middle;
+}
+
+.checkbox-icon-wrapper, .radio-icon-wrapper {
+    width: 32px;
+}
+
+.checkbox-icon, .radio-icon {
+    display: block;
+    width: 32px;
+    height: 32px;
+    background: url(../img/sprite.png) 0 0 no-repeat;
+}
+
+.checkbox-icon {
+    background: url(../img/sprite.png) 0 0 no-repeat;
+}
+
+.radio-icon {
+    background: url(../img/sprite.png) -37px 0 no-repeat;
+}
+
+.checkbox.checked, .radio.checked {
+    background-color: #f1f1f1;
+}
+
+    .checkbox.checked .checkbox-icon {
+        background-position: 0 -37px;
+    }
+
+    .radio.checked .radio-icon {
+        background-position: -37px -37px;
+    }
+
+.checkbox-text, .radio-text {
+    padding-left: 14px;
+    white-space: pre-wrap;
+    -ms-word-wrap: break-word;
+    word-wrap: break-word;
+}
+
+.disabled .checkbox:hover, .disabled.checkbox:hover, .disabled .radio:hover, .disabled.radio:hover {
+    background-color: #fff;
+}
+
+.disabled .checkbox.checked:hover, .disabled.checkbox.checked:hover, .disabled .radio.checked:hover, .disabled.radio.checked:hover {
+    background-color: #f1f1f1;
+}
+
+.radio.image {
+    display: inline-block;
+    width: auto;
+}
+
+    .radio.image:hover {
+        background: transparent;
+    }
+
+    .radio.image.checked {
+        background: transparent;
+    }
+
+    .radio.image .radio-icon-wrapper {
+        display: block;
+        text-align: center;
+        width: 100%;
+        margin-top: 2px;
+    }
+
+    .radio.image .radio-icon {
+        margin: auto;
+    }
+
+.radio-image {
+    display: block;
+}
+
+.radio.image .radio-image-wrapper {
+    border: 3px solid transparent;
+    -ms-border-radius: 3px;
+    border-radius: 3px;
+}
+
+.radio.image.checked .radio-image-wrapper {
+    border-color: #009bd5;
+}
+
+.radio.image .radio-image {
+    border: 1px solid #ddd;
+    -ms-border-radius: 3px;
+    border-radius: 3px;
+    width: 150px;
+    height: 150px;
+}
+
+.radio.image.checked .radio-image {
+    -ms-border-radius: 0;
+    border-radius: 0;
+}

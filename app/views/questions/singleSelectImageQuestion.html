@@ -1,0 +1,26 @@
+﻿<section class="single-select-image-question">
+    <header class="content-header">
+        <div class="content-header-inner">
+            <div class="question-counter">
+                <span data-bind="text: (index + 1) + ' of ' + questionsCount"></span>
+            </div>
+            <div class="content-title question-text">
+                <span class="selectable" data-bind="text: title"></span>
+            </div>
+        </div>
+    </header>
+    <div class="question-content-wrapper" data-bind="visible: hasContent">
+        <div class="question-content" data-bind="html: content"></div>
+    </div>
+    <ul class="question-answers-list" data-bind="foreach: answers">
+        <li class="radio image" data-bind="click: $parent.checkItem, css: { checked: $data.isChecked() }">
+            <div class="radio-image-wrapper preview-thumbnail">
+                <img class="radio-image" data-bind="attr: { src: $data.image }" alt="" />
+                <button data-bind="click: preview" class="preview-open"></button>
+            </div>
+            <div class="radio-icon-wrapper">
+                <span class="radio-icon"></span>
+            </div>
+        </li>
+    </ul>
+</section>

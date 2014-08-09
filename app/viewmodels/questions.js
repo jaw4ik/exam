@@ -1,9 +1,10 @@
 ﻿define(['durandal/app', 'plugins/router', 'eventManager', 'configuration/settings', 'repositories/questionRepository', 'repositories/courseRepository', 'constants',
     './questions/multipleSelectQuestion', './questions/singleSelectTextQuestion', './questions/fillInTheBlanksQuestion', './questions/dragAndDropTextQuestion',
-    'models/questions/multipleSelectQuestion', 'models/questions/singleSelectTextQuestion', 'models/questions/fillInTheBlanksQuestion', 'models/questions/dragAndDropTextQuestion'],
+    'models/questions/multipleSelectQuestion', 'models/questions/singleSelectTextQuestion', 'models/questions/fillInTheBlanksQuestion', 'models/questions/dragAndDropTextQuestion',
+    'models/questions/singleSelectImageQuestion', 'viewmodels/questions/singleSelectImageQuestion'],
     function (app, router, eventManager, settings, questionRepository, courseRepository, constants,
         MultipleSelectQuestionViewModel, SingleSelectTextQuestionViewModel, FillInTheBlanksViewModel, DragAndDropTextQuestionViewModel,
-        MultipleSelectQuestionModel, SingleSelectTextQuestionModel, FillInTheBlanksQuestionModel, DragAndDropTextQuestionModel) {
+        MultipleSelectQuestionModel, SingleSelectTextQuestionModel, FillInTheBlanksQuestionModel, DragAndDropTextQuestionModel, SingleSelectImageQuestionModel, SingleSelectImageQuestionViewModel) {
         "use strict";
 
         var viewModel = {
@@ -46,6 +47,8 @@
                         return new FillInTheBlanksViewModel(question, key, course.allQuestions.length);
                     } else if (question instanceof DragAndDropTextQuestionModel) {
                         return new DragAndDropTextQuestionViewModel(question, key, course.allQuestions.length);
+                    } else if (question instanceof SingleSelectImageQuestionModel) {
+                        return new SingleSelectImageQuestionViewModel(question, key, course.allQuestions.length);
                     }
                 }).filter(function (question) {
                     return !_.isNullOrUndefined(question);
@@ -86,6 +89,8 @@
                         return new FillInTheBlanksViewModel(question, key, course.allQuestions.length);
                     } else if (question instanceof DragAndDropTextQuestionModel) {
                         return new DragAndDropTextQuestionViewModel(question, key, course.allQuestions.length);
+                    } else if (question instanceof SingleSelectImageQuestionModel) {
+                        return new SingleSelectImageQuestionViewModel(question, key, course.allQuestions.length);
                     }
                 }).filter(function (question) {
                     return !_.isNullOrUndefined(question);

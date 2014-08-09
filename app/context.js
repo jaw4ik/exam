@@ -1,6 +1,6 @@
 ﻿define(['models/course', 'models/objective', 'models/answer', 'models/questions/multipleSelectQuestion',
-    'models/questions/singleSelectTextQuestion', 'models/questions/fillInTheBlanksQuestion', 'models/questions/dragAndDropTextQuestion', 'constants'],
-    function (Course, Objective, Answer,  MultipleSelectQuestion, SingleSelectTextQuestion, FillInTheBlanksQuestion, DragAndDropTextQuestion, constants) {
+    'models/questions/singleSelectTextQuestion', 'models/questions/fillInTheBlanksQuestion', 'models/questions/dragAndDropTextQuestion', 'models/questions/singleSelectImageQuestion', 'models/singleSelectImageAnswer', 'constants'],
+    function (Course, Objective, Answer, MultipleSelectQuestion, SingleSelectTextQuestion, FillInTheBlanksQuestion, DragAndDropTextQuestion, SingleSelectImageQuestion, SingleSelectImageAnswer, constants) {
         "use strict";
 
         var context = {
@@ -57,6 +57,8 @@
                     return mapFillInTheBlanksQuestion(question, objective.id);
                 } else if (question.type == constants.question.types.dragAndDropText) {
                     return mapDragAndDropTextQuestion(question, objective.id);
+                } else if (question.type == constants.question.types.singleSelectImage) {
+                    return mapSingleSelectImageQuestion(question, objective.id);
                 }
             }).filter(function (question) {
                 return !_.isNullOrUndefined(question);
@@ -108,6 +110,18 @@
             });
         }
 
+        function mapSingleSelectImageQuestion(question, objectiveId) {
+            return new SingleSelectImageQuestion({
+                id: question.id,
+                objectiveId: objectiveId,
+                title: question.title,
+                answers: mapSingleSelectImageAnswers(question.answers),
+                score: 0,
+                hasContent: question.hasContent,
+                correctAnswerId: question.correctAnswerId
+            });
+        }
+
         function mapAnswers(answers) {
             return _.map(answers, function (answer) {
                 return new Answer({
@@ -115,6 +129,15 @@
                     isCorrect: answer.isCorrect,
                     text: answer.text,
                     group: answer.group
+                });
+            });
+        }
+
+        function mapSingleSelectImageAnswers(answers) {
+            return _.map(answers, function (answer) {
+                return new SingleSelectImageAnswer({
+                    id: answer.id,
+                    image: answer.image
                 });
             });
         }
