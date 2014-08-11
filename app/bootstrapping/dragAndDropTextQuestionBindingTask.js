@@ -49,6 +49,10 @@
                         scope: scope,
                         drop: function (e, ui) {
                             ui.draggable.css('left', '').css('top', '').appendTo(this);
+                            var text = ko.dataFor(ui.draggable.get(0));
+                            if(text.dropSpot){
+                                text.dropSpot.text(undefined);
+                            }
                         }
                     });
                 }
@@ -58,11 +62,20 @@
                 init: function (element, valueAccessor, allBindingsAccessor) {
                     var allBindings = allBindingsAccessor();
                     var scope = ko.utils.unwrapObservable(allBindings.scope) || 'question';
+                    var $element = $(element);
 
-                    $(element).draggable({
+                    $element.draggable({
                         scope: scope,
                         revert: 'invalid',
-                        scroll: false
+                        helper: 'clone',
+                        scroll: false,
+                        appendTo: 'body',
+                        start: function(){
+                            $element.css({visibility:'hidden'});
+                        },
+                        stop: function(){
+                            $element.css({visibility:'visible'});
+                        }
                     });
                 }
             }
@@ -111,6 +124,7 @@
 
                             if (ko.isWriteableObservable(value.text)) {
                                 value.text(text);
+                                text.dropSpot = value;
                             }
                         }
                     });
