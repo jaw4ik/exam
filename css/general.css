@@ -962,6 +962,16 @@ body {
     padding: 20px;
 }
 
+.drag-and-drop-text-draggable-container-message {
+    width: 100%;
+    display: none;
+    text-align: center;
+    cursor: default;
+    height: 38px;
+    line-height: 38px;
+    color: #555555;
+    margin-top: 1px;
+}
 
 .drag-and-drop-text-draggable {
     max-width: 300px;

@@ -11,6 +11,9 @@
     </header>
     <div class="question-content-wrapper">
         <div class="drag-and-drop-text-draggable-container" style="" data-bind="draggableTextContainer: {}, scope: id">
+			<div class="drag-and-drop-text-draggable-container-message">
+                All texts are placed
+            </div>
             <!-- ko foreach: texts -->
             <div class="drag-and-drop-text-draggable" data-bind="draggableText: {}, scope: $parent.id">
                 <div data-bind="text: text">

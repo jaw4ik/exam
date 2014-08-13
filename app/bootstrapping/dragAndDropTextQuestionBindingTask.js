@@ -43,7 +43,20 @@
                 init: function (element, valueAccessor, allBindingsAccessor) {
                     var allBindings = allBindingsAccessor();
                     var scope = ko.utils.unwrapObservable(allBindings.scope) || 'question';
-
+					
+					$(element).parent()
+                    .on('dragstart', '.drag-and-drop-text-draggable', function () {
+                        $(element).addClass('active');
+                    })
+                    .on('dragstop', '.drag-and-drop-text-draggable', function () {
+                        $(element).removeClass('active');
+                        if ($(element).children('.drag-and-drop-text-draggable').length) {
+                            $(element).children('.drag-and-drop-text-draggable-container-message').hide();
+                        } else {
+                            $(element).children('.drag-and-drop-text-draggable-container-message').show();
+                        }
+                    });
+					
                     $(element).droppable({
                         accept: '.drag-and-drop-text-draggable',
                         scope: scope,
@@ -140,6 +153,7 @@
                     } else {
                         $(element).droppable('option', 'accept', '.drag-and-drop-text-draggable');
                         $(element).children('.drag-and-drop-text-draggable').css('left', '').css('top', '').appendTo($('.drag-and-drop-text-draggable-container'));
+						$(element).children('.drag-and-drop-text-draggable-container-message').hide();
                     }
                 }
             }
