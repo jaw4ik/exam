@@ -11,13 +11,14 @@
         that.title = question.title;
         that.hasContent = question.hasContent;
         that.content = '';
-        that.answers = [];
+        that.answerGroups = [];
 
         that.activate = function () {
             return Q.fcall(function () {
-                that.answers = _.map(question.answers, function (answer) {
+                that.answerGroups = _.map(question.answerGroups, function (answerGroup) {
                     return {
-                        groupId: answer.group,
+                        id: answerGroup.id,
+                        answers: answerGroup.answers,
                         value: ''
                     };
                 });
@@ -38,8 +39,8 @@
         };
 
         that.submit = function () {
-            var question = questionRepository.get(that.objectiveId, that.id);
-            question.answer(that.answers);
+            var currentQuestion = questionRepository.get(that.objectiveId, that.id);
+            currentQuestion.answer(that.answerGroups);
         };
 
     };
