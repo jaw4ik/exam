@@ -1365,32 +1365,37 @@ body {
 
 /*#region Fill in the blanks question */
 
-.question-content .blankInput {
-    border: 1px solid rgb( 216, 221, 229 );
-    border-radius: 3px;
-    min-height: 34px;
-    padding: 0px 8px;
-    outline-color: transparent;
-    color: #666;
-}
+    .question-content .blankInput {
+        border: 1px solid rgb( 216, 221, 229 );
+        border-radius: 3px;
+        min-height: 34px;
+        padding: 0px 8px;
+        outline-color: transparent;
+        color: #666;
+    }
 
     .question-content .blankInput:focus {
         border-color: rgb( 91, 192, 222 );
     }
 
-.custom-select {
-    position: relative;
-    display: inline-block;
-    background-color: white;
-    height: 34px;
-    margin: 0 2px;
-    border: #d8dde5 1px solid;
-    border-radius: 3px;
-    vertical-align: middle;
-    font: 13px Arial;
-    color: #666;
-    cursor: pointer;
-}
+    .question-content .blankInput,
+    .question-content .blankSelect {
+        margin: 5px;
+    }
+
+    .custom-select {
+        position: relative;
+        display: inline-block;
+        background-color: white;
+        height: 34px;
+        margin: 0 2px;
+        border: #d8dde5 1px solid;
+        border-radius: 3px;
+        vertical-align: middle;
+        font: 13px Arial;
+        color: #666;
+        cursor: pointer;
+    }
 
     .custom-select.expanded {
         border-bottom-left-radius: 0;
