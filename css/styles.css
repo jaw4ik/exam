@@ -457,7 +457,6 @@ body {
 
 .question-content {
     word-wrap: break-word;
-    overflow-x: auto;
 }
 
 .content-block {
@@ -939,14 +938,131 @@ body {
     border-radius: 3px;
     min-height: 34px;
     padding: 0px 8px;
+    outline-color: transparent;
+    color: #666;
 }
 
     .question-content .blankInput:focus {
         border-color: rgb( 91, 192, 222 );
     }
 
+.custom-select {
+    position: relative;
+    display: inline-block;
+    background-color: white;
+    height: 34px;
+    margin: 0 2px;
+    border: #d8dde5 1px solid;
+    border-radius: 3px;
+    vertical-align: middle;
+    font: 13px Arial;
+    color: #666;
+    cursor: pointer;
+}
+
+    .custom-select.expanded {
+        border-bottom-left-radius: 0;
+        border-bottom-right-radius: 0;
+    }
+
+    .custom-select .current-selected-item-wrapper {
+        color: #333;
+        height: 100%;
+        word-break: normal;
+    }
+
+    .custom-select .current-selected-item-text {
+        display: inline-block;
+        width: 100%;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        padding: 8px 30px 8px 5px;
+        overflow: hidden;
+    }
+
+    .custom-select .current-selected-item-text-placeholder {
+        font-size: 13px;
+        color: #999;
+    }
+
+    .custom-select .pointer-wrapper {
+        position: absolute;
+        width: 30px;
+        height: 100%;
+        border-left: 1px solid #d9dde5;
+        right: 0;
+        top: 0;
+    }
+
+    .custom-select .pointer {
+        position: absolute;
+        width: 0;
+        height: 0;
+        top: 50%;
+        left: 50%;
+        margin-top: -3px;
+        margin-left: -6px;
+        background: transparent;
+        border: 6px solid;
+        border-bottom-color: transparent;
+        border-left-color: transparent;
+        border-right-color: transparent;
+        border-top-color: #555;
+    }
+
+    .custom-select.expanded .pointer {
+        margin-top: -9px;
+        border-bottom-color: #555;
+        border-top-color: transparent;
+    }
+
+    .custom-select .select-list {
+        display: none;
+        width: 100%;
+        padding: 0;
+        margin: 0;
+        background-color: #fff;
+        position: absolute;
+        list-style: none;
+        top: 33px;
+    }
+
+    .custom-select.expanded .select-list {
+        display: block;
+        max-height: 190px;
+        border-bottom: 1px solid #d8dde5;
+        border-left: 1px solid #d8dde5;
+        border-right: 1px solid #d8dde5;
+        overflow-y: auto;
+        z-index: 1;
+    }
+
+    .custom-select .select-list-item {
+        min-height: 34px;
+        padding: 8px 8px;
+        word-break: break-word;
+        color: #666;
+    }
+
+    .custom-select.active {
+        border: #5bc0de 1px solid;
+    }
+
+.custom-select .select-list:hover .select-list-item.selected {
+    background-color: transparent;
+}
+
+.custom-select .select-list .select-list-item:hover,
+.custom-select .select-list:hover .select-list-item:hover,
+.custom-select .select-list .select-list-item.selected {
+    background-color: #f1f1f1;
+}
 /*#endregion */
 
+.image-wrapper {
+    overflow-x: auto;
+    overflow-y: hidden;
+}
 
 
 /* #region Drag and drop text question */

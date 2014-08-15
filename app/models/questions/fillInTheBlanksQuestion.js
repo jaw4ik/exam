@@ -8,38 +8,36 @@
         that.objectiveId = spec.objectiveId;
         that.title = spec.title;
         that.hasContent = spec.hasContent;
-        that.answers = spec.answers;
+        that.answerGroups = spec.answerGroups;
         that.learningContents = spec.learningContents;
 
         that.isAnswered = false;
         that.isCorrectAnswered = false;
         that.score = 0;
 
-        that.answer = function (submittedAnswers) {
-            var hasIncorrectAnswer = _.some(submittedAnswers, function (submittedAnswer) {
-                return _.some(that.answers, function (answer) {
-                    return submittedAnswer.groupId === answer.group && submittedAnswer.value !== answer.text;
+        that.answer = function (submittedAnswerGroups) {
+            var hasIncorrectAnswer = _.some(submittedAnswerGroups, function (submittedAnswerGroup) {
+                return _.some(that.answerGroups, function (answerGroup) {
+                    return submittedAnswerGroup.id === answerGroup.id && !answerGroup.checkIsCorrect(submittedAnswerGroup.value);
                 });
             });
 
             that.isAnswered = true;
             that.isCorrectAnswered = !hasIncorrectAnswer;
             that.score = hasIncorrectAnswer ? 0 : 100;
-
             var objective = objectiveRepository.get(that.objectiveId);
-
-            var eventData =  {
+            var eventData = {
                 type: "fill-in",
                 question: {
                     id: that.id,
                     title: that.title,
                     score: that.score,
-                    enteredAnswersTexts: _.map(submittedAnswers, function (item) {
-                        return item.value;
+                    enteredAnswersTexts: _.map(submittedAnswerGroups, function (answerGroup) {
+                        return answerGroup.value;
                     }),
-                    correctAnswersTexts: _.map(that.answers, function (item) {
-                        return item.text;
-                    })
+                    correctAnswersTexts: _.flatten(_.map(that.answerGroups, function(answerGroup) {
+                        return answerGroup.getCorrectText();
+                    })),
                 },
                 objective: {
                     id: objective.id,
