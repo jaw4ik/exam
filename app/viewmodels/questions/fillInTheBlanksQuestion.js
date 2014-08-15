@@ -19,6 +19,7 @@
                     return {
                         id: answerGroup.id,
                         answers: answerGroup.answers,
+                        value: ''
                     };
                 });
 
