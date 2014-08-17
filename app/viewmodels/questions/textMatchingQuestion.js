@@ -1,4 +1,4 @@
-﻿define(['plugins/http', 'eventManager', 'repositories/questionRepository', 'viewmodels/questions/helpers/textMatchingQuestion'], function (http, eventManager, questionRepository, textMatchingViewHandler) {
+﻿define(['plugins/http', 'views/questions/helpers/textMatchingQuestion'], function (http, viewHelper) {
     "use strict";
 
     var ctor = function (question, index, questionsCount) {
@@ -30,22 +30,37 @@
                 that.targets = _.map(values, function (value) {
                     return new Target(value);
                 });
-            });
+            }).then(loadContent());
         };
-        that.compositionComplete = function (element) {
-            return Q.fcall(function () {
-                textMatchingViewHandler(element);
-            });
-        }
 
         that.submit = function () {
             question.answer(_.map(that.sources, function (source) {
                 return { id: source.id, value: ko.utils.unwrapObservable(source.value) };
             }));
         };
+
+        that.isReady = ko.observable(false);
+        that.compositionComplete = function (view) {
+            viewHelper(view);
+            that.isReady(true);
+        }
+
+        function loadContent() {
+            if (that.hasContent) {
+                var contentUrl = 'content/' + that.objectiveId + '/' + that.id + '/content.html';
+                return Q(http.get(contentUrl)).then(function (response) {
+                    that.content = response;
+                }).fail(function () {
+                    that.content = settings.questionContentNonExistError;
+                });
+            }
+            return undefined;
+        };
+
     };
 
     return ctor;
+
 
     function Source(id, key) {
         this.id = id;

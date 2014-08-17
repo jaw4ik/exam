@@ -2,16 +2,17 @@
     <div class="brand">
         <!-- ko ifnot: isRootLinkActive() -->
         <span class="main-logo-wrapper">
-            <img alt="" class="main-logo" src="" data-bind="attr: { src: logoUrl }"/>
+            <img alt="" class="main-logo" src="" data-bind="attr: { src: logoUrl }" />
         </span>
         <!-- /ko -->
         <!-- ko if: isRootLinkActive() -->
         <a href="#questions" class="main-logo-wrapper">
-            <img alt="" class="main-logo" src="" data-bind="attr: { src: logoUrl }"/>
+            <img alt="" class="main-logo" src="" data-bind="attr: { src: logoUrl }" />
         </a>
         <!-- /ko -->
     </div>
 </div>
 <section id="content" class="container unselectable">
-    <!--ko router: { transition:'entrance', cacheViews:false }--><!--/ko-->
+    <!--ko router: { transition:'entrance' }-->
+    <!--/ko-->
 </section>

@@ -1,11 +1,10 @@
-﻿define(['jquery', 'knockout', '_', 'durandal/composition'], function ($, ko, _, composition) {
+﻿define(['jquery', 'knockout', '_'], function ($, ko, _) {
 
 
     return function (view) {
         var
             handler = function () {
                 var height = 0;
-
 
                 $(view).find('.text-matching-row').each(function () {
                     $(this).find('.text-matching-column').height('auto');
