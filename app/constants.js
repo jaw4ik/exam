@@ -9,7 +9,8 @@
             fillInTheBlanks: 'fillInTheBlank',
             dragAndDropText: 'dragAndDropText',
             singleSelectText: 'singleSelectText',
-            singleSelectImage: 'singleSelectImage'
+            singleSelectImage: 'singleSelectImage',
+            textMatching: 'textMatching'
         }
     }
 

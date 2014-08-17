@@ -6,6 +6,7 @@
                 require('bootstrapping/viewLocatorTask'),
                 require('bootstrapping/fillInTheBlankAnswersBindingTask'),
                 require('bootstrapping/dragAndDropTextQuestionBindingTask'),
+                require('bootstrapping/textMatchingQuestionBindingTask'),
                 require('bootstrapping/imageWrapBindingTask')
             ];
         }

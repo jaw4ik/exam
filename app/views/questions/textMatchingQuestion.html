@@ -1,0 +1,69 @@
+﻿<section class="text-matching-question">
+    <header class="content-header">
+        <div class="content-header-inner">
+            <div class="question-counter">
+                <span data-bind="text: (index + 1) + ' of ' + questionsCount"></span>
+            </div>
+            <div class="content-title question-text">
+                <span class="selectable" data-bind="text: title"></span>
+            </div>
+        </div>
+    </header>
+
+    <div>
+        <div class="text-matching-caption">
+            Drag items from right column to the left to match the pairs
+        </div>
+        <div class="text-matching-table">
+            <!-- ko foreach: sources-->
+            <div class="text-matching-row">
+                <div class="text-matching-column">
+                    <div class="text-matching-source-wrapper">
+                        <div class="text-matching-source">
+                            <div class="text-matching-source-text-wrapper">
+                                <div class="text-matchig-source-text" data-bind="html: key"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="text-matching-column">
+                    <div class="text-matching-target-placeholder-wrapper" data-bind="droppable: $data, accept: 1, scope: $parent.id">
+                        <div class="text-matching-target-placeholder">
+                            <div class="text-matching-target-placeholder-text-wrapper">
+                                <div class="text-matching-target-placeholder-text">Drop here</div>
+                            </div>
+                        </div>
+                        <!-- ko if: value -->
+                        <!-- ko with: value -->
+                        <div class="text-matching-target" data-bind="draggable: {}, scope: $parents[1].id">
+                            <div class="text-matching-target-text-wrapper">
+                                <div class="text-matching-target-text" data-bind="html: $data"></div>
+                            </div>
+                        </div>
+                        <!-- /ko -->
+                        <!-- /ko -->
+                    </div>
+                </div>
+                <div class="text-matching-column empty">&nbsp;</div>
+                <!-- ko with: $parent.targets[$index()] -->
+                <div class="text-matching-column" data-bind="droppable: $data, accept: 1, scope: $parents[1].id">
+                    <!-- ko if: value -->
+                    <!-- ko with: value -->
+                    <div class="text-matching-target-wrapper">
+                        <div class="text-matching-target" data-bind="draggable: {}, scope: $parents[2].id">
+                            <div class="text-matching-target-text-wrapper">
+                                <div class="text-matching-target-text" data-bind="html: $data"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /ko -->
+                    <!-- /ko -->
+                </div>
+                <!-- /ko -->
+            </div>
+            <!-- /ko -->
+        </div>
+    </div>
+
+
+</section>

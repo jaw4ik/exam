@@ -1,7 +1,28 @@
-﻿define(['models/course', 'models/objective', 'models/answer', 'models/answerGroup', 'models/questions/multipleSelectQuestion',
-    'models/questions/singleSelectTextQuestion', 'models/questions/fillInTheBlanksQuestion', 'models/questions/dragAndDropTextQuestion', 'models/questions/singleSelectImageQuestion', 'models/singleSelectImageAnswer', 'constants'],
-    function (Course, Objective, Answer, AnswerGroup, MultipleSelectQuestion, SingleSelectTextQuestion, FillInTheBlanksQuestion, DragAndDropTextQuestion, SingleSelectImageQuestion, SingleSelectImageAnswer, constants) {
+﻿define(['models/course', 'models/objective', 'models/answer', 'models/answerGroup',
+
+    'models/questions/multipleSelectQuestion',
+    'models/questions/singleSelectTextQuestion',
+    'models/questions/fillInTheBlanksQuestion',
+    'models/questions/dragAndDropTextQuestion',
+    'models/questions/singleSelectImageQuestion',
+    'models/singleSelectImageAnswer',
+    'models/questions/textMatchingQuestion',
+
+    'constants'],
+    function (Course,
+        Objective,
+        Answer,
+        AnswerGroup,
+        MultipleSelectQuestion,
+        SingleSelectTextQuestion,
+        FillInTheBlanksQuestion,
+        DragAndDropTextQuestion,
+        SingleSelectImageQuestion,
+        SingleSelectImageAnswer,
+        TextMatchingQuestion,
+        constants) {
         "use strict";
+
 
         var context = {
             course: null,
@@ -59,6 +80,8 @@
                     return mapDragAndDropTextQuestion(question, objective.id);
                 } else if (question.type == constants.question.types.singleSelectImage) {
                     return mapSingleSelectImageQuestion(question, objective.id);
+                } else if (question.type == constants.question.types.textMatching) {
+                    return mapTextMatchingQuestion(question, objective.id);
                 }
             }).filter(function (question) {
                 return !_.isNullOrUndefined(question);
@@ -116,6 +139,18 @@
                 objectiveId: objectiveId,
                 title: question.title,
                 answers: mapSingleSelectImageAnswers(question.answers),
+                score: 0,
+                hasContent: question.hasContent,
+                correctAnswerId: question.correctAnswerId
+            });
+        }
+
+        function mapTextMatchingQuestion(question, objectiveId) {
+            return new TextMatchingQuestion({
+                id: question.id,
+                objectiveId: objectiveId,
+                title: question.title,
+                answers: question.answers,
                 score: 0,
                 hasContent: question.hasContent,
                 correctAnswerId: question.correctAnswerId

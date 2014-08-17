@@ -8,13 +8,17 @@
     urlArgs: 'v=' + Math.random()
 });
 
-define('jquery', function () { return jQuery; });
+define('knockout', function () { return window.ko; });
+define('jquery', function () { return window.jQuery; });
+define('Q', function () { return window.Q; });
+define('_', function () { return window._; });
 
-define('knockout', function () { return ko;});
 
 define(['durandal/app', 'durandal/viewLocator', 'durandal/system', 'modulesInitializer', 'browserSupport', 'settingsReader', 'bootstrapper'],
     function (app, viewLocator, system, modulesInitializer, browserSupport, settingsReader, bootstrapper) {
         app.title = 'easygenerator';
+
+        system.debug(true);
 
         app.configurePlugins({
             router: true,
