@@ -1,5 +1,5 @@
-﻿define(['plugins/router', 'plugins/http', 'configuration/settings', 'repositories/questionRepository', 'eventManager', 'imagePreview'],
-    function (router, http, settings, questionRepository, eventManager, imagePreview) {
+﻿define(['plugins/router', 'plugins/http', 'configuration/settings', 'repositories/questionRepository'],
+    function (router, http, settings, questionRepository) {
         "use strict";
 
         var ctor = function (question, index, questionsCount) {
@@ -20,10 +20,7 @@
                         return {
                             id: answer.id,
                             image: answer.image,
-                            isChecked: ko.observable(question.selectedAnswer === answer.id),
-                            preview: function() {
-                                imagePreview.show(this.image);
-                            }
+                            isChecked: ko.observable(question.selectedAnswer === answer.id)
                         };
                     });
 

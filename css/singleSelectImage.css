@@ -104,7 +104,7 @@
     border-color: #009bd5;
 }
 
-.radio.image .radio-image {
+.radio.image .preview-thumbnail {
     border: 1px solid #ddd;
     -ms-border-radius: 3px;
     border-radius: 3px;
@@ -112,7 +112,7 @@
     height: 150px;
 }
 
-.radio.image.checked .radio-image {
+.radio.image.checked .preview-thumbnail {
     -ms-border-radius: 0;
     border-radius: 0;
 }

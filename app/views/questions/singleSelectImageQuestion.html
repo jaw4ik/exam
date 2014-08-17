@@ -14,10 +14,7 @@
     </div>
     <ul class="question-answers-list" data-bind="foreach: answers">
         <li class="radio image" data-bind="click: $parent.checkItem, css: { checked: $data.isChecked() }">
-            <div class="radio-image-wrapper preview-thumbnail">
-                <img class="radio-image" data-bind="attr: { src: $data.image }" alt="" />
-                <button data-bind="click: preview" class="preview-open"></button>
-            </div>
+            <div class="radio-image-wrapper" data-bind="thumbnail: image"></div>
             <div class="radio-icon-wrapper">
                 <span class="radio-icon"></span>
             </div>
