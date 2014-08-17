@@ -1,5 +1,5 @@
-﻿define(['plugins/router', 'plugins/http', 'configuration/settings', 'repositories/questionRepository'],
-    function (router, http, settings, questionRepository) {
+﻿define(['knockout', 'plugins/router', 'plugins/http', 'configuration/settings'],
+    function (knockout, router, http, settings) {
         "use strict";
 
         var ctor = function (question, index, questionsCount) {
@@ -14,13 +14,14 @@
             that.content = '';
             that.answers = [];
 
+            that.selectedOption = ko.observable();
+
             that.activate = function () {
                 return Q.fcall(function () {
                     that.answers = _.map(question.answers, function (answer) {
                         return {
                             id: answer.id,
-                            image: answer.image,
-                            isChecked: ko.observable(question.selectedAnswer === answer.id)
+                            image: answer.image
                         };
                     });
 
@@ -30,12 +31,8 @@
                 });
             };
 
-            that.checkItem = function (item) {
-                _.each(that.answers, function (answer) {
-                    answer.isChecked(false);
-                });
-                item.isChecked(true);
-                that.saveSelectedAnswer();
+            that.selectOption = function (item) {
+                that.selectedOption(item);
             };
 
             that.loadQuestionContent = function () {
@@ -48,19 +45,9 @@
             };
 
             that.submit = function () {
-                var asnwerId = getSelectedAnswer();
-                var question = questionRepository.get(that.objectiveId, that.id);
-                question.answer(asnwerId);
+                var option = ko.utils.unwrapObservable(that.selectedOption);
+                question.answer(option ? option.id : undefined);
             };
-
-            function getSelectedAnswer() {
-                var selectedAnswer = _.find(that.answers, function (answer) {
-                    return answer.isChecked();
-                });
-
-                return !_.isNullOrUndefined(selectedAnswer) && !_.isNullOrUndefined(selectedAnswer.id) ? selectedAnswer.id : '';
-            }
-
         };
 
         return ctor;

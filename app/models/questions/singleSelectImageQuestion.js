@@ -16,16 +16,9 @@
         that.score = 0;
 
         that.answer = function (selectedAnswerId) {
-            var answer = _.find(that.answers, function (a) {
-                return a.id === selectedAnswerId;
-            });
 
-            if (!_.isNullOrUndefined(answer) && answer.id === that.correctAnswerId) {
-                that.score = 100;
-                that.isCorrectAnswered = true;
-            } else {
-                that.score = 0;
-            }
+            that.score = that.correctAnswerId == selectedAnswerId ? 100 : 0;
+            that.isCorrectAnswered = that.score == 100;
 
             that.isAnswered = true;
 

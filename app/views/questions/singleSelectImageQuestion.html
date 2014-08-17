@@ -13,7 +13,7 @@
         <div class="question-content" data-bind="html: content, imageWrap: content"></div>
     </div>
     <ul class="question-answers-list" data-bind="foreach: answers">
-        <li class="radio image" data-bind="click: $parent.checkItem, css: { checked: $data.isChecked() }">
+        <li class="radio image" data-bind="click: $parent.selectOption, css: { checked: $data == $parent.selectedOption() }">
             <div class="radio-image-wrapper" data-bind="thumbnail: image"></div>
             <div class="radio-icon-wrapper">
                 <span class="radio-icon"></span>
