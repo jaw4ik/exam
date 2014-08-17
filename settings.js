@@ -3,7 +3,7 @@
         "url": ""
     },
     "xApi": {
-        "enabled": false,
+        "enabled": true,
         "lrs": {
             "uri": "http://cloud.scorm.com/ScormEngineInterface/TCAPI/public/",
             "credentials": {
@@ -12,7 +12,7 @@
             },
           "authenticationRequired": false
         },
-        "allowedVerbs": []
+        "allowedVerbs":["started","stopped","experienced","mastered","answered","passed","failed"]
     },
     "masteryScore": {
         "score": "75"

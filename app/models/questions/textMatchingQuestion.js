@@ -1,4 +1,4 @@
-﻿define([], function () {
+﻿define(['eventManager', 'repositories/objectiveRepository'], function (eventManager, objectiveRepository) {
 
     var TextMatching = function (spec) {
         var that = this;
@@ -28,6 +28,22 @@
 
             that.isAnswered = true;
             that.isCorrectAnswered = that.score == 100;
+
+            var objective = objectiveRepository.get(that.objectiveId);
+            eventManager.answersSubmitted({
+                type: "matching",
+                question: {
+                    id: that.id,
+                    title: that.title,
+                    answers: that.answers,
+                    score: that.score,
+                },
+                objective: {
+                    id: objective.id,
+                    title: objective.title
+                }
+            });
+
         };
 
         that.resetProgress = function () {

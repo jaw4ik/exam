@@ -94,6 +94,9 @@
                 case constants.interactionTypes.other:
                     enqueueDragAndDropTextQuestionAnsweredStatement(eventData);
                     break;
+                case constants.interactionTypes.matching:
+                    enqueueTextMatchingQuestionAnsweredStatement(eventData);
+                    break;
             }
         }
 
@@ -188,6 +191,48 @@
                     },
                     interactionType: constants.interactionTypes.other,
                     correctResponsesPattern: [question.correctAnswersTexts.join("[,]")]
+                }
+            };
+
+            var parentUrl = activityProvider.rootCourseUrl + '#objectives?objective_id=' + objective.id;
+            var context = {
+                contextActivities: {
+                    parent: [createActivity(objective.title, parentUrl)]
+                }
+            };
+
+            pushStatementIfSupported(createStatement(constants.verbs.answered, result, object, context));
+        }
+
+        function enqueueTextMatchingQuestionAnsweredStatement(eventData) {
+            var question = eventData.question,
+                objective = eventData.objective;
+
+            var questionUrl = activityProvider.rootCourseUrl + '#objective/' + question.objectiveId + '/question/' + question.id;
+            var result = {
+                score: question.score / 100,
+                response: _.map(question.answers, function (answer) {
+                    return answer.key.toLowerCase() + "[.]" + (answer.attemptedValue ? answer.attemptedValue.toLowerCase() : "");
+                }).join("[,]")
+            };
+
+            var object = {
+                id: questionUrl,
+                definition: {
+                    type: "http://adlnet.gov/expapi/activities/cmi.interaction",
+                    description: {
+                        "en-US": question.title
+                    },
+                    interactionType: constants.interactionTypes.matching,
+                    correctResponsesPattern: [_.map(question.answers, function (answer) {
+                        return answer.key.toLowerCase() + "[.]" + answer.value.toLowerCase();
+                    }).join("[,]")],
+                    source: _.map(question.answers, function (answer) {
+                        return { id: answer.key.toLowerCase(), description: { "en-US": answer.key } }
+                    }),
+                    target: _.map(question.answers, function (answer) {
+                        return { id: answer.value.toLowerCase(), description: { "en-US": answer.value } }
+                    })
                 }
             };
 

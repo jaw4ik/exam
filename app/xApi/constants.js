@@ -43,7 +43,8 @@
     interactionTypes = {
         choice: "choice",
         fillIn: "fill-in",
-        other: "other"
+        other: "other",
+        matching: 'matching'
     };
 
     return {
