@@ -30,7 +30,7 @@
                 that.targets = _.map(values, function (value) {
                     return new Target(value);
                 });
-            }).then(loadContent());
+            }).then(loadContent);
         };
 
         that.submit = function () {
