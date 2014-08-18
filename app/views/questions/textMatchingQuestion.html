@@ -9,7 +9,9 @@
             </div>
         </div>
     </header>
-
+    <div class="question-content-wrapper" data-bind="visible: hasContent">
+        <div class="question-content" data-bind="html: content, imageWrap: content"></div>
+    </div>
     <div>
         <div class="text-matching-caption">
             Drag items from right column to the left to match the pairs
