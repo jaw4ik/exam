@@ -23,7 +23,7 @@
                     <div class="text-matching-source-wrapper">
                         <div class="text-matching-source">
                             <div class="text-matching-source-text-wrapper">
-                                <div class="text-matchig-source-text" data-bind="html: key"></div>
+                                <div class="text-matchig-source-text" data-bind="text: key"></div>
                             </div>
                         </div>
                     </div>
@@ -39,7 +39,7 @@
                         <!-- ko with: value -->
                         <div class="text-matching-target" data-bind="draggable: {}, scope: $parents[1].id">
                             <div class="text-matching-target-text-wrapper">
-                                <div class="text-matching-target-text" data-bind="html: $data"></div>
+                                <div class="text-matching-target-text" data-bind="text: $data"></div>
                             </div>
                         </div>
                         <!-- /ko -->
@@ -54,7 +54,7 @@
                     <div class="text-matching-target-wrapper">
                         <div class="text-matching-target" data-bind="draggable: {}, scope: $parents[2].id">
                             <div class="text-matching-target-text-wrapper">
-                                <div class="text-matching-target-text" data-bind="html: $data"></div>
+                                <div class="text-matching-target-text" data-bind="text: $data"></div>
                             </div>
                         </div>
                     </div>
