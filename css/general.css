@@ -1393,6 +1393,9 @@ body {
     padding: 0px 8px;
     outline-color: transparent;
     color: #666;
+    -moz-user-select: auto;
+    -webkit-user-select: auto;
+    -ms-user-select: auto;
 }
 
     .question-content .blankInput:focus {
