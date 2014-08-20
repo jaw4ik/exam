@@ -3,7 +3,7 @@
         "url": ""
     },
     "xApi": {
-        "enabled": true,
+        "enabled": false,
         "lrs": {
             "uri": "http://cloud.scorm.com/ScormEngineInterface/TCAPI/public/",
             "credentials": {

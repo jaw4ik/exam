@@ -238,7 +238,8 @@
 
                 $('option', $element).each(function (index, option) {
                     var $option = $(option);
-                    $('<li class="' + cssClasses.listItem + '" title="' + $option.val() + '">' + $option.val() + '</li>')
+                    $('<li class="' + cssClasses.listItem + '" title="' + $option.val() + '"></li>')
+                    .text($option.val())
                     .appendTo($answerOptionList)
                     .on('click', handlers.selectOption);
                 });
