@@ -178,3 +178,4 @@ FakesAssemblies/
 
 # content folder
 content/
+/app/main-built.js
