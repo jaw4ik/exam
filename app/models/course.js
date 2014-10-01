@@ -62,7 +62,7 @@
                 });
             } else {
                 this.score = 0;
-                this.isCompleted = false;
+                this.isCompleted = true;
             }
         };
 
