@@ -10,7 +10,8 @@
             dragAndDropText: 'dragAndDropText',
             singleSelectText: 'singleSelectText',
             singleSelectImage: 'singleSelectImage',
-            textMatching: 'textMatching'
+            textMatching: 'textMatching',
+            statement: 'statement'
         }
     }
 
