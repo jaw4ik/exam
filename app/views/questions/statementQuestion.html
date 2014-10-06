@@ -22,7 +22,7 @@
         <!-- ko foreach: statements -->
         <div class="statement-item">
             <div class="statement-label">
-                <span data-bind="text: text"></span>
+                <span class="statement-label-text" data-bind="text: text"></span>
             </div>
             <div class="statement-option question-answer-wrapper">
                 <a class="question-answer-radiobutton" data-bind="click: $parent.setTrue, css: { checked: isTrueChecked() }">&nbsp;</a>

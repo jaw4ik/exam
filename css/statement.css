@@ -51,6 +51,10 @@
     word-wrap: break-word;
 }
 
+.statement-label-text {
+    white-space: pre-wrap;
+}
+
 .statement-option .question-answer-radiobutton {
     cursor: pointer;
     margin-right: 0;
