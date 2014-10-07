@@ -5,13 +5,15 @@
     './questions/dragAndDropTextQuestion',
     './questions/singleSelectImageQuestion',
     './questions/textMatchingQuestion',
+    './questions/statementQuestion',
 
     'models/questions/multipleSelectQuestion',
     'models/questions/singleSelectTextQuestion',
     'models/questions/fillInTheBlanksQuestion',
     'models/questions/dragAndDropTextQuestion',
     'models/questions/singleSelectImageQuestion',
-    'models/questions/textMatchingQuestion'],
+    'models/questions/textMatchingQuestion',
+    'models/questions/statementQuestion'],
     function (app, router, eventManager, settings, questionRepository, courseRepository, constants,
         MultipleSelectQuestionViewModel,
         SingleSelectTextQuestionViewModel,
@@ -19,13 +21,15 @@
         DragAndDropTextQuestionViewModel,
         SingleSelectImageQuestionViewModel,
         TextMatchingQuestionViewModel,
+        StatementQuestionViewModel,
 
         MultipleSelectQuestionModel,
         SingleSelectTextQuestionModel,
         FillInTheBlanksQuestionModel,
         DragAndDropTextQuestionModel,
         SingleSelectImageQuestionModel,
-        TextMatchingQuestionModel) {
+        TextMatchingQuestionModel,
+        StatementQuestionModel) {
         "use strict";
 
         var viewModel = {
@@ -72,6 +76,8 @@
                         return new SingleSelectImageQuestionViewModel(question, key, course.allQuestions.length);
                     } else if (question instanceof TextMatchingQuestionModel) {
                         return new TextMatchingQuestionViewModel(question, key, course.allQuestions.length);
+                    } else if (question instanceof StatementQuestionModel) {
+                        return new StatementQuestionViewModel(question, key, course.allQuestions.length);
                     }
                 }).filter(function (question) {
                     return !_.isNullOrUndefined(question);
@@ -116,6 +122,8 @@
                         return new SingleSelectImageQuestionViewModel(question, key, course.allQuestions.length);
                     } else if (question instanceof TextMatchingQuestionModel) {
                         return new TextMatchingQuestionViewModel(question, key, course.allQuestions.length);
+                    } else if (question instanceof StatementQuestionModel) {
+                        return new StatementQuestionViewModel(question, key, course.allQuestions.length);
                     }
                 }).filter(function (question) {
                     return !_.isNullOrUndefined(question);

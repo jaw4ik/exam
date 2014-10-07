@@ -451,6 +451,70 @@
     border-radius: 0;
 }
 
+
+/* #region Statements question */
+
+.statement {
+    display: table;
+    padding: 10px 65px 15px;
+    width: 100%;
+    table-layout: fixed;
+}
+
+.statement-headers-group {
+    display: table-header-group;
+}
+
+.statement-header {
+    display: table-cell;
+    font-size: 18px;
+    font-family: 'Arial';
+    font-weight: bold;
+    color: #777777;
+    height: 50px;
+    vertical-align: middle;
+}
+
+.statement-item {
+    display: table-row;
+    height: 60px;
+}
+
+.statement-item:hover {
+    background-color: #f9f9f9;
+}
+
+.statement-label,
+.statement-option {
+    display: table-cell;
+    vertical-align: middle;
+}
+
+.statement-header,
+.statement-option {
+    text-align: center;
+}
+
+.statement-option {
+    width: 100px;
+}
+
+.statement-label {
+    padding: 10px 65px 10px 30px;
+    word-wrap: break-word;
+}
+
+.statement-label-text {
+    white-space: pre-wrap;
+}
+
+.statement-option .question-answer-radiobutton {
+    cursor: pointer;
+    margin-right: 0;
+    vertical-align: middle;
+    display: inline-block;
+}
+/* #endregion*/
 /*
  * easygenerator | Copyright 2013
  */

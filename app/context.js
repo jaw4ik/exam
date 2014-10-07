@@ -7,7 +7,7 @@
     'models/questions/singleSelectImageQuestion',
     'models/singleSelectImageAnswer',
     'models/questions/textMatchingQuestion',
-
+    'models/questions/statementQuestion',
     'constants'],
     function (Course,
         Objective,
@@ -20,6 +20,7 @@
         SingleSelectImageQuestion,
         SingleSelectImageAnswer,
         TextMatchingQuestion,
+        StatementQuestion,
         constants) {
         "use strict";
 
@@ -85,6 +86,8 @@
                     return mapSingleSelectImageQuestion(question, objective.id);
                 } else if (question.type == constants.question.types.textMatching) {
                     return mapTextMatchingQuestion(question, objective.id);
+                } else if (question.type == constants.question.types.statement) {
+                    return mapStatementQuestion(question, objective.id);
                 }
             }).filter(function (question) {
                 return !_.isNullOrUndefined(question);
@@ -157,6 +160,17 @@
                 score: 0,
                 hasContent: question.hasContent,
                 correctAnswerId: question.correctAnswerId
+            });
+        }
+
+        function mapStatementQuestion(question, objectiveId) {
+            return new StatementQuestion({
+                id: question.id,
+                objectiveId: objectiveId,
+                title: question.title,
+                statements: question.answers,
+                score: 0,
+                hasContent: question.hasContent
             });
         }
 
