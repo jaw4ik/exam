@@ -1,0 +1,27 @@
+﻿<section class="fill-in-the-blanks-question">
+    <header class="content-header">
+        <div class="content-header-inner">
+            <div class="question-counter">
+                <span data-bind="text: (index + 1) + ' of ' + questionsCount"></span>
+            </div>
+            <div class="content-title question-text">
+                <span class="selectable" data-bind="text: title"></span>
+            </div>
+        </div>
+    </header>
+    <div class="question-content-wrapper" data-bind="visible: hasContent">
+        <div class="question-content" data-bind="html: content, imageWrap: content"></div>
+    </div>
+    <div class="question-content-wrapper">
+        <div class="question-image-wrapper">
+            <div class="hotspot-image-holder" data-bind="area: { click: addMark }, background: background">
+                <ul data-bind="foreach: marks" class="unstyled">
+                    <li class="pulsemark" data-bind="style: { left: x + 'px', top: y + 'px' }, click: $parent.removeMark, clickBubble: !$parent.isMultiple, css: { 'multiple': $parent.isMultiple }">
+                        <div class="pin"></div>
+                        <div class="mark"><span class="impulse"></span></div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>

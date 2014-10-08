@@ -8,6 +8,7 @@
     'models/singleSelectImageAnswer',
     'models/questions/textMatchingQuestion',
     'models/questions/statementQuestion',
+    'models/questions/hotspot',
     'constants'],
     function (Course,
         Objective,
@@ -21,6 +22,7 @@
         SingleSelectImageAnswer,
         TextMatchingQuestion,
         StatementQuestion,
+        Hotspot,
         constants) {
         "use strict";
 
@@ -88,12 +90,28 @@
                     return mapTextMatchingQuestion(question, objective.id);
                 } else if (question.type == constants.question.types.statement) {
                     return mapStatementQuestion(question, objective.id);
+                } else if (question.type == constants.question.types.hotspot) {
+                    return mapHotspotQuestion(question, objective.id);
                 }
             }).filter(function (question) {
                 return !_.isNullOrUndefined(question);
             }).value();
 
         }
+
+        function mapHotspotQuestion(question, objectiveId) {
+            return new Hotspot({
+                id: question.id,
+                objectiveId: objectiveId,
+                title: question.title,
+                spots: question.spots,
+                isMultiple: question.isMultiple,
+                background: question.background,
+                score: 0,
+                hasContent: question.hasContent
+                });
+        }
+
 
         function mapDragAndDropTextQuestion(question, objectiveId) {
             return new DragAndDropTextQuestion({
