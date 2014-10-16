@@ -65,10 +65,6 @@
                 return 100;
             }
 
-            if (!_.isArray(placedMarks)) {
-                return 0;
-            }
-
             var answerCorrect;
             if (!isMultiple) {
                 answerCorrect = _.some(spots, function (spot) {
@@ -89,7 +85,7 @@
                     });
                 });
 
-                answerCorrect = _.uniq(spotsWithMarks).length === spots.length && _.uniq(marksOnSpots).length === marks.length;
+                answerCorrect = _.uniq(spotsWithMarks).length === spots.length && _.uniq(marksOnSpots).length === placedMarks.length;
             }
 
             return answerCorrect ? 100 : 0;
