@@ -61,6 +61,14 @@
         return Hotspot;
 
         function calculateScore(isMultiple, spots, placedMarks) {
+            if (!_.isArray(spots) || spots.length == 0) {
+                return 100;
+            }
+
+            if (!_.isArray(placedMarks)) {
+                return 0;
+            }
+
             var answerCorrect;
             if (!isMultiple) {
                 answerCorrect = _.some(spots, function (spot) {
@@ -72,7 +80,7 @@
                 var spotsWithMarks = [];
                 var marksOnSpots = [];
 
-                _.each(marks, function (mark) {
+                _.each(placedMarks, function (mark) {
                     _.each(spots, function (spot) {
                         if (markIsInSpot(mark, spot)) {
                             spotsWithMarks.push(spot);
