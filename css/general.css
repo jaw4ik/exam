@@ -2144,6 +2144,7 @@ body {
 
 .hotspot-wrapper {
     position: relative;
+    padding: 0;
 }
 
     .hotspot-wrapper .question-image-wrapper {
