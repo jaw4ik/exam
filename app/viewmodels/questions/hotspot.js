@@ -15,7 +15,7 @@
         that.background = question.background;
         that.isMultiple = question.isMultiple;
         that.marks = ko.observableArray([]);
-        
+
         that.activate = function () {
             return Q.fcall(function () {
                 that.marks = ko.observableArray(question.placedMarks ? _.map(question.placedMarks, function (mark) { return { x: mark.x, y: mark.y }; }) : []);
@@ -46,7 +46,6 @@
         };
 
         that.submit = function () {
-            var question = questionRepository.get(that.objectiveId, that.id);
             question.answer(that.marks());
         };
     };
