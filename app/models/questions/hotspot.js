@@ -62,7 +62,7 @@
 
         function calculateScore(isMultiple, spots, placedMarks) {
             if (!_.isArray(spots) || spots.length == 0) {
-                return 100;
+                return placedMarks.length ? 0 : 100;
             }
 
             var answerCorrect;
