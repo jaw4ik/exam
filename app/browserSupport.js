@@ -91,6 +91,9 @@
     };
 
     function isChromeWithPageCoordsBug() {
-        return window.navigator.appVersion.match(/Chrome\/(.*?) /)[1] == "38.0.2125.102";
+        if (ua.match(/(chrome)\/?\s*([\d\.]+)/i)) {
+            return window.navigator.appVersion.match(/Chrome\/(.*?) /)[1] == "38.0.2125.102";
+        }
+        return false;
     }
 });
