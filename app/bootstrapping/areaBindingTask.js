@@ -1,4 +1,4 @@
-﻿define([], function () {
+﻿define(['browserSupport'], function (browserSupport) {
     "use strict";
 
     return {
@@ -11,6 +11,7 @@
                     ;
 
                     $(element).on('click', handler);
+
                     ko.utils.domNodeDisposal.addDisposeCallback(element, function () {
                         $(element).off('click', handler);
                     });
@@ -18,11 +19,18 @@
                     function handler(e) {
                         var
                             offset = $(element).offset(),
-                            x = e.clientX - offset.left,
-                            y = e.clientY - offset.top,
+                            x = e.pageX - offset.left,
+                            y = e.pageY - offset.top,
                             targetWidth = $(element).width(),
                             targetHeight = $(element).height()
                         ;
+
+                        // workaround for specific version of Chrome with next bug:
+                        // https://code.google.com/p/chromium/issues/detail?id=423802
+                        if (browserSupport.isChromeWithPageCoordsBug) {
+                            x -= window.scrollX;
+                            y -= window.scrollY;
+                        }
 
                         if (typeof (click) == "function") {
                             var point = {
@@ -31,6 +39,8 @@
                             }
                             click(point);
                         }
+
+
                     }
 
                 }
