@@ -32,7 +32,7 @@
 
             var objective = objectiveRepository.get(that.objectiveId);
             var eventData =  {
-                type: "other",
+                type: "dragAndDrop",
                 question: {
                     id: that.id,
                     title: that.title,

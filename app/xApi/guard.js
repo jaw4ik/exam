@@ -87,6 +87,12 @@
                 if (!_.isNumber(item)) {
                     throw message;
                 }
+            },
+
+            throwIfNotArray = function (array, message) {
+                if (!_.isArray(array)) {
+                    throw message;
+                }
             };
 
         return {
@@ -97,7 +103,8 @@
             throwIfNotString: throwIfNotString,
             throwIfNotAnObject: throwIfNotAnObject,
             throwIfNotNumber: throwIfNotNumber,
-            throwIfNotISODuration: throwIfNotISODuration
+            throwIfNotISODuration: throwIfNotISODuration,
+            throwIfNotArray: throwIfNotArray
         };
     }
 );

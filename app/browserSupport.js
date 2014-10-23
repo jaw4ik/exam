@@ -6,6 +6,7 @@
         isSupportedBrowser: null,
         isMobileDevice: null,
         isIE9: null,
+        isChromeWithPageCoordsBug: null,
 
         initialize: initialize
     };
@@ -15,8 +16,9 @@
     function initialize() {
         browserSupport.isIE9 = isIE9();
         browserSupport.isMobileDevice = isMobileDevice();
-        browserSupport.isSupportedMobile= isSupportedMobile();
+        browserSupport.isSupportedMobile = isSupportedMobile();
         browserSupport.isSupportedBrowser = isSupportedBrowser();
+        browserSupport.isChromeWithPageCoordsBug = isChromeWithPageCoordsBug();
     }
 
     function isIE9() {
@@ -87,4 +89,11 @@
 
         return false;
     };
+
+    function isChromeWithPageCoordsBug() {
+        if (ua.match(/(chrome)\/?\s*([\d\.]+)/i)) {
+            return window.navigator.appVersion.match(/Chrome\/(.*?) /)[1] == "38.0.2125.102";
+        }
+        return false;
+    }
 });

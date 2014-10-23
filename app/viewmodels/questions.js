@@ -6,6 +6,7 @@
     './questions/singleSelectImageQuestion',
     './questions/textMatchingQuestion',
     './questions/statementQuestion',
+    './questions/hotspot',
 
     'models/questions/multipleSelectQuestion',
     'models/questions/singleSelectTextQuestion',
@@ -13,7 +14,8 @@
     'models/questions/dragAndDropTextQuestion',
     'models/questions/singleSelectImageQuestion',
     'models/questions/textMatchingQuestion',
-    'models/questions/statementQuestion'],
+    'models/questions/statementQuestion',
+    'models/questions/hotspot'],
     function (app, router, eventManager, settings, questionRepository, courseRepository, constants,
         MultipleSelectQuestionViewModel,
         SingleSelectTextQuestionViewModel,
@@ -22,6 +24,7 @@
         SingleSelectImageQuestionViewModel,
         TextMatchingQuestionViewModel,
         StatementQuestionViewModel,
+        HotSpotViewModel,
 
         MultipleSelectQuestionModel,
         SingleSelectTextQuestionModel,
@@ -29,7 +32,8 @@
         DragAndDropTextQuestionModel,
         SingleSelectImageQuestionModel,
         TextMatchingQuestionModel,
-        StatementQuestionModel) {
+        StatementQuestionModel,
+        HotspotModel) {
         "use strict";
 
         var viewModel = {
@@ -78,6 +82,8 @@
                         return new TextMatchingQuestionViewModel(question, key, course.allQuestions.length);
                     } else if (question instanceof StatementQuestionModel) {
                         return new StatementQuestionViewModel(question, key, course.allQuestions.length);
+                    } else if (question instanceof HotspotModel) {
+                        return new HotSpotViewModel(question, key, course.allQuestions.length);
                     }
                 }).filter(function (question) {
                     return !_.isNullOrUndefined(question);
@@ -124,6 +130,8 @@
                         return new TextMatchingQuestionViewModel(question, key, course.allQuestions.length);
                     } else if (question instanceof StatementQuestionModel) {
                         return new StatementQuestionViewModel(question, key, course.allQuestions.length);
+                    } else if (question instanceof HotspotModel) {
+                        return new HotSpotViewModel(question, key, course.allQuestions.length);
                     }
                 }).filter(function (question) {
                     return !_.isNullOrUndefined(question);
