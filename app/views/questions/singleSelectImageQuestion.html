@@ -15,8 +15,8 @@
     <ul class="question-answers-list" data-bind="foreach: answers">
         <li class="radio image" data-bind="click: $parent.selectOption, css: { checked: $data == $parent.selectedOption() }">
             <div class="radio-image-wrapper" data-bind="thumbnail: image"></div>
-            <div class="radio-icon-wrapper">
-                <span class="radio-icon"></span>
+            <div class="question-answer-radiobutton-wrapper">
+                <a class="question-answer-radiobutton" data-bind="click: $parent.selectOption, css: { checked: $data == $parent.selectedOption() }">&nbsp;</a>
             </div>
         </li>
     </ul>

@@ -1235,10 +1235,16 @@ body {
     vertical-align: middle;
 }
 
+.question-answer-radiobutton-wrapper {
+    width: 100%;
+    margin-top: 8px;
+}
+
 .question-answer-radiobutton {
     display: block;
-    width: 36px;
-    height: 36px;
+    height: 32px;
+    width: 32px;
+    position: relative;
     border-radius: 50%;
     border: 1px solid #aaaaaa;
     background-color: white;
@@ -1248,13 +1254,21 @@ body {
     .question-answer-radiobutton.checked:before {
         content: '';
         display: block;
-        width: 15px;
-        height: 15px;
-        margin: 10px auto;
+        position: absolute;
+        height: 18px;
+        width: 18px;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        margin: auto;
         background-color: #41b7d8;
         border-radius: 50%;
     }
 
+.question-answer-radiobutton-wrapper .question-answer-radiobutton {
+    margin: 0 auto;
+}
 
 .question-answer-text {
     display: table-cell;
