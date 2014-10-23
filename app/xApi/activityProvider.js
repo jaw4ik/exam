@@ -96,6 +96,7 @@
                     break;
                 case constants.interactionTypes.matching:
                     enqueueTextMatchingQuestionAnsweredStatement(eventData);
+                    break;
                 case constants.interactionTypes.hotspot:
                     enqueueHotSpotQuestionAnsweredStatement(eventData);
                     break;
