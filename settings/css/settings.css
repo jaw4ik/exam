@@ -701,11 +701,13 @@ body, html, input, h1 {
 .switch-toggle-slider.on {
     -webkit-box-shadow: 0 0 0 1px #65bd77;
     box-shadow: 0 0 0 1px #65bd77;
+    background: none repeat scroll 0 0 #65bd77;
 }
 
 .switch-toggle-slider.off {
     -webkit-box-shadow: 0 0 0 1px #ed7e7d;
     box-shadow: 0 0 0 1px #ed7e7d;
+    background: none repeat scroll 0 0 #ed7e7d;
 }
 
 .switch-toggle-wrapper {
