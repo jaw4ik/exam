@@ -1,7 +1,5 @@
 ﻿define(['./configuration/xApiSettings', './base64', './errorsHandler'],
-    function (defaults, base64, errorsHandler) {
-
-        var lrsSettings = null;
+    function (xApiSettings, base64, errorsHandler) {
 
         var eventManager = {
             init: init,
@@ -9,8 +7,7 @@
         };
         return eventManager;
 
-        function init(settings) {
-            lrsSettings = settings.lrs;
+        function init() {
             return Q.fcall(function () {
                 initXDomainRequestTransport();
             });
@@ -124,7 +121,7 @@
         }
 
         function createRequest(statement) {
-            var lrsUrl = lrsSettings.uri;
+            var lrsUrl = xApiSettings.xApi.lrs.uri;
 
             if (lrsUrl.indexOf("/statements") === -1)
                 lrsUrl = lrsUrl + "/statements";
@@ -132,20 +129,19 @@
             var userName = '';
             var password = '';
 
-            if (lrsSettings.authenticationRequired) {
-                userName = lrsSettings.credentials.username;
-                password = lrsSettings.credentials.password;
+            if (xApiSettings.xApi.lrs.authenticationRequired) {
+                userName = xApiSettings.xApi.lrs.credentials.username;
+                password = xApiSettings.xApi.lrs.credentials.password;
             } else {
-                userName = defaults.anonymousCredentials.username;
-                password = defaults.anonymousCredentials.password;
+                userName = xApiSettings.anonymousCredentials.username;
+                password = xApiSettings.anonymousCredentials.password;
             }
 
             var headers = [];
-            headers["X-Experience-API-Version"] = defaults.xApiVersion;
+            headers["X-Experience-API-Version"] = xApiSettings.xApiVersion;
             headers["Content-Type"] = "application/json";
             var auth = "Basic " + base64.encode(userName + ':' + password);
             headers["Authorization"] = auth;
-
 
             var options = {};
 
@@ -153,7 +149,7 @@
             options.data = JSON.stringify(statement);
             options.type = 'POST';
             options.headers = headers;
-            options.timeout = defaults.timeout;
+            options.timeout = xApiSettings.timeout;
             options.contentType = 'application/json';
             options.dataType = 'json';
             options.async = true;

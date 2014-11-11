@@ -19,8 +19,8 @@
 
         function init(actorData, activityName, activityUrl) {
             return Q.all([
-                requestManager.init(moduleSettings),
                 xApiSettings.init(moduleSettings),
+                requestManager.init(),
                 activityProvider.init(actorData, activityName, activityUrl)
             ]).spread(function () {
                 isInitialized = true;

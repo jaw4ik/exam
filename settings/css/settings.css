@@ -1,22 +1,24 @@
 ﻿/*#region FONTS */
 
 @font-face {
-  font-family: 'Open Sans';
-  font-style: normal;
-  font-weight: 400;
-  src: local('Open Sans'), local('OpenSans'), url(fonts/opensans-400.woff) format('woff');
+    font-family: 'Open Sans';
+    font-style: normal;
+    font-weight: 400;
+    src: local('Open Sans'), local('OpenSans'), url(fonts/opensans-400.woff) format('woff');
 }
+
 @font-face {
-  font-family: 'Open Sans';
-  font-style: normal;
-  font-weight: 600;
-  src: local('Open Sans Semibold'), local('OpenSans-Semibold'), url(fonts/opensans-600.woff) format('woff');
+    font-family: 'Open Sans';
+    font-style: normal;
+    font-weight: 600;
+    src: local('Open Sans Semibold'), local('OpenSans-Semibold'), url(fonts/opensans-600.woff) format('woff');
 }
+
 @font-face {
-  font-family: 'Open Sans';
-  font-style: italic;
-  font-weight: 400;
-  src: local('Open Sans Italic'), local('OpenSans-Italic'), url(fonts/opensans-italic-400.woff) format('woff');
+    font-family: 'Open Sans';
+    font-style: italic;
+    font-weight: 400;
+    src: local('Open Sans Italic'), local('OpenSans-Italic'), url(fonts/opensans-italic-400.woff) format('woff');
 }
 
 /*#endregion */
@@ -300,6 +302,7 @@ body, html, input, h1 {
 
     .content-text-input[disabled] {
         background: #ebebe4;
+        color: #303133;
         opacity: 0.4;
     }
 
@@ -328,32 +331,35 @@ body, html, input, h1 {
     float: left;
     max-width: 150px;
     line-height: 30px;
-    padding: 7px 27px;
+    padding: 9px 27px;
     margin: 0;
-    border: 1px solid #d4d4d4;
-    background: white;
+    background: #65bd77;
+    border: 1px solid #61b472;
     border-radius: 3px;
 }
 
     .save-btn:focus,
     .save-btn:active {
+        background: #65bd77;
+        border: 1px solid #61b472;
         outline: none;
     }
 
     .save-btn:hover {
-        background: #f7f7f7;
+        background-color: #5fb06f;
+        border-color: #61b472;
     }
 
 .save-btn-title {
     display: block;
     vertical-align: top;
-    line-height: 16px;
+    line-height: 18px;
     position: relative;
-    padding-left: 22px;
-    color: #2cb7ff;
+    padding-left: 28px;
+    color: #ffffff;
     font-family: 'Open Sans';
     font-weight: 600;
-    font-size: 13px;
+    font-size: 14px;
     overflow: hidden;
     -ms-text-overflow: ellipsis;
     text-overflow: ellipsis;
@@ -364,19 +370,19 @@ body, html, input, h1 {
     .save-btn-title:before {
         content: '';
         display: block;
-        height: 16px;
-        width: 16px;
+        height: 18px;
+        width: 18px;
         position: absolute;
         top: 0;
         left: 0;
-        background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAMCAYAAABr5z2BAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyJpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMy1jMDExIDY2LjE0NTY2MSwgMjAxMi8wMi8wNi0xNDo1NjoyNyAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNiAoV2luZG93cykiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6RURBNEM0OEU4Q0E1MTFFM0JENkRCNEE4NzQ3RUQwMTYiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6RURBNEM0OEY4Q0E1MTFFM0JENkRCNEE4NzQ3RUQwMTYiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDpFREE0QzQ4QzhDQTUxMUUzQkQ2REI0QTg3NDdFRDAxNiIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDpFREE0QzQ4RDhDQTUxMUUzQkQ2REI0QTg3NDdFRDAxNiIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PgtQAmAAAADvSURBVHjanNE/q8FhFMBx/xIpb8BrMBpuCSEDmy7JpjvewStQKHkBMll0B1HqDtLFoLvdzcTAXdTPwGBQusrC96mj9Mv171ef4XnO75zOc47R/XUwPPF5UMCr5YlkL7pwoml6MDmEniT/ofpIgSg6cGCLGPr3FojjE3ZsEMG3CpwKuK4kp9GCFWsE8XMKmuTiF0UYdclv+IAa9goBjM5/UAWy0loODdgk9o4azFjAj7G+PVUggbqcUxgij4p0NIcP00vvU63tkcEMJbwIg9yFof03oPMtlJHETs4TaVu7th79GtvS7kAGtry136MAAwC4Oip8EXC9ygAAAABJRU5ErkJggg==) no-repeat center center;
+        background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAASCAYAAABWzo5XAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyJpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMy1jMDExIDY2LjE0NTY2MSwgMjAxMi8wMi8wNi0xNDo1NjoyNyAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNiAoV2luZG93cykiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6QUExNDEyRDY2Njk4MTFFNDhBQjU5Nzg5MThEMzBFQ0UiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6QUExNDEyRDc2Njk4MTFFNDhBQjU5Nzg5MThEMzBFQ0UiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDpBQTE0MTJENDY2OTgxMUU0OEFCNTk3ODkxOEQzMEVDRSIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDpBQTE0MTJENTY2OTgxMUU0OEFCNTk3ODkxOEQzMEVDRSIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PlH9euIAAAHwSURBVHjajJRLLwNRFMfPTKcP8WgRImpIo6oisWjiERtCsLQR1iwkPgQLX8LSho3YWCKEiKSxJPFYeLUoRTz6kFY645zbO80YM62T/HJn7j33P+ece88IvfOjYGJDyBQfm/lcBNlF1pAdzTG8uMlGySAQRJaQQRNxP2cW2UPmkHNtUdQ5DiBHFiJGG+S+A0YhimQDqSyl4HA5wCbZgPtu9C2MBTUhAVlG3KVEJLsE/lA7BLo7wFVRBnzPMooJVKNhpO8f6YA3IIPkyJeVRwV87zBFNPkfEU99NbjrPOz59f4FUu9J/fKkyI+4eEoOO3jbZPac/cpA7Or+z3UhIdlYTFe565dXU7sMNns+leh5BJScYhSSKeEM7ac3Z5kTWkMBEAQBro8vIf2ZguqGGqiqzZ/DczQOqY+kadQU0UPhBQso2kRWSF9XK6tJo7+JrWXSGXi8jlllfyfyi8XsK5GGm5MrUBSFibV0+tioqipEz25AVRQroUMSWtXPJN8SBTHNniNxSONHitgKCW1R71mJUZRPt7FiIrR3m4qtItN8wq0XuwifQi6Xw5RUK5EPZAb/AKrWa9TF40hC7/Wd/TY7as3IdxxFzozdv4/0GNMskk4P32P6P6LI+pERZIL3IV3YLN1F5ABZp5rwkhTsR4ABAMuBmhILbNv2AAAAAElFTkSuQmCC) no-repeat center center;
     }
 
 .save-message-wrapper {
-    padding: 6px 0;
+    padding: 10px 0 0 0;
     float: left;
     margin-left: 10px;
-    font-size: 13px;
+    font-size: 14px;
 }
 
 .save-message {
@@ -641,3 +647,216 @@ body, html, input, h1 {
 .invisible {
     display: none;
 }
+
+.warning-message-wrapper {
+    margin: 10px 0 0 0;
+    text-align: center;
+}
+
+.warning-message {
+    background: #fffddd;
+    padding: 7px;
+    border-radius: 10px;
+    font-weight: normal;
+}
+
+    .warning-message .bold {
+        font-weight: bold;
+    }
+
+.content-row.switcher {
+    padding-top: 8px;
+}
+
+.switcher {
+    text-align: center;
+}
+
+    .switcher > div {
+        display: inline-block;
+        vertical-align: middle;
+    }
+
+.switcher-text {
+    font-weight: normal;
+}
+
+    .switcher-text.disabled {
+        color: #999999;
+    }
+
+.switch-toggle-slider {
+    border-radius: 57px;
+    cursor: pointer;
+    height: 28px;
+    overflow: hidden;
+    position: relative;
+    -webkit-transition: box-shadow 250ms ease-out 0s;
+    -moz-transition: box-shadow 250ms ease-out 0s;
+    transition: box-shadow 250ms ease-out 0s;
+    width: 57px;
+    margin: 0 7px;
+}
+
+.switch-toggle-slider.on {
+    -webkit-box-shadow: 0 0 0 1px #65bd77;
+    box-shadow: 0 0 0 1px #65bd77;
+}
+
+.switch-toggle-slider.off {
+    -webkit-box-shadow: 0 0 0 1px #ed7e7d;
+    box-shadow: 0 0 0 1px #ed7e7d;
+}
+
+.switch-toggle-wrapper {
+    width: 114px;
+}
+
+.switch-toggle-on, .switch-toggle-off {
+    color: white;
+    float: left;
+    font-family: "OpenSans",sans-serif;
+    font-size: 13px;
+    height: 28px;
+    line-height: 28px;
+    text-align: center;
+    text-transform: uppercase;
+    width: 57px;
+}
+
+.switch-toggle-on {
+    background: none repeat scroll 0 0 #65bd77;
+    text-indent: -25px;
+}
+
+.switch-toggle-off {
+    background: none repeat scroll 0 0 #ed7e7d;
+    margin-left: -14px;
+    text-indent: -3px;
+}
+
+.switch-toogle-blob {
+    background: linear-gradient(to bottom, #fdfdfd 0%, #eef0ed 100%) repeat scroll 0 0 rgba(0, 0, 0, 0);
+    border-radius: 14px;
+    float: left;
+    height: 28px;
+    margin-left: -28px;
+    position: relative;
+    width: 28px;
+    z-index: 99;
+}
+
+.switch-toggle-slider.on .switch-toogle-blob, .switch-toggle-slider.off .switch-toogle-blob {
+    -moz-transition: box-shadow 250ms ease-out 0s;
+    -webkit-transition: box-shadow 250ms ease-out 0s;
+    transition: box-shadow 250ms ease-out 0s;
+}
+
+.switch-toggle-slider.on .switch-toogle-blob {
+    -moz-box-shadow: 0 0 0 1px #65bd77;
+    -webkit-box-shadow: 0 0 0 1px #65bd77;
+    box-shadow: 0 0 0 1px #65bd77;
+}
+
+.switch-toggle-slider.off .switch-toogle-blob {
+    -moz-box-shadow: 0 0 0 1px #ed7e7d;
+    -webkit-box-shadow: 0 0 0 1px #ed7e7d;
+    box-shadow: 0 0 0 1px #ed7e7d;
+}
+
+.dropdown {
+    width: 100%;
+    position: relative;
+}
+
+.dropdown-current-item {
+    height: 30px;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    border: 1px solid #dcdcdc;
+    border-radius: 3px;
+    position: relative;
+    cursor: pointer;
+}
+
+    .disabled .dropdown-current-item {
+        background: none repeat scroll 0 0 #ebebe4;
+        opacity: 0.4;
+        cursor: default;
+    }
+
+.dropdown-current-item-text {
+    overflow: hidden;
+    padding: 5px 30px 5px 5px;
+    position: absolute;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    width: 100%;
+    z-index: 1;
+    font-weight: normal;
+}
+
+.dropdown-indicator-holder {
+    background: none repeat scroll 0 0 #f1f1f1;
+    border-left: 1px solid #dcdcdc;
+    width: 25px;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    right: 0;
+    z-index: 1;
+}
+
+.dropdown-indicator {
+    background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAsAAAAGCAYAAAAVMmT4AAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyJpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMy1jMDExIDY2LjE0NTY2MSwgMjAxMi8wMi8wNi0xNDo1NjoyNyAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNiAoV2luZG93cykiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6QTAxMTU5NzY2NjRDMTFFNDkxODFBREQ1MEE5MjA3OUIiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6QTAxMTU5Nzc2NjRDMTFFNDkxODFBREQ1MEE5MjA3OUIiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDpBMDExNTk3NDY2NEMxMUU0OTE4MUFERDUwQTkyMDc5QiIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDpBMDExNTk3NTY2NEMxMUU0OTE4MUFERDUwQTkyMDc5QiIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PiuoBKIAAAB2SURBVHjaYuyaOq+dgYGhgoEw6GACElVAPI+AwrkgdYz///9n6J42nxnIWQfEflgUbgLioNKsxL9gxSAA1MAJpLYAsROSwn1A7ANU+B3EgSuGauAHUgeBWB+ILwKxPVDhR5g8imKoBlEgtQiI44AKXyPLAQQYAEiNKG+murk/AAAAAElFTkSuQmCC");
+    display: block;
+    height: 6px;
+    left: 50%;
+    margin-left: -6px;
+    margin-top: -3px;
+    position: absolute;
+    top: 50%;
+    width: 11px;
+}
+
+.expanded .dropdown-indicator {
+    -moz-transform: rotate(180deg);
+    -webkit-transform: rotate(180deg);
+    transform: rotate(180deg);
+}
+
+.dropdown-options-list {
+    background: none repeat scroll 0 0 white;
+    border: 1px solid #dcdcdc;
+    border-radius: 0 0 3px 3px;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    list-style: none;
+    margin: -2px 0 0;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    width: 100%;
+    z-index: 2;
+    font-weight: normal;
+    display: none;
+}
+
+.expanded + .dropdown-options-list {
+    display: block;
+}
+
+.dropdown-options-item {
+    padding: 5px;
+    cursor: pointer;
+}
+
+    .dropdown-options-item:hover {
+        background: #469dd5;
+        color: white;
+    }
