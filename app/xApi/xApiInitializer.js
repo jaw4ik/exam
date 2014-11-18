@@ -17,11 +17,11 @@
 
         return xApiInitializer;
 
-        function init(actorData, activityName, activityUrl) {
+        function init(courseId, actorData, activityName, activityUrl) {
             return Q.all([
-                requestManager.init(moduleSettings),
                 xApiSettings.init(moduleSettings),
-                activityProvider.init(actorData, activityName, activityUrl)
+                requestManager.init(),
+                activityProvider.init(courseId, actorData, activityName, activityUrl)
             ]).spread(function () {
                 isInitialized = true;
                 statementQueueHandler.handle();

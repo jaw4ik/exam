@@ -10,12 +10,13 @@
                 createActor: createActor,
                 rootCourseUrl: null,
                 rootActivityUrl: null,
-                turnOffSubscriptions: turnOffSubscriptions
+                turnOffSubscriptions: turnOffSubscriptions,
+                courseId: null
             };
 
         return activityProvider;
 
-        function init(actorData, activityName, activityUrl) {
+        function init(courseId, actorData, activityName, activityUrl) {
             return Q.fcall(function () {
                 if (_.isUndefined(xApiSettings.scoresDistribution.positiveVerb)) {
                     throw errorsHandler.errors.notEnoughDataInSettings;
@@ -25,6 +26,7 @@
                 activityProvider.activityName = activityName;
                 activityProvider.rootCourseUrl = activityUrl.split("?")[0].split("#")[0];
                 activityProvider.rootActivityUrl = activityProvider.rootCourseUrl + '#questions';
+                activityProvider.courseId = courseId;
                 subscriptions.push(eventManager.subscribeForEvent(eventManager.events.courseStarted).then(enqueueCourseStarted));
                 subscriptions.push(eventManager.subscribeForEvent(eventManager.events.courseFinished).then(enqueueCourseFinished));
                 subscriptions.push(eventManager.subscribeForEvent(eventManager.events.answersSubmitted).then(enqueueAnsweredQuestionsStatements));
@@ -126,11 +128,11 @@
             };
 
             var parentUrl = activityProvider.rootCourseUrl + '#objectives?objective_id=' + objective.id;
-            var context = {
+            var context = createContext({
                 contextActivities: {
                     parent: [createActivity(objective.title, parentUrl)]
                 }
-            };
+            });
 
             pushStatementIfSupported(createStatement(constants.verbs.answered, result, object, context));
         }
@@ -166,11 +168,11 @@
             };
 
             var parentUrl = activityProvider.rootCourseUrl + '#objectives?objective_id=' + objective.id;
-            var context = {
+            var context = createContext({
                 contextActivities: {
                     parent: [createActivity(objective.title, parentUrl)]
                 }
-            };
+            });
 
             pushStatementIfSupported(createStatement(constants.verbs.answered, result, object, context));
         }
@@ -198,11 +200,11 @@
             };
 
             var parentUrl = activityProvider.rootCourseUrl + '#objectives?objective_id=' + objective.id;
-            var context = {
+            var context = createContext({
                 contextActivities: {
                     parent: [createActivity(objective.title, parentUrl)]
                 }
-            };
+            });
 
             pushStatementIfSupported(createStatement(constants.verbs.answered, result, object, context));
         }
@@ -230,11 +232,11 @@
             };
 
             var parentUrl = activityProvider.rootCourseUrl + '#objectives?objective_id=' + objective.id;
-            var context = {
+            var context = createContext({
                 contextActivities: {
                     parent: [createActivity(objective.title, parentUrl)]
                 }
-            };
+            });
 
             pushStatementIfSupported(createStatement(constants.verbs.answered, result, object, context));
         }
@@ -272,11 +274,11 @@
             };
 
             var parentUrl = activityProvider.rootCourseUrl + '#objectives?objective_id=' + objective.id;
-            var context = {
+            var context = createContext({
                 contextActivities: {
                     parent: [createActivity(objective.title, parentUrl)]
                 }
-            };
+            });
 
             pushStatementIfSupported(createStatement(constants.verbs.answered, result, object, context));
         }
@@ -307,8 +309,17 @@
             });
         }
 
+        function createContext(contextSpec) {
+            contextSpec = contextSpec || {};
+            var contextExtensions = contextSpec.extensions || {};
+            contextExtensions[constants.extenstionKeys.courseId] = activityProvider.courseId;
+            contextSpec.extensions = contextExtensions;
+            return contextSpec;
+        }
+
         function createStatement(verb, result, activity, context) {
             var activityData = activity || createActivity(activityProvider.activityName);
+            context = context || createContext();
 
             return statementModel({
                 actor: activityProvider.actor,

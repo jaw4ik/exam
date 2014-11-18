@@ -47,11 +47,16 @@
         matching: "matching",
         dragAndDrop: "dragAndDrop",
         hotspot: "hotspot"
+    },
+
+    extenstionKeys = {
+        courseId: "http://easygenerator/expapi/course/id"
     };
 
     return {
         interactionTypes: interactionTypes,
-        verbs: verbs
+        verbs: verbs,
+        extenstionKeys: extenstionKeys
     };
 
 });

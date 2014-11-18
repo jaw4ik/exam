@@ -1,7 +1,7 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
-    <title>XAPI settings</title>
+    <title>Template settings</title>
 
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -93,12 +93,7 @@
                         <div class="info-tooltip-wrapper">
                             <div class="info-tooltip">
                                 <span class="info-tooltip-text">
-                                    You can track and trace the results of your
-                                    learners through the Xapi. You need to set up your own Xapi
-                                    Learning record store (LRS). See <a href="http://www.scorm.com/" target="blank" class="info-tooltip-link">www.scorm.com</a>
-                                    or <a href="http://www.saltbox.com/" target="blank" class="info-tooltip-link">www.saltbox.com</a>.
-                                    When you have created your LRS you can enable the Xapi. In this window
-                                    you can provide the url and admin login and password from your LRS.
+                                    You can track and trace the results of your learners using easygenerator. Just enable results tracking and all results will be reported to you on the tab Results.
                                 </span>
                             </div>
                             <div class="info-tooltip-triangle-holder">
@@ -109,24 +104,37 @@
                     </div>
                 </div>
                 <div class="content-wrapper">
-                    <label class="content-row top-row">
-                        <span class="content-checkbox">
-                            <input type="checkbox" class="content-checkbox-input" data-bind="checked: enableXAPI">
-                            <span class="content-checkbox-checked"></span>
-                        </span>
-                        <span class="input-label">Enable XAPI</span>
-                    </label>
+                    <div class="content-row warning-message-wrapper">
+                        <label class="warning-message">We recommend you to <span class="bold">enable</span> results tracking</label>
+                    </div>
+                    <div class="content-row switcher">
+                        <div class="switcher-text" data-bind="css: { disabled: trackingData.enableXAPI() }">Disabled</div>
+                        <div class="switch-toggle-slider" data-bind="switchToggle: { value: trackingData.enableXAPI }">
+                            <div class="switch-toggle-wrapper">
+                                <div class="switch-toggle-on"></div>
+                                <div class="switch-toogle-blob"></div>
+                                <div class="switch-toggle-off"></div>
+                            </div>
+                        </div>
+                        <div class="switcher-text" data-bind="css: { disabled: !trackingData.enableXAPI() }">Enabled</div>
+                    </div>
+                    <div class="content-row">
+                        <label class="content-label">Report to</label>
+                        <div class="content-col-right">
+                            <div data-bind="dropdown: { options: trackingData.lrsOptions, value: trackingData.selectedLrs, optionsValue: 'key', optionsText: 'text', disable: !trackingData.enableXAPI() }"></div>
+                        </div>
+                    </div>
                     <div class="content-row">
                         <label for="lrsUrl" class="content-label">LRS URL</label>
                         <div class="content-col-right">
-                            <input type="text" class="content-text-input" id="lrsUrl" data-bind="value: lrsUrl, enable: enableXAPI">
+                            <input type="text" class="content-text-input" id="lrsUrl" data-bind="value: trackingData.lrsUrl, enable: trackingData.customLrsEnabled">
                         </div>
                     </div>
                     <div class="content-row checkbox">
                         <div class="content-col-right">
-                            <label data-bind="css: { disabled: !enableXAPI() }">
+                            <label data-bind="css: { disabled: !trackingData.customLrsEnabled() }">
                                 <span class="content-checkbox">
-                                    <input class="content-checkbox-input" type="checkbox" data-bind="checked: authenticationRequired, enable: enableXAPI">
+                                    <input class="content-checkbox-input" type="checkbox" data-bind="checked: trackingData.authenticationRequired, enable: trackingData.customLrsEnabled">
                                     <span class="content-checkbox-checked"></span>
                                 </span>
                                 <span class="input-label">Authentication required</span>
@@ -137,14 +145,14 @@
                     <div class="content-row">
                         <label for="lapLogin" class="content-label">LAP login</label>
                         <div class="content-col-right">
-                            <input type="text" class="content-text-input" id="lapLogin" data-bind="value: lapLogin, enable: credentialsEnabled">
+                            <input type="text" class="content-text-input" id="lapLogin" data-bind="value: trackingData.lapLogin, enable: trackingData.credentialsEnabled">
                         </div>
                     </div>
 
                     <div class="content-row">
                         <label for="lapPassword" class="content-label">LAP password</label>
                         <div class="content-col-right">
-                            <input type="password" class="content-text-input" id="lapPassword" data-bind="value: lapPassword, enable: credentialsEnabled">
+                            <input type="password" class="content-text-input" id="lapPassword" data-bind="value: trackingData.lapPassword, enable: trackingData.credentialsEnabled">
                         </div>
                     </div>
 
@@ -154,16 +162,16 @@
                     </div>
 
                     <div class="content-row">
-                        <label data-bind="css: { disabled: !enableXAPI() }">
+                        <label data-bind="css: { disabled: !trackingData.customLrsEnabled() }">
                             <span class="content-checkbox">
-                                <input type="checkbox" class="content-checkbox-input" data-bind="checked: statements.started, enable: enableXAPI">
+                                <input type="checkbox" class="content-checkbox-input" data-bind="checked: trackingData.statements.started, enable: trackingData.customLrsEnabled">
                                 <span class="content-checkbox-checked"></span>
                             </span>
                             <span class="input-label">Started</span>
                         </label>
-                        <label class="content-col-right" data-bind="css: { disabled: !enableXAPI() }">
+                        <label class="content-col-right" data-bind="css: { disabled: !trackingData.customLrsEnabled() }">
                             <span class="content-checkbox">
-                                <input type="checkbox" class="content-checkbox-input" data-bind="checked: statements.stopped, enable: enableXAPI">
+                                <input type="checkbox" class="content-checkbox-input" data-bind="checked: trackingData.statements.stopped, enable: trackingData.customLrsEnabled">
                                 <span class="content-checkbox-checked"></span>
                             </span>
                             <span class="input-label">Stopped</span>
@@ -171,16 +179,16 @@
                     </div>
 
                     <div class="content-row">
-                        <label data-bind="css: { disabled: !enableXAPI() }">
+                        <label data-bind="css: { disabled: !trackingData.customLrsEnabled() }">
                             <span class="content-checkbox">
-                                <input type="checkbox" class="content-checkbox-input" data-bind="checked: statements.answered, enable: enableXAPI">
+                                <input type="checkbox" class="content-checkbox-input" data-bind="checked: trackingData.statements.answered, enable: trackingData.customLrsEnabled">
                                 <span class="content-checkbox-checked"></span>
                             </span>
                             <span class="input-label">Answered</span>
                         </label>
-                        <label class="content-col-right" data-bind="css: { disabled: !enableXAPI() }">
+                        <label class="content-col-right" data-bind="css: { disabled: !trackingData.customLrsEnabled() }">
                             <span class="content-checkbox">
-                                <input type="checkbox" class="content-checkbox-input" data-bind="checked: statements.mastered, enable: enableXAPI">
+                                <input type="checkbox" class="content-checkbox-input" data-bind="checked: trackingData.statements.mastered, enable: trackingData.customLrsEnabled">
                                 <span class="content-checkbox-checked"></span>
                             </span>
                             <span class="input-label">Mastered</span>
@@ -188,22 +196,21 @@
                     </div>
 
                     <div class="content-row">
-                        <label data-bind="css: { disabled: !enableXAPI() }">
+                        <label data-bind="css: { disabled: !trackingData.customLrsEnabled() }">
                             <span class="content-checkbox">
-                                <input type="checkbox" class="content-checkbox-input" data-bind="checked: statements.passed, enable: enableXAPI">
+                                <input type="checkbox" class="content-checkbox-input" data-bind="checked: trackingData.statements.passed, enable: trackingData.customLrsEnabled">
                                 <span class="content-checkbox-checked"></span>
                             </span>
                             <span class="input-label">Passed</span>
                         </label>
-                        <label class="content-col-right" data-bind="css: { disabled: !enableXAPI() }">
+                        <label class="content-col-right" data-bind="css: { disabled: !trackingData.customLrsEnabled() }">
                             <span class="content-checkbox">
-                                <input type="checkbox" class="content-checkbox-input" data-bind="checked: statements.failed, enable: enableXAPI">
+                                <input type="checkbox" class="content-checkbox-input" data-bind="checked: trackingData.statements.failed, enable: trackingData.customLrsEnabled">
                                 <span class="content-checkbox-checked"></span>
                             </span>
                             <span class="input-label">Failed</span>
                         </label>
                     </div>
-
 
                     <div class="content-splitter-line">
                         <span class="content-splitter-text">Easygenerator recommends</span>

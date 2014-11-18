@@ -1,5 +1,5 @@
 ﻿define(['../constants'],
-    function (constants) {
+    function(constants) {
 
         var settings = {
             scoresDistribution: {
@@ -24,11 +24,27 @@
             init: init
         };
 
+        var defaultXapi = {
+            lrs: {
+                uri: 'http://reports.easygenerator.com/xApi/statements',
+                authenticationRequired: false,
+                credentials: {
+                    username: '',
+                    password: ''
+                }
+            },
+            allowedVerbs: ['started', 'stopped', 'mastered', 'answered', 'passed', 'failed']
+        };
+
         return settings;
 
         function init(templateSettings) {
-            return Q.fcall(function () {
-                $.extend(settings.xApi, templateSettings);
+            return Q.fcall(function() {
+                if (templateSettings.selectedLrs != 'default') {
+                    $.extend(settings.xApi, templateSettings);
+                } else {
+                    $.extend(settings.xApi, defaultXapi);
+                }
             });
         }
     }

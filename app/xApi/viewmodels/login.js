@@ -54,7 +54,7 @@
 
                     var url = pageUrl + '?course_id=' + context.courseId;
                     var actor = xApiInitializer.createActor(username(), usermail());
-                    xApiInitializer.init(actor, title, url).then(function () {
+                    xApiInitializer.init(context.courseId, actor, title, url).then(function () {
                         startCourse();
                     }).fail(function (reason) {
                         xApiInitializer.turnOff();
