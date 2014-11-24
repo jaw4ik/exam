@@ -1,4 +1,5 @@
-﻿/*!
+﻿///#source 1 1 /js/jquery-1.9.1.js
+/*!
  * jQuery JavaScript Library v1.9.1
  * http://jquery.com/
  *
@@ -9596,6 +9597,7 @@ if ( typeof define === "function" && define.amd && define.amd.jQuery ) {
 
 })( window );
 
+///#source 1 1 /js/jquery-ui.js
 /*! jQuery UI - v1.11.0 - 2014-06-29
 * http://jqueryui.com
 * Includes: core.js, widget.js, mouse.js, position.js, draggable.js, droppable.js
@@ -12519,6 +12521,7 @@ var droppable = $.ui.droppable;
 
 
 }));
+///#source 1 1 /js/jquery.ui.touch-punch.min.js
 /*!
  * jQuery UI Touch Punch 0.2.3
  *
@@ -12530,6 +12533,7 @@ var droppable = $.ui.droppable;
  *  jquery.ui.mouse.js
  */
 !function(a){function f(a,b){if(!(a.originalEvent.touches.length>1)){a.preventDefault();var c=a.originalEvent.changedTouches[0],d=document.createEvent("MouseEvents");d.initMouseEvent(b,!0,!0,window,1,c.screenX,c.screenY,c.clientX,c.clientY,!1,!1,!1,!1,0,null),a.target.dispatchEvent(d)}}if(a.support.touch="ontouchend"in document,a.support.touch){var e,b=a.ui.mouse.prototype,c=b._mouseInit,d=b._mouseDestroy;b._touchStart=function(a){var b=this;!e&&b._mouseCapture(a.originalEvent.changedTouches[0])&&(e=!0,b._touchMoved=!1,f(a,"mouseover"),f(a,"mousemove"),f(a,"mousedown"))},b._touchMove=function(a){e&&(this._touchMoved=!0,f(a,"mousemove"))},b._touchEnd=function(a){e&&(f(a,"mouseup"),f(a,"mouseout"),this._touchMoved||f(a,"click"),e=!1)},b._mouseInit=function(){var b=this;b.element.bind({touchstart:a.proxy(b,"_touchStart"),touchmove:a.proxy(b,"_touchMove"),touchend:a.proxy(b,"_touchEnd")}),c.call(b)},b._mouseDestroy=function(){var b=this;b.element.unbind({touchstart:a.proxy(b,"_touchStart"),touchmove:a.proxy(b,"_touchMove"),touchend:a.proxy(b,"_touchEnd")}),d.call(b)}}}(jQuery);
+///#source 1 1 /js/knockout-2.2.1.js
 // Knockout JavaScript library v2.2.1
 // (c) Steven Sanderson - http://knockoutjs.com/
 // License: MIT (http://www.opensource.org/licenses/mit-license.php)
@@ -12616,6 +12620,7 @@ var f=b.data("precompiled");f||(f=b.text()||"",f=F.template(p,"{{ko_with $item.k
 {open:"__.push($1 || '');"},F.tmpl.tag.ko_with={open:"with($1) {",close:"} "})};b.qa.prototype=new b.v;w=new b.qa;0<w.Db&&b.wa(w);b.b("jqueryTmplTemplateEngine",b.qa)}"function"===typeof require&&"object"===typeof exports&&"object"===typeof module?L(module.exports||exports):"function"===typeof define&&define.amd?define(["exports"],L):L(x.ko={});m;
 })();
 
+///#source 1 1 /js/q.js
 // vim:ts=4:sts=4:sw=4:
 /*!
  *
@@ -14368,6 +14373,7 @@ return Q;
 
 });
 
+///#source 1 1 /js/underscore-1.5.1.js
 //     Underscore.js 1.5.1
 //     http://underscorejs.org
 //     (c) 2009-2013 Jeremy Ashkenas, DocumentCloud and Investigative Reporters & Editors
@@ -15615,6 +15621,7 @@ return Q;
 
 }).call(this);
 
+///#source 1 1 /js/underscore.extensions.js
 (function () {
     "use strict";
     if (typeof (_) !== "function") {
@@ -15639,6 +15646,7 @@ return Q;
     };
 
 })();
+///#source 1 1 /js/knockoutBindings/circleProgressBinding.js
 ko.bindingHandlers.circleProgress = {
     init: function (element, valueAccessor, allBindingsAccessor, viewModel) {
 
@@ -15710,6 +15718,7 @@ ko.bindingHandlers.circleProgress = {
         }
     }
 };
+///#source 1 1 /js/knockoutBindings/focusHandlerBinding.js
 ko.bindingHandlers.focusHandler = {
     init: function () {
     },
@@ -15747,6 +15756,7 @@ ko.bindingHandlers.focusHandler = {
         });
     }
 };
+///#source 1 1 /js/knockoutBindings/scrollBinding.js
 ko.bindingHandlers.scroll = {
     init: function (element, valueAccessor) {
         var options = valueAccessor();

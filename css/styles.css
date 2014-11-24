@@ -185,10 +185,6 @@ body {
     background-size: cover;
 }
 
-    body.ie9 {
-        overflow-x: hidden;
-    }
-
 /*#endregion mainframe css-styles  */
 
 /*#region background css-styles  */

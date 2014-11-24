@@ -5,7 +5,6 @@
         isSupportedMobile: null,
         isSupportedBrowser: null,
         isMobileDevice: null,
-        isIE9: null,
         isChromeWithPageCoordsBug: null,
 
         initialize: initialize
@@ -14,25 +13,11 @@
     return browserSupport;
 
     function initialize() {
-        browserSupport.isIE9 = isIE9();
         browserSupport.isMobileDevice = isMobileDevice();
         browserSupport.isSupportedMobile = isSupportedMobile();
         browserSupport.isSupportedBrowser = isSupportedBrowser();
         browserSupport.isChromeWithPageCoordsBug = isChromeWithPageCoordsBug();
     }
-
-    function isIE9() {
-        var N = navigator.appName, tem,
-            M = ua.match(/(chrome|safari|firefox|msie)\/?\s*([\d\.]+)/i) || [];
-
-        M = M[2] ? [M[1], M[2]] : [N, navigator.appVersion, '-?'];
-        if (M && (tem = ua.match(/version\/([\.\d]+)/i)) != null) M[2] = tem[1];
-
-        var browser = M[0].toLowerCase();
-        var version = parseInt(M[1], 10);
-
-        return browser == "msie" && version == 9;
-    };
 
     function isMobileDevice() {
         if (ua.indexOf("ipod") != -1 ||
@@ -66,7 +51,7 @@
         if (navigator.appName.toLowerCase() == "opera" || navigator.userAgent.indexOf("OPR") != -1)
             return false;
 
-        //IE 9+, Chrome 28+, Firefox 22+, Safari 5+ are supported
+        //IE 10+, Chrome 28+, Firefox 22+, Safari 5+ are supported
         var N = navigator.appName, tem,
             M = ua.match(/(chrome|safari|firefox|msie)\/?\s*([\d\.]+)/i) || [];
 
@@ -77,7 +62,7 @@
         var version = parseInt(M[1], 10);
 
         if (browser == "chrome" && version >= 28 ||
-            browser == "msie" && version >= 9 ||
+            browser == "msie" && version >= 10 ||
             browser == "firefox" && version >= 22 ||
             browser == "safari" && version >= 533)
             return true;

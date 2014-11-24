@@ -11,7 +11,6 @@
                 invalidProtocol: "Invalid protocol",
                 xDomainRequestError: "XDomainRequest error",
                 timeoutError: "Timeout error",
-                xApiCorsNotSupported: "xAPI CORS Not Supported",
 
                 badRequest: "Bad request: ",
                 unhandledMessage: "Unhandled error: ",
