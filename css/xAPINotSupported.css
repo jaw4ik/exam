@@ -16,7 +16,7 @@
     }
 
     .xapiNotSupported .xapi-title:before {
-        content: url(images/graphChart.png?v=exam);
+        content: url(images/graphChart.png?v=1416918064981);
         display: block;
         width: 32px;
         height: 35px;
@@ -63,7 +63,7 @@
         margin-top: -16px;
         height: 32px;
         width: 32px;
-        background: url(images/error-message.png?v=exam);
+        background: url(images/error-message.png?v=1416918064981);
     }
 
 
