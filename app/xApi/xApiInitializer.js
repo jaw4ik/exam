@@ -1,5 +1,5 @@
-﻿define(['./routingManager', './requestManager', './activityProvider', './statementQueueHandler', './configuration/xApiSettings', 'browserSupport'],
-    function (routingManager, requestManager, activityProvider, statementQueueHandler, xApiSettings, browserSupport) {
+﻿define(['./routingManager', './requestManager', './activityProvider', './statementQueueHandler', './configuration/xApiSettings'],
+    function (routingManager, requestManager, activityProvider, statementQueueHandler, xApiSettings) {
 
         "use strict";
 
@@ -41,19 +41,10 @@
         //Initialization function for moduleManager
         function initialize(settings) {
             return Q.fcall(function () {
-                if (settings.lrs.uri && !isLRSProtocolSupported(settings.lrs.uri)) {
-                    routingManager.createGuard(xApiInitializer, 'xapinotsupported');
-                } else {
-                    moduleSettings = settings;
-                    routingManager.createGuard(xApiInitializer, 'login');
-                }
+                moduleSettings = settings;
+                routingManager.createGuard(xApiInitializer, 'login');
                 routingManager.mapRoutes();
             });
-        }
-
-        function isLRSProtocolSupported(lrsUri) {
-            var lrsProtocol = lrsUri.match("^(.*:)");
-            return !(browserSupport.isIE9 && lrsProtocol && lrsProtocol[0].toLowerCase() != window.location.protocol.toLowerCase());
         }
     }
 );

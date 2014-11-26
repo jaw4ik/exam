@@ -402,28 +402,7 @@
             $input: $('#logoInput')
         },
 
-        initFrame: function() {
-            $('#logoForm').attr('action', imageUploader.apiUrl);
-            $('#logoFrame').on('readystatechange', function() {
-                if (this.readyState != "complete") {
-                    return;
-                }
-
-                try {
-                    var response = this.contentDocument.body.innerHTML;
-                    imageUploader.handleResponse(response);
-                } catch (e) {
-                    imageUploader.status.fail(imageUploader.somethingWentWrongMessage);
-                    imageUploader.button.enable();
-                }
-            });
-        },
-
         init: function() {
-            if (window.top.navigator.userAgent.match(/MSIE 9/i)) {
-                imageUploader.initFrame();
-            }
-
             imageUploader.button.$input.on('change', imageUploader.processFile);
             imageUploader.button.enable();
         },
