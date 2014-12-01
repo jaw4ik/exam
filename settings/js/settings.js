@@ -495,7 +495,8 @@
             }
 
             viewModel.trackingData.enableXAPI(settings.xApi.enabled || false);
-            viewModel.trackingData.selectedLrs(settings.xApi.selectedLrs || 'default');
+            var defaultLrs = settings.xApi.enabled ? 'custom' : 'default';
+            viewModel.trackingData.selectedLrs(settings.xApi.selectedLrs || defaultLrs);
             viewModel.trackingData.lrsUrl(settings.xApi.lrs.uri || '');
             viewModel.trackingData.authenticationRequired(settings.xApi.lrs.authenticationRequired || false);
             viewModel.trackingData.lapLogin(settings.xApi.lrs.credentials.username || '');
