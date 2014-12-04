@@ -89,7 +89,6 @@ gulp.task('build-settings', ['clean'], function () {
       .pipe(gulp.dest(output + '/settings/img'));
 
     return gulp.src(['settings/js/settings.js'])
-      .pipe(addBuildVersion())
       .pipe(uglify())
       .pipe(gulp.dest(output + '/settings/js'));
 });
