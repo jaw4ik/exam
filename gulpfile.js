@@ -15,7 +15,7 @@ var addBuildVersion = function () {
         fileContent = fileContent
             .replace(/(\?|\&)v=([0-9]+)/gi, '')                                                         // remove build version
             .replace(/\.(jpeg|jpg|png|gif|css|js|html)([?])/gi, '.$1?v=' + buildVersion + '&')          // add build version to resource with existing query param
-            .replace(/\.(jpeg|jpg|png|gif|css|js|html)([\s\"\'])/gi, '.$1?v=' + buildVersion + '$2')    // add build version to resource without query param
+            .replace(/\.(jpeg|jpg|png|gif|css|js|html)([\s\"\'\)])/gi, '.$1?v=' + buildVersion + '$2')  // add build version to resource without query param
             .replace(/urlArgs: 'v=buildVersion'/gi, 'urlArgs: \'v=' + buildVersion + '\'');             // replace build version for require config
         file.contents = new Buffer(fileContent);
         callback(null, file);
