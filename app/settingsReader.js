@@ -3,14 +3,14 @@
     var ticks = new Date().getTime();
 
     function readTemplateSettings() {
-        return read('settings.js?v=' + ticks)
+        return read('settings.js')
             .then(function (result) {
                 return new TemplateSettings(result);
             });
     }
 
     function readPublishSettings() {
-        return read('publishSettings.js?v=' + ticks);
+        return read('publishSettings.js');
     }
 
     function read(filename) {
