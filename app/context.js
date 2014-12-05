@@ -42,7 +42,8 @@
             return $.ajax({
                 url: 'content/data.js',
                 contentType: 'application/json',
-                dataType: 'json'
+                dataType: 'json',
+                cache: false
             }).then(function (response) {
                 context.course = mapCourse(response);
             });
