@@ -1,0 +1,30 @@
+{
+  "name": "Simple",
+  "version": "1.0.0",
+  "description": "This template is a basic course format",
+  "main": "gulpfile.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/easygenerator/simple.git"
+  },
+  "author": "easygenerator",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/easygenerator/simple/issues"
+  },
+  "homepage": "https://github.com/easygenerator/simple",
+  "dependencies": {
+    "del": "^1.0.0",
+    "event-stream": "^3.1.7",
+    "gulp": "^3.8.8",
+    "gulp-durandal": "^1.1.5",
+    "gulp-if": "^1.2.5",
+    "gulp-minify-css": "^0.3.11",
+    "gulp-uglify": "^1.0.1",
+    "gulp-useref": "^1.0.2",
+    "gulp-util": "^3.0.1"
+  }
+}
