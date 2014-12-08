@@ -209,6 +209,15 @@
         background: url(images/icons-xApi.png?v=1416918064981) no-repeat;
     }
 
+.xapi-start-agreement {
+    color: #777777;
+    font-size: 12px;
+    font-family: 'OpenSans';
+    line-height: 20px;
+    padding-top: 5px;
+    text-align: center;
+}
+
 .email .xapi-form-row-title:after {
     background-position: 0 -6px;
 }
