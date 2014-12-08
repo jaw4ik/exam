@@ -16,7 +16,7 @@
     }
 
     .xapi-title:before {
-        content: url(images/graphChart.png?v=1416918064981);
+        content: url(images/graphChart.png);
         display: block;
         width: 32px;
         height: 35px;
@@ -65,7 +65,7 @@
         margin-top: -16px;
         height: 32px;
         width: 32px;
-        background: url(images/info-message.png?v=1416918064981);
+        background: url(images/info-message.png);
     }
 
 .xapi-form-row {
@@ -99,7 +99,7 @@
         left: 0;
         width: 22px;
         height: 22px;
-        background: url(images/icons-xApi.png?v=1416918064981) no-repeat;
+        background: url(images/icons-xApi.png) no-repeat;
     }
 
 .xapi-start-agreement {
@@ -208,7 +208,7 @@
     width: 11px;
     height: 11px;
     font-size: 12px;
-    background: url(images/icons-xApi.png?v=1416918064981) -6px -67px;
+    background: url(images/icons-xApi.png) -6px -67px;
 }
 
 .xapi-form-btn-holder .btn {
