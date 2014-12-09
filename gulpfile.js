@@ -57,6 +57,9 @@ gulp.task('build-app', ['clean'], function () {
     gulp.src(['js/require.js'])
        .pipe(gulp.dest(output + '/js'));
 
+    gulp.src('manifest.json')
+        .pipe(gulp.dest(output));
+
     return durandal(
         {
             minify: true
