@@ -23,6 +23,7 @@ copy app\main-built.js "%BUILD_PATH%\app\main.js"
 copy settings.js "%BUILD_PATH%\settings.js"
 copy publishSettings.js "%BUILD_PATH%\publishSettings.js"
 copy index.html "%BUILD_PATH%\index.html"
+copy manifest.js "%BUILD_PATH%\manifest.js"
 
 mkdir "%BUILD_PATH%\settings"
 mkdir "%BUILD_PATH%\settings\css"

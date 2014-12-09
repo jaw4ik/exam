@@ -6,219 +6,261 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <link href="css/settings.min.css?v=1416918064981" rel="stylesheet" />
-    <script src="js/vendor.js?v=1416918064981"></script>
+    <link href="css/settings.min.css?v=1416917489055" rel="stylesheet" />
+    <script src="js/vendor.js?v=1416917489055"></script>
 </head>
 <body>
-    <div class="page-container">
-        <div id="settingsForm" class="user-form">
-            <div class="content-row top-row">
-                <button class="save-btn" data-bind="click: saveChanges">
-                    <span class="save-btn-title">Apply</span>
-                </button>
-                <div class="save-message-wrapper success" data-bind="style: { display: isSaved() ? 'block' : 'none' }">
-                    <span class="save-message">Settings have been saved successfully</span>
-                </div>
-                <div class="save-message-wrapper error" data-bind="style: { display: isFailed() ? 'block' : 'none' }">
-                    <span class="save-message">Something went wrong. Try again</span>
-                </div>
+    <div class="settings-container">
+        <div class="settings-header">
+            <div class="settings-title">Define template settings</div>
+            <button class="btn green uppercase apply-settings" data-bind="click: saveChanges">Apply settings</button>
+            <div class="save-message-wrapper success" data-bind="style: { display: isSaved() ? 'block' : 'none' }">
+                <span class="save-message">Settings have been saved successfully</span>
             </div>
-            <div class="content-container">
-                <div class="content-header">
-                    <div class="page-title-wrapper">
-                        <h1 class="page-title brush">Custom course logo</h1>
+            <div class="save-message-wrapper error" data-bind="style: { display: isFailed() ? 'block' : 'none' }">
+                <span class="save-message">Something went wrong. Try again</span>
+            </div>
+        </div>
+        <div class="clearfix"></div>
+        <div class="settings-content-wrapper">
+            <div class="settings-tabs-container" data-bind="tabs: {}">
+                <ul class="settings-tabs-wrapper unstyled">
+                    <li class="settings-tabs-item customization active" data-tab-link="customization">
+                        <span class="tabs-item-long-title">Graphical customization</span>
+                        <span class="tabs-item-short-title">Graphical</span>
+                    </li>
+                    <li class="settings-tabs-item mastery-score" data-tab-link="mastery-score">
+                        Mastery score
+                    </li>
+                    <li class="settings-tabs-item track-and-trace" data-tab-link="track-and-trace">
+                        Track and trace
+                    </li>
+                </ul>
+                <div class="settings-tab-container customization" data-tab="customization">
+                    <div class="tab-header-container">
+                        <img src="img/graphical.png" />
+                        <div class="tab-header-wrapper">
+                            <h1 class="tab-header-title">Customize your course</h1>
+                            <div class="tab-header-content">
+                                <span class="tab-header-content-text">Change the look and feel of the course</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tab-content-container">
+                        <div class="tab-content-row">
+                            <h1 class="template-logo-title">
+                                Custom course logo:
+                            </h1>
+                            <div class="tab-content-wrapper">
+                                <div class="has-access">
+                                    <div class="template-logo-url-container">
+                                        <input class="template-logo-url" type="text" placeholder="Paste image URL here..." id="imgUrl" data-bind="value: logo.url, valueUpdate: ['afterkeydown', 'afterpaste'], enable: hasStarterPlan" />
+                                        <form id="logoForm" method="post" enctype="multipart/form-data" encoding="multipart/form-data" target="logoFrame">
+                                            <a class="btn grey template-logo">
+                                                Change logo image
+                                                <input type="file" id="logoInput" name="file" disabled="disabled">
+                                            </a>
+                                        </form>
+                                    </div>
+                                    <div class="template-logo-container">
+                                        <div class="template-logo-wrapper" data-bind="style: { display: logo.hasLogo() || logo.isError() ? 'none' : 'inline-block' }">
+                                            <div class="template-logo-emty-img"></div>
+                                            <div class="template-logo-empty-text">
+                                                Your logo will appear here
+                                                <p>(recommended size 300 x 50 px)</p>
+                                            </div>
+                                        </div>
+                                        <div class="template-logo-wrapper error" data-bind="style: { display: logo.isError() ? 'inline-block' : 'none' }">
+                                            <div class="template-logo-emty-img"></div>
+                                            <div class="template-logo-empty-text">
+                                                <span data-bind="text: logo.errorText">Unsupported image format</span>
+                                                <p data-bind="text: logo.errorDescription">(Supported formats: jpg, png, bmp)</p>
+                                            </div>
+                                        </div>
+
+                                        <div class="template-logo-wrapper not-empty" data-bind="style: { display: logo.hasLogo() ? 'inline-block' : 'none' }">
+                                            <img class="template-logo" src="" alt="" data-bind="attr: { src: logo.url }" />
+                                        </div>
+                                        <div class="template-logo-clear-wrapper" data-bind="style: { display: logo.hasLogo() ? 'inline-block' : 'none' }">
+                                            <div class="template-logo-clear-btn" data-bind="click: logo.clear">
+                                                <div class="tooltip">
+                                                    <span class="tooltip-text">Clear logo</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="no-access" data-bind="fadeVisible: !hasStarterPlan()">
+                                    <div class="no-access-img"></div>
+                                    <div class="no-access-text">
+                                        You have to
+                                        <a target="_blank" href="/account/upgrade">upgrade your account</a>
+                                        in order to set custom course logo
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
-                <div class="content-wrapper">
-                    <div class="content-row top-row">
-                        <label for="imgUrl" class="content-label">Image URL</label>
-                        <div class="content-col-right">
-                            <input type="text" class="content-text-input" id="imgUrl" data-bind="value: logo.url, valueUpdate: ['afterkeydown', 'afterpaste'], enable: hasStarterPlan" />
+                <div class="settings-tab-container mastery-score" data-tab="mastery-score">
+                    <div class="tab-header-container">
+                        <img src="img/mastery.png" />
+                        <div class="tab-header-wrapper">
+                            <h1 class="tab-header-title">Mastery score settings</h1>
+                            <div class="tab-header-content">
+                                <span class="tab-header-content-text">The score a learner needs to pass the course</span>
+                            </div>
                         </div>
                     </div>
-                    <div class="content-row logo">
-                        <div class="logo-wrapper">
-                            <div class="logo-content default" data-bind="style: { display: logo.hasLogo() ? 'none' : 'block' }">
-                                <span class="logo-default-text">Your logo will appear here</span><br />
-                                <span class="logo-recomended-size">(recomended size 300 x 50 px)</span>
-                            </div>
-                            <div class="logo-img-wrapper" data-bind="style: { display: logo.hasLogo() ? 'block' : 'none' }">
-                                <img src="" class="logo" data-bind="attr: { src: logo.url }" />
-                                <div class="logo-clear" data-bind="click: logo.clear"></div>
-                            </div>
-                            <div class="logo-content layout error" data-bind="style: { display: logo.isError() ? 'block' : 'none' }">
-                                <span class="logo-default-text" data-bind="text: logo.errorText">Unsupported image format</span><br />
-                                <span class="logo-recomended-size" data-bind="text: logo.errorDescription">(Supported formats: jpg, png, bmp)</span>
-                            </div>
-                            <div class="logo-content layout loader" data-bind="style: { display: logo.isLoading() ? 'block' : 'none' }"></div>
-                        </div>
-                        <form id="logoForm" method="post" enctype="multipart/form-data" encoding="multipart/form-data" target="logoFrame">
-                            <a class="image-upload-button disabled">
-                                Browse
-                                <input type="file" id="logoInput" name="file" disabled="disabled">
-                            </a>
-                        </form>
-                        <iframe class="invisible" id="logoFrame" name="logoFrame"></iframe>
-                    </div>
-                    <div class="logo-unavailable" data-bind="fadeVisible: !hasStarterPlan()">
-                        <div class="lock"></div>
-                        <div class="text">
-                            You have to
-                            <a target="_blank" href="/account/upgrade">upgrade your account</a>
-                            in order to set custom course logo
-                        </div>
-                    </div>
-                </div>
-                <div class="content-header">
-                    <div class="page-title-wrapper">
-                        <h1 class="page-title masteryscore">Mastery score settings</h1>
-                    </div>
-                </div>
-                <div class="content-wrapper">
-                    <div class="content-row top-row">
-                        <label for="masteryScore" class="content-label spinner-label">Mastery score (for each learning objective):</label>
-                        <div data-trigger="spinner" class="spinner" data-bind="spinner: masteryScore">
-                            <a class="spinner-button spinner-down" data-spin="down" data-bind="disableDragNDrop: {}"></a>
-                            <input type="text" maxlength="3" id="masteryScore" class="content-text-input" data-rule="quantity" data-max="100" data-min="0" data-bind="value: masteryScore, valueUpdate: 'afterkeydown', number: {}">
-                            <a class="spinner-button spinner-up" data-spin="up" data-bind="disableDragNDrop: {}"></a>
-                        </div>
-
-                    </div>
-                </div>
-                <div class="content-header">
-                    <div class="page-title-wrapper">
-                        <h1 class="page-title settings">Track'n'Trace settings</h1>
-                    </div>
-                    <div class="info-tooltip-btn">
-                        <div class="info-tooltip-wrapper">
-                            <div class="info-tooltip">
-                                <span class="info-tooltip-text">
-                                    You can track and trace the results of your learners using easygenerator. Just enable results tracking and all results will be reported to you on the tab Results.
-                                </span>
-                            </div>
-                            <div class="info-tooltip-triangle-holder">
-                                <div class="info-tooltip-triangle-border"></div>
-                                <div class="info-tooltip-triangle">&nbsp;</div>
+                    <div class="tab-content-container">
+                        <div class="mastery-score-container">
+                            <div class="mastery-score-title">Mastery score (for each learning objective):</div>
+                            <div data-trigger="spinner" class="spinner" data-bind="spinner: masteryScore">
+                                <a class="spinner-button spinner-down" data-spin="down" data-bind="disableDragNDrop: {}"></a>
+                                <input type="text" maxlength="3" id="masteryScore" class="content-text-input" data-rule="quantity" data-max="100" data-min="0" data-bind="value: masteryScore, valueUpdate: 'afterkeydown', number: {}">
+                                <a class="spinner-button spinner-up" data-spin="up" data-bind="disableDragNDrop: {}"></a>
+                                <div class="spiner-seperator"></div>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="content-wrapper">
-                    <div class="content-row warning-message-wrapper">
-                        <label class="warning-message">We recommend you to <span class="bold">enable</span> results tracking</label>
-                    </div>
-                    <div class="content-row switcher">
-                        <div class="switcher-text" data-bind="css: { disabled: trackingData.enableXAPI() }">Disabled</div>
-                        <div class="switch-toggle-slider" data-bind="switchToggle: { value: trackingData.enableXAPI }">
-                            <div class="switch-toggle-wrapper">
-                                <div class="switch-toggle-on"></div>
-                                <div class="switch-toogle-blob"></div>
-                                <div class="switch-toggle-off"></div>
+                <div class="settings-tab-container track-and-trace" data-tab="track-and-trace">
+                    <div class="tab-header-container">
+                        <img src="img/track.png" />
+                        <div class="tab-header-wrapper">
+                            <h1 class="tab-header-title">Track and trace settings</h1>
+                            <div class="tab-header-content">
+                                <div class="switcher">
+                                    <div class="switcher-text" data-bind="css: { disabled: trackingData.enableXAPI() }">Disabled</div>
+                                    <div class="switch-toggle-slider" data-bind="switchToggle: { value: trackingData.enableXAPI }">
+                                        <div class="switch-toggle-wrapper">
+                                            <div class="switch-toggle-on"></div>
+                                            <div class="switch-toogle-blob"></div>
+                                            <div class="switch-toggle-off"></div>
+                                        </div>
+                                    </div>
+                                    <div class="switcher-text" data-bind="css: { disabled: !trackingData.enableXAPI() }">Enabled</div>
+                                </div>
                             </div>
                         </div>
-                        <div class="switcher-text" data-bind="css: { disabled: !trackingData.enableXAPI() }">Enabled</div>
                     </div>
-                    <div class="content-row">
-                        <label class="content-label">Report to</label>
-                        <div class="content-col-right">
-                            <div data-bind="dropdown: { options: trackingData.lrsOptions, value: trackingData.selectedLrs, optionsValue: 'key', optionsText: 'text', disable: !trackingData.enableXAPI() }"></div>
+                    <div class="tab-content-container">
+                        <div class="tab-content-title-container" data-bind="click: toggleAdvancedSettings">
+                            <div class="tab-content-title" data-bind="css: { expanded: advancedSettingsExpanded(),  collapsed: !advancedSettingsExpanded() }">Advanced settings</div>
                         </div>
-                    </div>
-                    <div class="content-row">
-                        <label for="lrsUrl" class="content-label">LRS URL</label>
-                        <div class="content-col-right">
-                            <input type="text" class="content-text-input" id="lrsUrl" data-bind="value: trackingData.lrsUrl, enable: trackingData.customLrsEnabled">
+                        <div class="template-selector-container" data-bind="visible: advancedSettingsExpanded()">
+                            <div class="selector-items-container">
+                                <h2 class="selector-title">Report to:</h2>
+                                <ul class="selector-items-wrapper unstyled" data-bind="foreach: trackingData.lrsOptions">
+                                    <li class="selector-item-container" data-bind="click: select, css: { selected: isSelected }">
+                                        <div class="selector-item-btn"></div>
+                                        <div class="selector-item-text" data-bind="text: text"></div>
+                                    </li>
+                                </ul>
+                                <div class="preview-disabled" data-bind="visible: !trackingData.enableXAPI()"></div>
+                            </div>
+                            <div class="selector-preview-container">
+                                <h2 class="selector-title">Custom LRS settings</h2>
+                                <div class="preview-row">
+                                    <label for="lrsUrl" class="preview-label">LRS URL</label>
+                                    <div class="preview-col">
+                                        <input class="preview-text-input" id="lrsUrl" type="text" data-bind="value: trackingData.lrsUrl, enable: trackingData.customLrsEnabled" />
+                                    </div>
+                                </div>
+                                <div class="preview-row checkbox">
+                                    <div class="preview-col pull-right">
+                                        <label>
+                                            <span class="preview-checkbox">
+                                                <input class="preview-checkbox-input" type="checkbox" data-bind="checked: trackingData.authenticationRequired">
+                                                <span class="preview-checkbox-checked"></span>
+                                            </span>
+                                            <span class="preview-label checkbox">Authentication required</span>
+                                        </label>
+                                    </div>
+                                    <div class="clearfix"></div>
+                                </div>
+                                <div class="preview-row">
+                                    <label for="lapLogin" class="preview-label">LAP login</label>
+                                    <div class="preview-col">
+                                        <input class="preview-text-input" type="text" id="lapLogin" data-bind="value: trackingData.lapLogin, enable: trackingData.credentialsEnabled" />
+                                    </div>
+                                </div>
+                                <div class="preview-row">
+                                    <label for="lapPassword" class="preview-label">LAP password</label>
+                                    <div class="preview-col">
+                                        <input class="preview-text-input" type="text" id="lapPassword" data-bind="value: trackingData.lapPassword, enable: trackingData.credentialsEnabled" />
+                                    </div>
+                                </div>
+                                <div class="preview-row statements">
+                                    <div class="statements-title">Use statements:</div>
+                                    <div class="statements-container">
+                                        <div class="switcher statement">
+                                            <div class="switch-toggle-slider" data-bind="switchToggle: { value: trackingData.statements.started }">
+                                                <div class="switch-toggle-wrapper">
+                                                    <div class="switch-toggle-on"></div>
+                                                    <div class="switch-toogle-blob"></div>
+                                                    <div class="switch-toggle-off"></div>
+                                                </div>
+                                            </div>
+                                            <div class="switcher-text">Started</div>
+                                        </div>
+                                        <div class="switcher statement">
+                                            <div class="switch-toggle-slider" data-bind="switchToggle: { value: trackingData.statements.stopped }">
+                                                <div class="switch-toggle-wrapper">
+                                                    <div class="switch-toggle-on"></div>
+                                                    <div class="switch-toogle-blob"></div>
+                                                    <div class="switch-toggle-off"></div>
+                                                </div>
+                                            </div>
+                                            <div class="switcher-text">Stopped</div>
+                                        </div>
+                                        <div class="switcher statement">
+                                            <div class="switch-toggle-slider" data-bind="switchToggle: { value: trackingData.statements.passed }">
+                                                <div class="switch-toggle-wrapper">
+                                                    <div class="switch-toggle-on"></div>
+                                                    <div class="switch-toogle-blob"></div>
+                                                    <div class="switch-toggle-off"></div>
+                                                </div>
+                                            </div>
+                                            <div class="switcher-text">Passed</div>
+                                        </div>
+                                    </div>
+                                    <div class="statements-container">
+                                        <div class="switcher statement">
+                                            <div class="switch-toggle-slider" data-bind="switchToggle: { value: trackingData.statements.answered }">
+                                                <div class="switch-toggle-wrapper">
+                                                    <div class="switch-toggle-on"></div>
+                                                    <div class="switch-toogle-blob"></div>
+                                                    <div class="switch-toggle-off"></div>
+                                                </div>
+                                            </div>
+                                            <div class="switcher-text">Answered</div>
+                                        </div>
+                                        <div class="switcher statement">
+                                            <div class="switch-toggle-slider" data-bind="switchToggle: { value: trackingData.statements.mastered }">
+                                                <div class="switch-toggle-wrapper">
+                                                    <div class="switch-toggle-on"></div>
+                                                    <div class="switch-toogle-blob"></div>
+                                                    <div class="switch-toggle-off"></div>
+                                                </div>
+                                            </div>
+                                            <div class="switcher-text">Mastered</div>
+                                        </div>
+                                        <div class="switcher statement">
+                                            <div class="switch-toggle-slider" data-bind="switchToggle: { value: trackingData.statements.failed }">
+                                                <div class="switch-toggle-wrapper">
+                                                    <div class="switch-toggle-on"></div>
+                                                    <div class="switch-toogle-blob"></div>
+                                                    <div class="switch-toggle-off"></div>
+                                                </div>
+                                            </div>
+                                            <div class="switcher-text">Failed</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="preview-disabled" data-bind="visible: !trackingData.customLrsEnabled()"></div>
+                            </div>
                         </div>
-                    </div>
-                    <div class="content-row checkbox">
-                        <div class="content-col-right">
-                            <label data-bind="css: { disabled: !trackingData.customLrsEnabled() }">
-                                <span class="content-checkbox">
-                                    <input class="content-checkbox-input" type="checkbox" data-bind="checked: trackingData.authenticationRequired, enable: trackingData.customLrsEnabled">
-                                    <span class="content-checkbox-checked"></span>
-                                </span>
-                                <span class="input-label">Authentication required</span>
-                            </label>
-                        </div>
-                    </div>
-
-                    <div class="content-row">
-                        <label for="lapLogin" class="content-label">LAP login</label>
-                        <div class="content-col-right">
-                            <input type="text" class="content-text-input" id="lapLogin" data-bind="value: trackingData.lapLogin, enable: trackingData.credentialsEnabled">
-                        </div>
-                    </div>
-
-                    <div class="content-row">
-                        <label for="lapPassword" class="content-label">LAP password</label>
-                        <div class="content-col-right">
-                            <input type="password" class="content-text-input" id="lapPassword" data-bind="value: trackingData.lapPassword, enable: trackingData.credentialsEnabled">
-                        </div>
-                    </div>
-
-
-                    <div class="content-splitter-line">
-                        <span class="content-splitter-text">Use statements:</span>
-                    </div>
-
-                    <div class="content-row">
-                        <label data-bind="css: { disabled: !trackingData.customLrsEnabled() }">
-                            <span class="content-checkbox">
-                                <input type="checkbox" class="content-checkbox-input" data-bind="checked: trackingData.statements.started, enable: trackingData.customLrsEnabled">
-                                <span class="content-checkbox-checked"></span>
-                            </span>
-                            <span class="input-label">Started</span>
-                        </label>
-                        <label class="content-col-right" data-bind="css: { disabled: !trackingData.customLrsEnabled() }">
-                            <span class="content-checkbox">
-                                <input type="checkbox" class="content-checkbox-input" data-bind="checked: trackingData.statements.stopped, enable: trackingData.customLrsEnabled">
-                                <span class="content-checkbox-checked"></span>
-                            </span>
-                            <span class="input-label">Stopped</span>
-                        </label>
-                    </div>
-
-                    <div class="content-row">
-                        <label data-bind="css: { disabled: !trackingData.customLrsEnabled() }">
-                            <span class="content-checkbox">
-                                <input type="checkbox" class="content-checkbox-input" data-bind="checked: trackingData.statements.answered, enable: trackingData.customLrsEnabled">
-                                <span class="content-checkbox-checked"></span>
-                            </span>
-                            <span class="input-label">Answered</span>
-                        </label>
-                        <label class="content-col-right" data-bind="css: { disabled: !trackingData.customLrsEnabled() }">
-                            <span class="content-checkbox">
-                                <input type="checkbox" class="content-checkbox-input" data-bind="checked: trackingData.statements.mastered, enable: trackingData.customLrsEnabled">
-                                <span class="content-checkbox-checked"></span>
-                            </span>
-                            <span class="input-label">Mastered</span>
-                        </label>
-                    </div>
-
-                    <div class="content-row">
-                        <label data-bind="css: { disabled: !trackingData.customLrsEnabled() }">
-                            <span class="content-checkbox">
-                                <input type="checkbox" class="content-checkbox-input" data-bind="checked: trackingData.statements.passed, enable: trackingData.customLrsEnabled">
-                                <span class="content-checkbox-checked"></span>
-                            </span>
-                            <span class="input-label">Passed</span>
-                        </label>
-                        <label class="content-col-right" data-bind="css: { disabled: !trackingData.customLrsEnabled() }">
-                            <span class="content-checkbox">
-                                <input type="checkbox" class="content-checkbox-input" data-bind="checked: trackingData.statements.failed, enable: trackingData.customLrsEnabled">
-                                <span class="content-checkbox-checked"></span>
-                            </span>
-                            <span class="input-label">Failed</span>
-                        </label>
-                    </div>
-
-                    <div class="content-splitter-line">
-                        <span class="content-splitter-text">Easygenerator recommends</span>
-                    </div>
-                    <div class="content-row banner">
-                        <a href="https://www.waxlrs.com/?utm_medium=affiliate&utm_source=easy_generator" target="_blank">
-                            <img src="img/saltbox-banner.png" class="saltbox-banner" alt="Saltbox banner" />
-                        </a>
                     </div>
                 </div>
             </div>
