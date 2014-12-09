@@ -4,8 +4,7 @@
         'durandal': '../js/durandal',
         'plugins': '../js/durandal/plugins',
         'transitions': '../js/durandal/transitions'
-    },
-    urlArgs: 'v=' + Math.random()
+    }
 });
 
 define('knockout', function () { return window.ko; });
