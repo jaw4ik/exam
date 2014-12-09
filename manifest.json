@@ -1,7 +1,7 @@
 ﻿{
     "name": "Exam",
     "shortDescription": "Use this when you want to create a formal examination",
-    "image": "img/main.png",
+    "thumbnail": "img/main.png",
     "previewImages": [
         "img/previewImages/previewQuestionView.png"
     ],
