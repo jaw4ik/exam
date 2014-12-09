@@ -151,7 +151,6 @@
             options.headers = headers;
             options.timeout = xApiSettings.timeout;
             options.contentType = 'application/json';
-            options.dataType = 'json';
             options.async = true;
 
             options.beforeSend = function (xmlHttpRequest) {
