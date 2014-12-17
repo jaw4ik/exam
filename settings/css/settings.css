@@ -299,6 +299,7 @@ input[type="text"] {
 .tab-content-container .tab-content-title-container {
     display: inline-block;
     padding-right: 20px;
+    cursor: pointer;
 }
 
 .tab-content-container .tab-content-title {
@@ -310,7 +311,6 @@ input[type="text"] {
     border-bottom: 1px solid #7c858e;
     color: #7c858e;
     text-transform: uppercase;
-    cursor: default;
 }
 
     .tab-content-container .tab-content-title:after {
@@ -365,6 +365,7 @@ input[type="text"] {
 .template-logo-url {
     width: 282px;
     height: 36px;
+    margin-right: 10px;
     padding: 0 9px;
     border: 1px solid #ddd;
     border-radius: 5px;
@@ -376,9 +377,18 @@ input[type="text"] {
         outline: medium none;
     }
 
+.template-logo-or {
+    display: inline-block;
+    margin-top: 11px;
+    font: 12px "OpenSans-Italic";
+    color: #546677;
+    cursor: default;
+    vertical-align: top;
+}
+
 .template-logo.btn {
     position: relative;
-    margin-left: 17px;
+    margin-left: 9px;
     padding: 9px 18px;
     cursor: default;
     overflow: hidden;
