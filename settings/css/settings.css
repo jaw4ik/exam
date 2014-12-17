@@ -437,7 +437,7 @@ input[type="text"] {
 }
 
 .error .template-logo-emty-img {
-    padding: 5px 10px;
+    margin: 5px 10px;
 }
 
 .template-logo-empty-text {

@@ -73,7 +73,7 @@
                                                     <p>(recommended size 300 x 50 px)</p>
                                                 </div>
                                             </div>
-                                            <div class="template-logo-wrapper error" data-bind="style: { display: logo.isError() ? 'inline-block' : 'none' }">
+                                            <div class="template-logo-wrapper error" data-bind="style: { display: logo.isError() && logo.url() == '' ? 'inline-block' : 'none' }">
                                                 <div class="template-logo-emty-img"></div>
                                                 <div class="template-logo-empty-text">
                                                     <span data-bind="text: logo.errorText">Unsupported image format</span>
