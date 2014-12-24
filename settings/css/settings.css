@@ -1,4 +1,4 @@
-﻿/*#region FONTS */
+/*#region FONTS */
 
 @font-face {
     font-family: 'OpenSans';
@@ -380,7 +380,9 @@ input[type="text"] {
 .template-logo-or {
     display: inline-block;
     margin-top: 11px;
-    font: 12px "OpenSans-Italic";
+    font-family: 'OpenSans-Italic';
+    font-size: 12px;
+    font-style: italic;
     color: #546677;
     cursor: default;
     vertical-align: top;
