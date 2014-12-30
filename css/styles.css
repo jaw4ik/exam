@@ -1076,6 +1076,13 @@ body {
     overflow-y: hidden;
 }
 
+.image-wrapper[style*='float: right'] {
+    margin-left: 20px;
+}
+
+.image-wrapper[style*='float: left'] {
+    margin-right: 20px;
+}
 
 /* #region Drag and drop text question */
 
