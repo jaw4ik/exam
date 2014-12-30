@@ -256,7 +256,7 @@ input[type="text"] {
     height: 10px;
 }
 
-.tab-header-container {
+.track-and-race .tab-header-container {
     margin-bottom: 30px;
 }
 
@@ -971,7 +971,7 @@ input[type="text"] {
     display: inline-block;
     font-size: 13px;
     color: #42515f;
-    margin-right: 25px;
+    margin-right: 10px;
     vertical-align: middle;
 }
 
