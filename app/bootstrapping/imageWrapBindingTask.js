@@ -12,6 +12,7 @@
                         var $image = $(image),
                             $wrapper = $(imageWrapper).css('float', $image.css('float'));
 
+                        $(image).css('float', 'none');
                         $image.wrap($wrapper);
                     });
                 }
