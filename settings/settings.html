@@ -135,7 +135,7 @@
                                 <div class="preview-row">
                                     <label for="lrsUrl" class="preview-label">LRS URL</label>
                                     <div class="preview-col">
-                                        <input class="preview-text-input" id="lrsUrl" type="text" data-bind="value: trackingData.lrsUrl, enable: trackingData.customLrsEnabled" />
+                                        <input class="preview-text-input" id="lrsUrl" type="text" data-bind="value: trackingData.lrsUrl, valueUpdate: ['afterkeydown', 'afterpaste'], enable: trackingData.customLrsEnabled" />
                                     </div>
                                 </div>
                                 <div class="preview-row checkbox">
@@ -153,13 +153,13 @@
                                 <div class="preview-row">
                                     <label for="lapLogin" class="preview-label">LAP login</label>
                                     <div class="preview-col">
-                                        <input class="preview-text-input" type="text" id="lapLogin" data-bind="value: trackingData.lapLogin, enable: trackingData.credentialsEnabled" />
+                                        <input class="preview-text-input" type="text" id="lapLogin" data-bind="value: trackingData.lapLogin, valueUpdate: ['afterkeydown', 'afterpaste'], enable: trackingData.credentialsEnabled" />
                                     </div>
                                 </div>
                                 <div class="preview-row">
                                     <label for="lapPassword" class="preview-label">LAP password</label>
                                     <div class="preview-col">
-                                        <input class="preview-text-input" type="text" id="lapPassword" data-bind="value: trackingData.lapPassword, enable: trackingData.credentialsEnabled" />
+                                        <input class="preview-text-input" type="text" id="lapPassword" data-bind="value: trackingData.lapPassword, valueUpdate: ['afterkeydown', 'afterpaste'], enable: trackingData.credentialsEnabled" />
                                     </div>
                                 </div>
                                 <div class="preview-row statements">
@@ -245,7 +245,7 @@
                                     <div class="mastery-score-title">Mastery score (for each learning objective):</div>
                                     <div data-trigger="spinner" class="spinner" data-bind="spinner: masteryScore">
                                         <a class="spinner-button spinner-down" data-spin="down" data-bind="disableDragNDrop: {}"></a>
-                                        <input type="text" maxlength="3" id="masteryScore" class="content-text-input" data-rule="quantity" data-max="100" data-min="0" data-bind="value: masteryScore, valueUpdate: 'afterkeydown', number: {}">
+                                        <input type="text" maxlength="3" id="masteryScore" class="content-text-input" data-rule="quantity" data-max="100" data-min="0" data-bind="value: masteryScore, valueUpdate: ['afterkeydown', 'afterpaste'], number: {}">
                                         <a class="spinner-button spinner-up" data-spin="up" data-bind="disableDragNDrop: {}"></a>
                                         <div class="spiner-seperator"></div>
                                     </div>
