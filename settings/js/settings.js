@@ -1,21 +1,54 @@
-﻿$(function() {
+﻿$(function () {
     function getURLParameter(name) {
         return decodeURI(
             (RegExp(name + '=' + '(.+?)(&|$)').exec(location.search) || [, null])[1]
         );
     }
 
+    function sendPostMessage(message) {
+        var editorWindow = window.parent;
+        editorWindow.postMessage(message, window.location.href);
+    }
+
+    function initSettings() {
+        return {
+            logo: {
+                url: viewModel.logo.url()
+            },
+            xApi: {
+                enabled: viewModel.trackingData.enableXAPI(),
+                selectedLrs: viewModel.trackingData.selectedLrs(),
+                lrs: {
+                    uri: viewModel.trackingData.lrsUrl(),
+                    authenticationRequired: viewModel.trackingData.authenticationRequired(),
+                    credentials: {
+                        username: viewModel.trackingData.lapLogin(),
+                        password: viewModel.trackingData.lapPassword()
+                    }
+                },
+                allowedVerbs: $.map(viewModel.trackingData.statements, function (value, key) {
+                    return value() ? key : undefined;
+                })
+            },
+            masteryScore: {
+                score: viewModel.masteryScore()
+            }
+        };
+    }
+
     var
         courseId = getURLParameter('courseId'),
         templateId = getURLParameter('templateId'),
 
-        baseURL = location.protocol + "//" + location.host,
-        settingsURL = baseURL + "/api/course/" + courseId + "/template/" + templateId,
+        baseURL = location.protocol + '//' + location.host,
+        settingsURL = baseURL + '/api/course/' + courseId + '/template/' + templateId,
+
+        currentSettings = null,
 
         starterAccessType = 1;
 
     var viewModel = {
-        trackingData: (function() {
+        trackingData: (function () {
             var data = {};
 
             data.enableXAPI = ko.observable(true),
@@ -43,7 +76,7 @@
                 return lrsOption;
             });
 
-            data.customLrsEnabled = ko.computed(function() {
+            data.customLrsEnabled = ko.computed(function () {
                 return data.enableXAPI() && data.selectedLrs() != data.lrsOptions[0].key;
             });
 
@@ -52,7 +85,7 @@
             data.lapLogin = ko.observable();
             data.lapPassword = ko.observable();
 
-            data.credentialsEnabled = ko.computed(function() {
+            data.credentialsEnabled = ko.computed(function () {
                 return data.customLrsEnabled() && data.authenticationRequired();
             });
 
@@ -68,21 +101,19 @@
             return data;
         })(),
 
-        isSaved: ko.observable(false),
-        isFailed: ko.observable(false),
         advancedSettingsExpanded: ko.observable(false),
         toggleAdvancedSettings: function () {
             this.advancedSettingsExpanded(!this.advancedSettingsExpanded());
         },
 
-        logo: (function() {
+        logo: (function () {
             var logo = {};
 
-            logo.url = ko.observable('').extend({ throttle: 300 });
-            logo.hasLogo = ko.computed(function() {
+            logo.url = ko.observable('');
+            logo.hasLogo = ko.computed(function () {
                 return logo.url() !== '';
             });
-            logo.clear = function() {
+            logo.clear = function () {
                 logo.url('');
             };
             logo.isError = ko.observable(false);
@@ -97,51 +128,35 @@
         masteryScore: ko.observable('')
     };
 
-    viewModel.saveChanges = function() {
-        var settings = {
-            logo: {
-                url: viewModel.logo.url()
-            },
-            xApi: {
-                enabled: viewModel.trackingData.enableXAPI(),
-                selectedLrs: viewModel.trackingData.selectedLrs(),
-                lrs: {
-                    uri: viewModel.trackingData.lrsUrl(),
-                    authenticationRequired: viewModel.trackingData.authenticationRequired(),
-                    credentials: {
-                        username: viewModel.trackingData.lapLogin(),
-                        password: viewModel.trackingData.lapPassword()
-                    }
-                },
-                allowedVerbs: $.map(viewModel.trackingData.statements, function(value, key) {
-                    return value() ? key : undefined;
-                })
-            },
-            masteryScore: {
-                score: viewModel.masteryScore()
-            }
-        };
+    viewModel.saveChanges = function () {
+        var settings = initSettings();
 
-        viewModel.isFailed(false);
-        viewModel.isSaved(false);
+        if (JSON.stringify(currentSettings) === JSON.stringify(settings)) {
+            return;
+        }
+
+        sendPostMessage({ type: 'startSave' });
 
         $.post(settingsURL, { settings: JSON.stringify(settings) })
-            .done(function() {
-                viewModel.isSaved(true);
+            .done(function () {
+                currentSettings = settings;
+                sendPostMessage({ type: 'finishSave', data: { success: true, message: 'All changes are saved' } });
             })
-            .fail(function() {
-                viewModel.isFailed(true);
+            .fail(function () {
+                sendPostMessage({ type: 'finishSave', data: { success: false, message: 'Changes have NOT been saved. Please reload the page and change the settings again. Contact support@easygenerator.com if problem persists.' } });
             });
     };
+
+    $(window).on('blur', viewModel.saveChanges);
 
     //#region Binding handlers
 
     ko.bindingHandlers.fadeVisible = {
-        init: function(element, valueAccessor) {
+        init: function (element, valueAccessor) {
             var value = valueAccessor();
             $(element).toggle(ko.unwrap(value));
         },
-        update: function(element, valueAccessor) {
+        update: function (element, valueAccessor) {
             var value = valueAccessor();
             if (ko.unwrap(value)) {
                 $(element).fadeIn();
@@ -152,15 +167,15 @@
     };
 
     ko.bindingHandlers.number = {
-        init: function(element) {
+        init: function (element) {
             var $element = $(element),
                 maxValue = 100;
-            $element.on('keydown', function(e) {
+            $element.on('keydown', function (e) {
                 var key = e.charCode || e.keyCode || 0;
                 return (key == 8 || key == 9 || key == 46 || (key >= 37 && key <= 40) ||
                         (key >= 48 && key <= 57) || (key >= 96 && key <= 105));
             });
-            $element.on('keyup', function() {
+            $element.on('keyup', function () {
                 if ($(this).val() > maxValue) {
                     $(this).val(maxValue);
                 }
@@ -169,19 +184,19 @@
     };
 
     ko.bindingHandlers.disableDragNDrop = {
-        init: function(element) {
-            $(element).on('dragstart', function(event) {
+        init: function (element) {
+            $(element).on('dragstart', function (event) {
                 event.preventDefault();
             });
         }
     };
 
     ko.bindingHandlers.spinner = {
-        init: function(element, valueAccessor) {
+        init: function (element, valueAccessor) {
             var masteryScore = valueAccessor();
 
             $(element)
-                .spinner('changed', function(e, newValue) {
+                .spinner('changed', function (e, newValue) {
                     masteryScore(newValue);
                 });
 
@@ -189,27 +204,27 @@
     };
 
     ko.bindingHandlers.switchToggle = {
-        init: function(element, valueAccessor) {
+        init: function (element, valueAccessor) {
             var switchToggle = ko.bindingHandlers.switchToggle,
                 viewModel = switchToggle.viewModel(element, valueAccessor),
                 value = ko.unwrap(valueAccessor().value());
 
             viewModel.setInitialValue(value);
 
-            switchToggle.onClick(element, function() {
+            switchToggle.onClick(element, function () {
                 viewModel.toggle();
 
                 var currentValue = ko.unwrap(valueAccessor().value());
                 valueAccessor().value(!currentValue);
             });
         },
-        update: function(element, valueAccessor) {
+        update: function (element, valueAccessor) {
             var viewModel = ko.bindingHandlers.switchToggle.viewModel(element, valueAccessor),
                 value = ko.unwrap(valueAccessor().value());
 
             viewModel.updateValue(value);
         },
-        viewModel: function(element) {
+        viewModel: function (element) {
             var $element = $(element),
                 $wrapper = $('.switch-toggle-wrapper', $element);
 
@@ -256,11 +271,11 @@
                 toggle: toggle
             }
         },
-        onClick: function(element, handler) {
+        onClick: function (element, handler) {
             var $element = $(element),
                 isMouseDownFired = false;
 
-            $element.mousedown(function(event) {
+            $element.mousedown(function (event) {
                 if (event.which != 1)
                     return;
 
@@ -268,7 +283,7 @@
                 handler();
             });
 
-            $element.click(function() {
+            $element.click(function () {
                 if (isMouseDownFired) {
                     isMouseDownFired = false;
                     return;
@@ -291,7 +306,7 @@
             indicatorHolder: 'dropdown-indicator-holder',
             indicator: 'dropdown-indicator'
         },
-        init: function(element, valueAccessor) {
+        init: function (element, valueAccessor) {
             var $element = $(element),
                 cssClasses = ko.bindingHandlers.dropdown.cssClasses;
 
@@ -317,7 +332,7 @@
                 .addClass(cssClasses.optionsList)
                 .appendTo($element);
 
-            $currentItemElement.on('click', function(e) {
+            $currentItemElement.on('click', function (e) {
                 if ($element.hasClass(cssClasses.disabled)) {
                     return;
                 }
@@ -326,19 +341,19 @@
                 e.stopPropagation();
             });
 
-            var collapseHandler = function() {
+            var collapseHandler = function () {
                 $currentItemElement.removeClass(cssClasses.expanded);
             };
 
             $('html').bind('click', collapseHandler);
             $(window).bind('blur', collapseHandler);
 
-            ko.utils.domNodeDisposal.addDisposeCallback(element, function() {
+            ko.utils.domNodeDisposal.addDisposeCallback(element, function () {
                 $('html').unbind('click', collapseHandler);
                 $(window).unbind('blur', collapseHandler);
             });
         },
-        update: function(element, valueAccessor) {
+        update: function (element, valueAccessor) {
             var $element = $(element),
                 cssClasses = ko.bindingHandlers.dropdown.cssClasses,
 
@@ -361,7 +376,7 @@
 
             $optionsListElement.empty();
 
-            $.each(options, function(index, option) {
+            $.each(options, function (index, option) {
                 if (option[optionsValue] == currentValue) {
                     $currentItemTextElement.text(option[optionsText]);
                     return;
@@ -371,7 +386,7 @@
                     .addClass(cssClasses.optionItem)
                     .appendTo($optionsListElement)
                     .text(option[optionsText])
-                    .on('click', function(e) {
+                    .on('click', function (e) {
                         value(option[optionsValue]);
                         $element.trigger('change');
                     });
@@ -410,7 +425,7 @@
 
     //#endregion Binding handlers
 
-    ko.applyBindings(viewModel, $("#settingsForm")[0]);
+    ko.applyBindings(viewModel, $('#settingsForm')[0]);
 
     //#region Image uploader
 
@@ -421,30 +436,30 @@
         somethingWentWrongMessage: { title: 'Something went wrong', description: 'Please, try again' },
 
         status: {
-            default: function() {
+            default: function () {
                 viewModel.logo.isLoading(false);
                 viewModel.logo.isError(false);
             },
-            fail: function(reason) {
+            fail: function (reason) {
                 viewModel.logo.clear();
                 viewModel.logo.isLoading(false);
                 viewModel.logo.errorText(reason.title);
                 viewModel.logo.errorDescription(reason.description);
                 viewModel.logo.isError(true);
             },
-            loading: function() {
+            loading: function () {
                 viewModel.logo.isLoading(true);
             }
         },
 
         button: {
-            enable: function() {
+            enable: function () {
                 this.$input.attr('disabled', false).closest('.image-upload-button').removeClass('disabled');
             },
-            disable: function() {
+            disable: function () {
                 this.$input.attr('disabled', true).closest('.image-upload-button').addClass('disabled');
             },
-            submit: function() {
+            submit: function () {
                 this.$input[0].form.submit();
                 this.disable();
                 imageUploader.status.loading();
@@ -452,12 +467,12 @@
             $input: $('#logoInput')
         },
 
-        init: function() {
+        init: function () {
             imageUploader.button.$input.on('change', imageUploader.processFile);
             imageUploader.button.enable();
         },
 
-        processFile: function() {
+        processFile: function () {
             if (!this.files) {
                 imageUploader.button.submit();
                 return;
@@ -480,12 +495,12 @@
             imageUploader.uploadFile(file);
         },
 
-        uploadFile: function(file) {
+        uploadFile: function (file) {
             imageUploader.button.disable();
             imageUploader.status.loading();
 
             var formData = new FormData();
-            formData.append("file", file);
+            formData.append('file', file);
 
             $.ajax({
                 url: imageUploader.apiUrl,
@@ -495,26 +510,26 @@
                 dataType: 'json',
                 processData: false, // Don't process the files
                 contentType: false, // Set content type to false as jQuery will tell the server its a query string request
-            }).done(function(response) {
+            }).done(function (response) {
                 imageUploader.handleResponse(response);
-            }).fail(function() {
+            }).fail(function () {
                 imageUploader.status.fail(imageUploader.somethingWentWrongMessage);
                 imageUploader.button.enable();
             });
         },
 
-        handleResponse: function(response) {
+        handleResponse: function (response) {
             try {
                 if (!response) {
-                    throw "Response is empty";
+                    throw 'Response is empty';
                 }
 
-                if (typeof response != "object") {
+                if (typeof response != 'object') {
                     response = JSON.parse(response);
                 }
 
                 if (!response || !response.success || !response.data) {
-                    throw "Request is not success";
+                    throw 'Request is not success';
                 }
 
                 viewModel.logo.url(response.data.url);
@@ -531,12 +546,34 @@
 
     //#region Ajax requests
 
+    var userInfoDeffered = $.ajax({
+        url: baseURL + '/api/identify',
+        type: 'POST',
+        contentType: 'application/json',
+        dataType: 'json',
+        success: function (user) {
+            if (user.hasOwnProperty('subscription') && user.subscription.hasOwnProperty('accessType')) {
+                var hasStarterAccess = user.subscription.accessType >= starterAccessType && new Date(user.subscription.expirationDate) >= new Date();
+                viewModel.hasStarterPlan(hasStarterAccess);
+
+                if (hasStarterAccess) {
+                    imageUploader.init();
+                }
+            } else {
+                viewModel.hasStarterPlan(false);
+            }
+        },
+        error: function () {
+            viewModel.hasStarterPlan(false);
+        }
+    });
+
     $.ajax({
         cache: false,
         url: settingsURL,
-        dataType: "json",
-        success: function(json) {
-            var defaultSettings = { logo: {}, xApi: { enabled: true, selectedLrs: "default", lrs: { credentials: {} } }, masteryScore: {} };
+        dataType: 'json',
+        success: function (json) {
+            var defaultSettings = { logo: {}, xApi: { enabled: true, selectedLrs: 'default', lrs: { credentials: {} } }, masteryScore: {} };
             var settings;
             try {
                 settings = JSON.parse(json.settings) || defaultSettings;
@@ -553,7 +590,7 @@
             viewModel.trackingData.lapPassword(settings.xApi.lrs.credentials.password || '');
 
             if (settings.xApi.allowedVerbs) {
-                $.each(viewModel.trackingData.statements, function(key, value) {
+                $.each(viewModel.trackingData.statements, function (key, value) {
                     value($.inArray(key, settings.xApi.allowedVerbs) > -1);
                 });
             }
@@ -565,30 +602,13 @@
                 viewModel.masteryScore(100);
             }
         },
-        error: function() {
+        error: function () {
             viewModel.masteryScore(100);
-        }
-    });
-
-    $.ajax({
-        url: baseURL + '/api/identify',
-        type: 'POST',
-        contentType: 'application/json',
-        dataType: 'json',
-        success: function(user) {
-            if (user.hasOwnProperty('subscription') && user.subscription.hasOwnProperty('accessType')) {
-                var hasStarterAccess = user.subscription.accessType >= starterAccessType && new Date(user.subscription.expirationDate) >= new Date();
-                viewModel.hasStarterPlan(hasStarterAccess);
-
-                if (hasStarterAccess) {
-                    imageUploader.init();
-                }
-            } else {
-                viewModel.hasStarterPlan(false);
-            }
         },
-        error: function() {
-            viewModel.hasStarterPlan(false);
+        complete: function () {
+            userInfoDeffered.complete(function () {
+                currentSettings = initSettings();
+            });
         }
     });
 
