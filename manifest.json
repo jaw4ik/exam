@@ -5,5 +5,15 @@
     "previewImages": [
         "img/previewImages/previewExam.jpg"
     ],
-    "settingsUrl": "settings/settings.html"
+    "settingsUrl": "settings/settings.html",
+    "languages": [
+        {
+            "code": "en",
+            "url": "lang/en.json"
+        },
+        {
+            "code": "ua",
+            "url": "lang/ua.json"
+        }
+    ]
 }

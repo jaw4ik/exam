@@ -13,8 +13,8 @@ define('Q', function () { return window.Q; });
 define('_', function () { return window._; });
 
 
-define(['durandal/app', 'durandal/viewLocator', 'durandal/system', 'modulesInitializer', 'browserSupport', 'settingsReader', 'bootstrapper'],
-    function (app, viewLocator, system, modulesInitializer, browserSupport, settingsReader, bootstrapper) {
+define(['durandal/app', 'durandal/viewLocator', 'durandal/system', 'modulesInitializer', 'browserSupport', 'templateSettings', 'settingsReader', 'bootstrapper', 'translation'],
+    function (app, viewLocator, system, modulesInitializer, browserSupport, templateSettings, settingsReader, bootstrapper, translation) {
         app.title = 'easygenerator';
 
         app.configurePlugins({
@@ -26,36 +26,46 @@ define(['durandal/app', 'durandal/viewLocator', 'durandal/system', 'modulesIniti
         app.start().then(function () {
             bootstrapper.run();
 
-            if (!browserSupport.isSupportedMobile && !browserSupport.isSupportedBrowser) {
-                app.setRoot(browserSupport.isMobileDevice ? 'viewmodels/notsupportedbrowserMobile' : 'viewmodels/notsupportedbrowser');
-                return;
-            }
-            var modules = [],
-                promises = [];
+            var modules = {};
 
-            promises.push(readTemplateSettings());
-
-            promises.push(readPublishSettings());
-
-            Q.allSettled(promises).then(function () {
-                modulesInitializer.register(modules);
-                app.setRoot('viewmodels/shell');
+            return readPublishSettings().then(function () {
+                return readTemplateSettings().then(function (settings) {
+                    return initTemplateSettings(settings).then(function () {
+                        return initTranslations(settings).then(function () {
+                            modulesInitializer.register(modules);
+                            if (!browserSupport.isSupportedMobile && !browserSupport.isSupportedBrowser) {
+                                app.setRoot(browserSupport.isMobileDevice ? 'viewmodels/notsupportedbrowserMobile' : 'viewmodels/notsupportedbrowser');
+                                return;
+                            }
+                            app.setRoot('viewmodels/shell');
+                        });
+                    });
+                });
+            }).catch(function (e) {
+                console.error(e);
             });
 
-            function readTemplateSettings() {
-                return settingsReader.readTemplateSettings().then(function (settings) {
-                    modules['modules/graphicalCustomization'] = settings.logo;
-                    modules["xApi/xApiInitializer"] = settings.xApi;
-                    modules['modules/courseSettings'] = settings.masteryScore;
-                });
-            }
-
             function readPublishSettings() {
-                settingsReader.readPublishSettings().then(function (settings) {
+                return settingsReader.readPublishSettings().then(function (settings) {
                     _.each(settings.modules, function (module) {
                         modules['../includedModules/' + module.name] = true;
                     });
                 });
+            }
+
+            function readTemplateSettings() {
+                return settingsReader.readTemplateSettings();
+            }
+
+            function initTemplateSettings(settings) {
+                return templateSettings.init(settings).then(function () {
+                    modules['xApi/xApiInitializer'] = templateSettings.xApi;
+                });
+            }
+
+            function initTranslations(settings) {
+                console.log('initTranslations');
+                return translation.init(settings.languages.selected, settings.languages.customTranslations);
             }
         });
     }
