@@ -9,15 +9,8 @@
         'custom': 'Custom LRS',
 
         'xx': 'Custom',
-        'cn': 'Chinese',
-        'de': 'German',
         'en': 'English',
-        'fr': 'French',
-        'it': 'Italian',
-        'nl': 'Dutch',
-        'tr': 'Turkish',
         'ua': 'Ukrainian',
-        'pt-br': 'Portuguese (Brazil)',
 
         'changes are saved': 'All changes are saved',
         'changes are not saved': 'Changes have NOT been saved. Please reload the page and change the settings again. Contact support@easygenerator.com if problem persists.',
