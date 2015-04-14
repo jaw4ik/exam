@@ -1,8 +1,7 @@
-﻿define(function () {
+﻿define(['translation'], function (translation) {
     "use strict";
 
-    var blankInputSelector = '.blankInput,.blankSelect',
-        placeHolder = 'Choose the answer...';
+    var blankInputSelector = '.blankInput,.blankSelect';
 
     return {
         execute: function () {
@@ -228,6 +227,7 @@
                     .on('blur', handlers.blurHandler)
                     .on('keydown', handlers.keydownHandler);
 
+                var placeHolder = translation.getTextByKey('[fill in the blank choose answer]');
                 $currentSelectedItemText = $('<span class="' + cssClasses.currentSelectedItemText + '">' + placeHolder + '</span>');
 
                 $pointerWrapper = $('<div class="' + cssClasses.pointerWrapper + '"></div');

@@ -2,7 +2,9 @@
     <header class="content-header">
         <div class="content-header-inner">
             <div class="question-counter">
-                <span data-bind="text: (index + 1) + ' of ' + questionsCount"></span>
+                <span data-bind="text: (index + 1) + ' '"></span>
+                <span data-translate-text="[of]"></span>
+                <span data-bind="text: ' ' + questionsCount"></span>
             </div>
             <div class="content-title question-text">
                 <span class="selectable" data-bind="text: title"></span>
@@ -13,7 +15,7 @@
         <div class="question-content" data-bind="html: content, imageWrap: content"></div>
     </div>
     <div>
-        <div class="text-matching-caption">
+        <div class="text-matching-caption" data-translate-text="[text matching question hint]">
             Drag items from right column to the left to match the pairs
         </div>
         <div class="text-matching-table">
@@ -32,7 +34,7 @@
                     <div class="text-matching-target-placeholder-wrapper" data-bind="droppable: $data, accept: 1, scope: $parent.id">
                         <div class="text-matching-target-placeholder">
                             <div class="text-matching-target-placeholder-text-wrapper">
-                                <div class="text-matching-target-placeholder-text">Drop here</div>
+                                <div class="text-matching-target-placeholder-text" data-translate-text="[text matching question drop here]">Drop here</div>
                             </div>
                         </div>
                         <!-- ko if: value -->

@@ -2,7 +2,9 @@
     <header class="content-header">
         <div class="content-header-inner">
             <div class="question-counter">
-                <span data-bind="text: (index + 1) + ' of ' + questionsCount"></span>
+                <span data-bind="text: (index + 1) + ' '"></span>
+                <span data-translate-text="[of]"></span>
+                <span data-bind="text: ' ' + questionsCount"></span>
             </div>
             <div class="content-title question-text">
                 <span class="selectable" data-bind="text: title"></span>
@@ -11,7 +13,7 @@
     </header>
     <div class="question-content-wrapper">
         <div class="drag-and-drop-text-draggable-container" style="" data-bind="draggableTextContainer: {}, scope: id">
-			<div class="drag-and-drop-text-draggable-container-message">
+            <div class="drag-and-drop-text-draggable-container-message" data-translate-text="[drag and drop question all texts are placed]">
                 All texts are placed
             </div>
             <!-- ko foreach: texts -->
@@ -29,7 +31,7 @@
                 <div class="drag-and-drop-text-dropspot" data-bind="dropspot: $data, scope: $parent.id">
                     <div class="drag-and-drop-text-dropspot-tooltip-image">
                     </div>
-                    <div class="drag-and-drop-text-dropspot-tooltip-text">
+                    <div class="drag-and-drop-text-dropspot-tooltip-text" data-translate-text="[drag and drop question drop here]">
                         Drop here
                     </div>
                 </div>

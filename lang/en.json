@@ -1,10 +1,13 @@
 {
-    "[submit]":	"Submit",	
+    "[course]": "Course:",
+    "[start exam]": "Start exam",
+    "[home]": "Home",
+    "[submit]": "Submit",
     "[finish course]": "Finish",
     "[start]": "Start",
     "[of]": "of",
     "[exam result]": "Exam result",
-    "[result per objective]]": 	"Result per Objective",
+    "[result per objective]": "Result per Objective",
     "[text matching question hint]": "Drag items from right column to the left to match the pairs",
     "[text matching question drop here]": "Drop here",
     "[drag and drop question drop here]": "Drop here",
@@ -25,5 +28,6 @@
     "[tracking and tracing error]": "Something is wrong",
     "[tracking and tracing error hint]": "If you continue without restarting, your learning results will not be reported.",
     "[tracking and tracing restart course]": "Restart course",
-    "[tracking and tracing continue anyway]": "Continue anyway"
+    "[tracking and tracing continue anyway]": "Continue anyway",
+    "[tracking and tracing reporting progress]": "Reporting results..."
 }
