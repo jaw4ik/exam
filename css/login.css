@@ -12,22 +12,27 @@
 }
 
     .xapi-title span {
-        vertical-align: top;
+        display: inline-block;
+        max-width: 100%;
+        overflow: hidden;
+        padding-left: 45px;
+        text-overflow: ellipsis;
+        vertical-align: middle;
+        white-space: nowrap;
     }
 
     .xapi-title:before {
+        position: absolute;
         content: url(images/graphChart.png);
         display: block;
         width: 32px;
         height: 35px;
-        float: left;
-        margin-right: 15px;
         opacity: 0.85;
     }
 
 .xapi-form-holder {
     position: relative;
-    padding-top: 150px;
+    padding-top: 20px;
     padding-bottom: 35px;
     width: 60%;
     min-width: 540px;
@@ -36,9 +41,8 @@
 
 .xapi-form-info-message {
     width: 100%;
-    position: absolute;
-    top: 20px;
     padding: 28px 20px;
+    margin-bottom: 30px;
     background: #fefefe;
     border: 1px solid #c7c7c7;
     border-radius: 5px;
@@ -71,6 +75,7 @@
 .xapi-form-row {
     height: 100px;
     display: table;
+    table-layout: fixed;
     width: 100%;
 }
 
@@ -81,14 +86,18 @@
 }
 
 .xapi-form-row-title {
-    display: inline-block;
-    vertical-align: top;
-    position: relative;
-    padding-left: 32px;
     color: #333333;
+    cursor: default;
+    display: inline-block;
     font-family: Arial, sans-serif;
     font-size: 22px;
-    cursor: default;
+    max-width: 100%;
+    overflow: hidden;
+    padding-left: 32px;
+    position: relative;
+    text-overflow: ellipsis;
+    vertical-align: top;
+    white-space: nowrap;
 }
 
     .xapi-form-row-title:after {
@@ -109,6 +118,7 @@
     line-height: 20px;
     padding-top: 5px;
     text-align: center;
+    word-wrap: break-word;
 }
 
 .email .xapi-form-row-title:after {
@@ -194,9 +204,13 @@
 }
 
 .xapi-form-row.error .xapi-form-message {
-    display: block;
     color: #953b39;
+    display: block;
+    max-width: 100%;
+    overflow: hidden;
     text-align: left;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
 .xapi-form-message:after {
@@ -212,24 +226,42 @@
 }
 
 .xapi-form-btn-holder .btn {
-    font-size: 20px;
     color: #5C6572;
-    display: inline-block;
     font-size: 20px;
-    text-align: center;
+    font-size: 20px;
     -ms-text-shadow: 1px 1px 1px #FFFFFF;
+    padding: 0 10px;
+    text-align: center;
     text-shadow: 1px 1px 1px #FFFFFF;
     width: 52%;
 }
 
-.link.default {
-    margin: 18px;
-    font-size: 18px;
+.xapi-form-btn-holder .btn:after {
+    content: "*";
+    margin-left: 5px;
+}
+
+    .xapi-form-btn-holder .btn span {
+        white-space: nowrap;
+        overflow: hidden;
+        display: inline-block;
+        max-width: 95%;
+        text-overflow: ellipsis;
+        vertical-align: bottom;
+    }
+
+.xapi-form-btn-holder .link {
     border-bottom: 1px solid #3a87ad;
     color: #3a87ad;
     cursor: pointer;
+    font-size: 18px;
+    margin: 18px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    max-width: 40%;
 }
 
-    .link.default:hover {
+    .xapi-form-btn-holder .link:hover {
         color: #2e6b89;
     }
