@@ -230,18 +230,18 @@
     color: #3a87ad;
     cursor: pointer;
     font-size: 18px;
-    margin: 18px;
+    margin: 18px 35px;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
-    max-width: 185px;
+    max-width: 205px;
 }
 
     .xapi-form-btn-holder .link:hover {
         color: #2e6b89;
     }
 
-@media (max-width: 1145px) {
+@media (max-width: 1255px) {
     .xapi-form-btn-holder .btn {
         width: 100%;
         margin-bottom: 20px;
@@ -250,5 +250,8 @@
     .xapi-form-btn-holder .link {
         display: inline-block;
         float: none;
+        margin-left: 0;
+        margin-right: 0;
+        max-width: 100%;
     }
 }
