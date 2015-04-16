@@ -12,8 +12,8 @@
     }
 
     .xapi-error-section .xapi-error-container-img {
+        position: absolute;
         display: inline-block;
-        float: left;
         width: 128px;
         height: 127px;
         margin: 0 50px 0 50px;
@@ -26,14 +26,17 @@
         font-size: 23px;
         font-weight: normal;
         text-transform: uppercase;
-        padding: 15px 0;
+        padding: 15px 0 15px 228px;
         margin: 0;
+        word-wrap: break-word;
     }
 
     .xapi-error-section .xapi-error-container-description {
         font-family: Arial, sans-serif;
         font-size: 18px;
         line-height: 25px;
+        padding-left: 228px;
+        word-wrap: break-word;
     }
 
     .xapi-error-section .summary-btn-holder {

@@ -64,7 +64,6 @@ define(['durandal/app', 'durandal/viewLocator', 'durandal/system', 'modulesIniti
             }
 
             function initTranslations(settings) {
-                console.log('initTranslations');
                 return translation.init(settings.languages.selected, settings.languages.customTranslations);
             }
         });

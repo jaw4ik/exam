@@ -29,5 +29,6 @@
     "[tracking and tracing error hint]": "Натисніть 'Спробувати ще'. Якщо помилка повторюється і ви бажаєте продовжити курс без відправки результатів - натисніть 'Продовжити'.",
     "[tracking and tracing restart course]": "Спробувати ще",
     "[tracking and tracing continue anyway]": "Продовжити",
-    "[tracking and tracing reporting progress]": "Надсилаемо прогресс..."
+    "[tracking and tracing reporting progress]": "Надсилаемо прогресс...",
+    "[thank you message]": "Дякуємо. Тепер сторінку можна закрити"
 }

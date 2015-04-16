@@ -3,7 +3,6 @@
     var defaultTranslationsCode = 'en';
 
     function init(languageCode, customTranslations) {
-        console.log('init  translation');
         return readDefaultTranslations().then(function (defaultTranslations) {
             return resolveTranslations(languageCode, customTranslations).then(function (resolvedTranslations) {
                 translations = _.defaults(resolvedTranslations, defaultTranslations);

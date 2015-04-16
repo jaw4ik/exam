@@ -29,5 +29,6 @@
     "[tracking and tracing error hint]": "If you continue without restarting, your learning results will not be reported.",
     "[tracking and tracing restart course]": "Restart course",
     "[tracking and tracing continue anyway]": "Continue anyway",
-    "[tracking and tracing reporting progress]": "Reporting results..."
+    "[tracking and tracing reporting progress]": "Reporting results...",
+    "[thank you message]": "Thank you, you can close the page now"
 }

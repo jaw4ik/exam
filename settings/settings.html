@@ -93,24 +93,24 @@
             <div class="settings-tab-container track-and-trace" data-tab="track-and-trace">
                 <div class="settings-tab-wrapper track-and-trace-settings" data-bind="with: trackingData">
                     <div class=" tab-header-container">
-                    <img src="img/track.png" />
-                    <div class="tab-header-wrapper">
-                        <h1 class="tab-header-title" data-bind="localize: 'track and trace settings'"></h1>
-                        <div class="tab-header-content">
-                            <div class="switcher">
-                                <div class="switcher-text" data-bind="css: { disabled: enableXAPI() }, localize: 'disabled'"></div>
-                                <div class="switch-toggle-slider" data-bind="switchToggle: { value: enableXAPI }">
-                                    <div class="switch-toggle-wrapper">
-                                        <div class="switch-toggle-on"></div>
-                                        <div class="switch-toogle-blob"></div>
-                                        <div class="switch-toggle-off"></div>
+                        <img src="img/track.png" />
+                        <div class="tab-header-wrapper">
+                            <h1 class="tab-header-title" data-bind="localize: 'track and trace settings'"></h1>
+                            <div class="tab-header-content">
+                                <div class="switcher">
+                                    <div class="switcher-text" data-bind="css: { disabled: enableXAPI() }, localize: 'disabled'"></div>
+                                    <div class="switch-toggle-slider" data-bind="switchToggle: { value: enableXAPI }">
+                                        <div class="switch-toggle-wrapper">
+                                            <div class="switch-toggle-on"></div>
+                                            <div class="switch-toogle-blob"></div>
+                                            <div class="switch-toggle-off"></div>
+                                        </div>
                                     </div>
+                                    <div class="switcher-text" data-bind="css: { disabled: !enableXAPI() }, localize: 'enabled'"></div>
                                 </div>
-                                <div class="switcher-text" data-bind="css: { disabled: !enableXAPI() }, localize: 'enabled'"></div>
                             </div>
                         </div>
                     </div>
-                </div>
                     <div class="tab-content-container">
                         <div class="tab-content-title-container" data-bind="click: toggleAdvancedSettings" style="display: inline-block">
                             <div class="tab-content-title" data-bind="css: { expanded: advancedSettingsExpanded(),  collapsed: !advancedSettingsExpanded() }, localize: 'advanced settings'"></div>
@@ -213,8 +213,6 @@
                                             </div>
                                             <div class="switcher-text" data-bind="localize: 'mastered'"></div>
                                         </div>
-                                    </div>
-                                    <div class="statements-container">
                                         <div class="switcher statement">
                                             <div class="switch-toggle-slider" data-bind="switchToggle: { value: statements.failed }">
                                                 <div class="switch-toggle-wrapper">
