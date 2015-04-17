@@ -126,6 +126,10 @@
     font-size: 16px;
 }
 
+    .xapi-form-input:-ms-input-placeholder{
+	    color: Grey;
+    }
+
     .xapi-form-input:focus,
     .xapi-form-input:active {
         outline: none;
