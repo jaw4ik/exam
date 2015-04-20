@@ -1,5 +1,5 @@
-﻿define(['durandal/app', 'plugins/router', 'context', 'eventManager', 'configuration/routes', 'modulesInitializer', 'modules/graphicalCustomization'],
-    function (app, router, context, eventManager, routes, modulesInitializer, graphicalCustomization) {
+﻿define(['durandal/app', 'plugins/router', 'context', 'eventManager', 'configuration/routes', 'modulesInitializer', 'templateSettings'],
+    function (app, router, context, eventManager, routes, modulesInitializer, templateSettings) {
         
         var
             cssName = ko.computed(function () {
@@ -33,7 +33,7 @@
                     
                     return modulesInitializer.init().then(function () {
                         
-                        that.logoUrl(graphicalCustomization.settings.logoUrl);
+                        that.logoUrl(templateSettings.logoUrl);
                         
                         return router.map(routes)
                             .buildNavigationModel()

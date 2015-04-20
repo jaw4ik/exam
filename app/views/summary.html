@@ -5,7 +5,7 @@
                 <canvas class="circle-progressbar" width="90" height="90" data-bind="circleProgress: { progress: overallScore }"></canvas>
                 <span class="progress-score" data-bind="text: overallScore + '%'"></span>
             </div>
-            <div class="page-title">Exam result</div>
+            <div class="page-title" data-translate-text="[exam result]">Exam result</div>
         </div>
     </div>
 
@@ -13,7 +13,7 @@
         <header class="content-header">
             <div class="content-header-inner">
                 <h3 class="content-title summary-title">
-                    <span class="selectable">Result per Objective</span>
+                    <span class="selectable" data-translate-text="[result per objective]">Result per Objective</span>
                 </h3>
             </div>
         </header>
@@ -49,16 +49,16 @@
     </div>
     <div class="summary-btn-holder clearfix">
         <!-- ko ifnot: status() == statuses.readyToFinish -->
-        <a class="btn default" data-bind="css: 'disabled'">Finish</a>
+        <a class="btn default" data-bind="css: 'disabled'" data-translate-text="[finish course]">Finish</a>
         <!-- /ko -->
         <!-- ko if: status() == statuses.readyToFinish -->
-        <a class="btn default" data-bind="click: finish">Finish</a>
+        <a class="btn default" data-bind="click: finish" data-translate-text="[finish course]">Finish</a>
         <!-- /ko -->
     </div>
     <!-- ko if: status() == statuses.sendingRequests -->
     <div class="request-loader-holder">
         <div class="request-loader-wrapper">
-            <span class="request-loader">Reporting progress...</span>
+            <span class="request-loader" data-translate-text="[tracking and tracing reporting progress]">Reporting progress...</span>
         </div>
     </div>
     <!-- /ko  -->

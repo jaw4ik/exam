@@ -12,7 +12,7 @@
             },
           "authenticationRequired": false
         },
-        "allowedVerbs":["started","stopped","experienced","mastered","answered","passed","failed"]
+        "allowedVerbs":["started","stopped","mastered","answered","passed","failed"]
     },
     "masteryScore": {
         "score": "75"

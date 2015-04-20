@@ -2,7 +2,9 @@
     <header class="content-header">
         <div class="content-header-inner">
             <div class="question-counter">
-                <span data-bind="text: (index + 1) + ' of ' + questionsCount"></span>
+                <span data-bind="text: (index + 1) + ' '"></span>
+                <span class="question-counter-pointer" data-translate-text="[of]"></span>
+                <span data-bind="text: ' ' + questionsCount"></span>
             </div>
             <div class="content-title question-text">
                 <span class="selectable" data-bind="text: title"></span>
@@ -15,8 +17,8 @@
     <div class="statement">
         <div class="statement-headers-group">
             <div class="statement-header"></div>
-            <div class="statement-header statement-option">True</div>
-            <div class="statement-header statement-option">False</div>
+            <div class="statement-header statement-option" data-translate-text="[statement question true text]">True</div>
+            <div class="statement-header statement-option" data-translate-text="[statement question false text]">False</div>
         </div>
 
         <!-- ko foreach: statements -->

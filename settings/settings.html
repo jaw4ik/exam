@@ -5,50 +5,52 @@
 
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     <link href="css/settings.css" rel="stylesheet" />
     <!-- build:js js/vendor.min.js -->
-    <script src="js/jquery.min.js"></script>
-    <script src="js/jquery.spinner.min.js"></script>
-    <script src="js/knockout.min.js"></script>
+    <script src="js/vendor/jquery.min.js"></script>
+    <script src="js/vendor/jquery.spinner.min.js"></script>
+    <script src="js/vendor/knockout.min.js"></script>
     <!-- endbuild -->
+    <!-- build:js js/api.js -->
+    <script src="js/api.js"></script>
+    <!-- endbuild -->
+    <!-- build:js js/settings.min.js -->
+    <script src="js/localize.js"></script>
+    <script src="js/knockoutBindings.js"></script>
+    <script src="js/models.js"></script>
     <script src="js/settings.js"></script>
+    <!-- endbuild -->
 </head>
 <body>
     <div class="settings-container">
         <div class="settings-tabs-container" data-bind="tabs: {}">
             <ul class="settings-tabs-wrapper unstyled">
-                <li class="settings-tabs-item customization active" data-tab-link="customization">
-                    Graphical customization
-                </li>
-                <li class="settings-tabs-item track-and-trace" data-tab-link="track-and-trace">
-                    Results Tracking
-                </li>
+                <li class="settings-tabs-item customization active" data-tab-link="customization" data-bind="localize: 'graphical customization'"></li>
+                <li class="settings-tabs-item track-and-trace" data-tab-link="track-and-trace" data-bind="localize: 'results tracking'"></li>
+                <li class="settings-tabs-item languages" data-tab-link="languages" data-bind="localize: 'template language'"></li>
             </ul>
             <div class="settings-tab-container customization" data-tab="customization">
                 <div class="settings-tab-wrapper">
                     <div class="tab-header-container">
                         <img src="img/graphical.png" />
                         <div class="tab-header-wrapper">
-                            <h1 class="tab-header-title">Customize your course</h1>
+                            <h1 class="tab-header-title" data-bind="localize: 'customize your course'"></h1>
                             <div class="tab-header-content">
-                                <span class="tab-header-content-text">Change the look and feel of the course</span>
+                                <span class="tab-header-content-text" data-bind="localize: 'look and feel of the course'"></span>
                             </div>
                         </div>
                     </div>
                     <div class="tab-content-container">
                         <div class="tab-content-row">
-                            <h1 class="template-logo-title">
-                                Custom course logo:
-                            </h1>
+                            <h1 class="template-logo-title" data-bind="localize: 'custom course logo'"></h1>
                             <div class="tab-content-wrapper">
                                 <div class="has-access">
                                     <div class="template-logo-url-container">
-                                        <input class="template-logo-url" type="text" placeholder="Paste image URL here..." id="imgUrl" data-bind="value: logo.url, valueUpdate: ['afterkeydown', 'afterpaste'], enable: hasStarterPlan" />
-                                        <span class="template-logo-or">or</span>
+                                        <input class="template-logo-url" type="text" placeholder="Paste image URL here..." id="imgUrl" data-bind="value: logo.url, valueUpdate: ['afterkeydown', 'afterpaste'], enable: userHasStarterPlan" />
+                                        <span class="template-logo-or" data-bind="localize: 'or'"></span>
                                         <form id="logoForm" method="post" enctype="multipart/form-data" encoding="multipart/form-data" target="logoFrame">
                                             <a class="btn grey template-logo">
-                                                Upload logo image
+                                                <span data-bind="localize: 'upload logo image'"></span>
                                                 <input type="file" id="logoInput" name="file" disabled="disabled">
                                             </a>
                                         </form>
@@ -56,10 +58,7 @@
                                     <div class="template-logo-container">
                                         <div class="template-logo-wrapper" data-bind="style: { display: logo.hasLogo() || logo.isError() ? 'none' : 'inline-block' }">
                                             <div class="template-logo-emty-img"></div>
-                                            <div class="template-logo-empty-text">
-                                                Your logo will appear here
-                                                <p>(recommended size 300 x 50 px)</p>
-                                            </div>
+                                            <div class="template-logo-empty-text" data-bind="localize: 'logo hint'"></div>
                                         </div>
                                         <div class="template-logo-wrapper error" data-bind="style: { display: logo.isError() && logo.url() == '' ? 'inline-block' : 'none' }">
                                             <div class="template-logo-emty-img"></div>
@@ -75,18 +74,15 @@
                                         <div class="template-logo-clear-wrapper" data-bind="style: { display: logo.hasLogo() ? 'inline-block' : 'none' }">
                                             <div class="template-logo-clear-btn" data-bind="click: logo.clear">
                                                 <div class="tooltip">
-                                                    <span class="tooltip-text">Clear logo</span>
+                                                    <span class="tooltip-text" data-bind="localize: 'clear logo'"></span>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="no-access" data-bind="fadeVisible: !hasStarterPlan()">
+                                <div class="no-access" data-bind="fadeVisible: !userHasStarterPlan()">
                                     <div class="no-access-img"></div>
-                                    <div class="no-access-text">
-                                        You have to
-                                        <a target="_blank" href="/account/upgrade">upgrade your account</a>
-                                        in order to set custom course logo
+                                    <div class="no-access-text" data-bind="localize: 'upgrade account hint'">
                                     </div>
                                 </div>
                             </div>
@@ -95,141 +91,141 @@
                 </div>
             </div>
             <div class="settings-tab-container track-and-trace" data-tab="track-and-trace">
-                <div class="settings-tab-wrapper track-and-trace-settings">
-                    <div class="tab-header-container">
+                <div class="settings-tab-wrapper track-and-trace-settings" data-bind="with: trackingData">
+                    <div class=" tab-header-container">
                         <img src="img/track.png" />
                         <div class="tab-header-wrapper">
-                            <h1 class="tab-header-title">Track and trace settings</h1>
+                            <h1 class="tab-header-title" data-bind="localize: 'track and trace settings'"></h1>
                             <div class="tab-header-content">
                                 <div class="switcher">
-                                    <div class="switcher-text" data-bind="css: { disabled: trackingData.enableXAPI() }">Disabled</div>
-                                    <div class="switch-toggle-slider" data-bind="switchToggle: { value: trackingData.enableXAPI }">
+                                    <div class="switcher-text" data-bind="css: { disabled: enableXAPI() }, localize: 'disabled'"></div>
+                                    <div class="switch-toggle-slider" data-bind="switchToggle: { value: enableXAPI }">
                                         <div class="switch-toggle-wrapper">
                                             <div class="switch-toggle-on"></div>
                                             <div class="switch-toogle-blob"></div>
                                             <div class="switch-toggle-off"></div>
                                         </div>
                                     </div>
-                                    <div class="switcher-text" data-bind="css: { disabled: !trackingData.enableXAPI() }">Enabled</div>
+                                    <div class="switcher-text" data-bind="css: { disabled: !enableXAPI() }, localize: 'enabled'"></div>
                                 </div>
                             </div>
                         </div>
                     </div>
                     <div class="tab-content-container">
-                        <div class="tab-content-title-container" data-bind="click: toggleAdvancedSettings">
-                            <div class="tab-content-title" data-bind="css: { expanded: advancedSettingsExpanded(),  collapsed: !advancedSettingsExpanded() }">Advanced settings</div>
+                        <div class="tab-content-title-container" data-bind="click: toggleAdvancedSettings" style="display: inline-block">
+                            <div class="tab-content-title" data-bind="css: { expanded: advancedSettingsExpanded(),  collapsed: !advancedSettingsExpanded() }, localize: 'advanced settings'"></div>
                         </div>
                         <div class="template-selector-container" data-bind="visible: advancedSettingsExpanded()">
                             <div class="selector-items-container">
-                                <h2 class="selector-title">Report to:</h2>
-                                <ul class="selector-items-wrapper unstyled" data-bind="foreach: trackingData.lrsOptions">
-                                    <li class="selector-item-container" data-bind="click: select, css: { selected: isSelected }">
+                                <h2 class="selector-title" data-bind="localize: 'report to'"></h2>
+                                <ul class="selector-items-wrapper unstyled" data-bind="foreach: lrsOptions">
+                                    <li class="selector-item-container" data-bind="click: $parent.selectLrs, css: { selected: isSelected }">
                                         <div class="selector-item-btn"></div>
-                                        <div class="selector-item-text" data-bind="text: text"></div>
+                                        <div class="selector-item-text" data-bind="localize: name"></div>
                                     </li>
                                 </ul>
-                                <div class="preview-disabled" data-bind="visible: !trackingData.enableXAPI()"></div>
+                                <div class="preview-disabled" data-bind="visible: !enableXAPI()"></div>
                             </div>
                             <div class="selector-preview-container">
-                                <h2 class="selector-title">Custom LRS settings</h2>
+                                <h2 class="selector-title" data-bind="localize: 'custom lrs settings'"></h2>
                                 <div class="preview-row">
-                                    <label for="lrsUrl" class="preview-label">LRS URL</label>
+                                    <label for="lrsUrl" class="preview-label" data-bind="localize: 'lrs url'"></label>
                                     <div class="preview-col">
-                                        <input class="preview-text-input" id="lrsUrl" type="text" data-bind="value: trackingData.lrsUrl, valueUpdate: ['afterkeydown', 'afterpaste'], enable: trackingData.customLrsEnabled" />
+                                        <input class="preview-text-input" id="lrsUrl" type="text" data-bind="value: lrsUrl, valueUpdate: ['afterkeydown', 'afterpaste'], enable: customLrsEnabled" />
                                     </div>
                                 </div>
                                 <div class="preview-row checkbox">
                                     <div class="preview-col pull-right">
                                         <label>
                                             <span class="preview-checkbox">
-                                                <input class="preview-checkbox-input" type="checkbox" data-bind="checked: trackingData.authenticationRequired">
+                                                <input class="preview-checkbox-input" type="checkbox" data-bind="checked: authenticationRequired">
                                                 <span class="preview-checkbox-checked"></span>
                                             </span>
-                                            <span class="preview-label checkbox">Authentication required</span>
+                                            <span class="preview-label checkbox" data-bind="localize: 'authentication required'"></span>
                                         </label>
                                     </div>
                                     <div class="clearfix"></div>
                                 </div>
                                 <div class="preview-row">
-                                    <label for="lapLogin" class="preview-label">LAP login</label>
+                                    <label for="lapLogin" class="preview-label" data-bind="localize: 'lap login'"></label>
                                     <div class="preview-col">
-                                        <input class="preview-text-input" type="text" id="lapLogin" data-bind="value: trackingData.lapLogin, valueUpdate: ['afterkeydown', 'afterpaste'], enable: trackingData.credentialsEnabled" />
+                                        <input class="preview-text-input" type="text" id="lapLogin" data-bind="value: lapLogin, valueUpdate: ['afterkeydown', 'afterpaste'], enable: credentialsEnabled" />
                                     </div>
                                 </div>
                                 <div class="preview-row">
-                                    <label for="lapPassword" class="preview-label">LAP password</label>
+                                    <label for="lapPassword" class="preview-label" data-bind="localize: 'lap password'"></label>
                                     <div class="preview-col">
-                                        <input class="preview-text-input" type="text" id="lapPassword" data-bind="value: trackingData.lapPassword, valueUpdate: ['afterkeydown', 'afterpaste'], enable: trackingData.credentialsEnabled" />
+                                        <input class="preview-text-input" type="text" id="lapPassword" data-bind="value: lapPassword, valueUpdate: ['afterkeydown', 'afterpaste'], enable: credentialsEnabled" />
                                     </div>
                                 </div>
                                 <div class="preview-row statements">
-                                    <div class="statements-title">Use statements:</div>
+                                    <div class="statements-title" data-bind="localize: 'use statements'"></div>
                                     <div class="statements-container">
                                         <div class="switcher statement">
-                                            <div class="switch-toggle-slider" data-bind="switchToggle: { value: trackingData.statements.started }">
+                                            <div class="switch-toggle-slider" data-bind="switchToggle: { value: statements.started }">
                                                 <div class="switch-toggle-wrapper">
                                                     <div class="switch-toggle-on"></div>
                                                     <div class="switch-toogle-blob"></div>
                                                     <div class="switch-toggle-off"></div>
                                                 </div>
                                             </div>
-                                            <div class="switcher-text">Started</div>
+                                            <div class="switcher-text" data-bind="localize: 'started'"></div>
                                         </div>
                                         <div class="switcher statement">
-                                            <div class="switch-toggle-slider" data-bind="switchToggle: { value: trackingData.statements.stopped }">
+                                            <div class="switch-toggle-slider" data-bind="switchToggle: { value: statements.stopped }">
                                                 <div class="switch-toggle-wrapper">
                                                     <div class="switch-toggle-on"></div>
                                                     <div class="switch-toogle-blob"></div>
                                                     <div class="switch-toggle-off"></div>
                                                 </div>
                                             </div>
-                                            <div class="switcher-text">Stopped</div>
+                                            <div class="switcher-text" data-bind="localize: 'stopped'"></div>
                                         </div>
                                         <div class="switcher statement">
-                                            <div class="switch-toggle-slider" data-bind="switchToggle: { value: trackingData.statements.passed }">
+                                            <div class="switch-toggle-slider" data-bind="switchToggle: { value: statements.passed }">
                                                 <div class="switch-toggle-wrapper">
                                                     <div class="switch-toggle-on"></div>
                                                     <div class="switch-toogle-blob"></div>
                                                     <div class="switch-toggle-off"></div>
                                                 </div>
                                             </div>
-                                            <div class="switcher-text">Passed</div>
+                                            <div class="switcher-text" data-bind="localize: 'passed'"></div>
                                         </div>
                                     </div>
                                     <div class="statements-container">
                                         <div class="switcher statement">
-                                            <div class="switch-toggle-slider" data-bind="switchToggle: { value: trackingData.statements.answered }">
+                                            <div class="switch-toggle-slider" data-bind="switchToggle: { value: statements.answered }">
                                                 <div class="switch-toggle-wrapper">
                                                     <div class="switch-toggle-on"></div>
                                                     <div class="switch-toogle-blob"></div>
                                                     <div class="switch-toggle-off"></div>
                                                 </div>
                                             </div>
-                                            <div class="switcher-text">Answered</div>
+                                            <div class="switcher-text" data-bind="localize: 'answered'"></div>
                                         </div>
                                         <div class="switcher statement">
-                                            <div class="switch-toggle-slider" data-bind="switchToggle: { value: trackingData.statements.mastered }">
+                                            <div class="switch-toggle-slider" data-bind="switchToggle: { value: statements.mastered }">
                                                 <div class="switch-toggle-wrapper">
                                                     <div class="switch-toggle-on"></div>
                                                     <div class="switch-toogle-blob"></div>
                                                     <div class="switch-toggle-off"></div>
                                                 </div>
                                             </div>
-                                            <div class="switcher-text">Mastered</div>
+                                            <div class="switcher-text" data-bind="localize: 'mastered'"></div>
                                         </div>
                                         <div class="switcher statement">
-                                            <div class="switch-toggle-slider" data-bind="switchToggle: { value: trackingData.statements.failed }">
+                                            <div class="switch-toggle-slider" data-bind="switchToggle: { value: statements.failed }">
                                                 <div class="switch-toggle-wrapper">
                                                     <div class="switch-toggle-on"></div>
                                                     <div class="switch-toogle-blob"></div>
                                                     <div class="switch-toggle-off"></div>
                                                 </div>
                                             </div>
-                                            <div class="switcher-text">Failed</div>
+                                            <div class="switcher-text" data-bind="localize: 'failed'"></div>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="preview-disabled" data-bind="visible: !trackingData.customLrsEnabled()"></div>
+                                <div class="preview-disabled" data-bind="visible: !customLrsEnabled()"></div>
                             </div>
                         </div>
                     </div>
@@ -239,10 +235,10 @@
                     <div class="tab-header-container">
                         <img src="img/mastery.png" />
                         <div class="tab-header-wrapper">
-                            <h1 class="tab-header-title">Mastery score settings</h1>
+                            <h1 class="tab-header-title" data-bind="localize: 'mastery score settings'"></h1>
                             <div class="tab-content-container">
                                 <div class="mastery-score-container">
-                                    <div class="mastery-score-title">Mastery score (for each learning objective):</div>
+                                    <div class="mastery-score-title" data-bind="localize: 'mastery score hint'"></div>
                                     <div data-trigger="spinner" class="spinner" data-bind="spinner: masteryScore">
                                         <a class="spinner-button spinner-down" data-spin="down" data-bind="disableDragNDrop: {}"></a>
                                         <input type="text" maxlength="3" id="masteryScore" class="content-text-input" data-rule="quantity" data-max="100" data-min="0" data-bind="value: masteryScore, valueUpdate: ['afterkeydown', 'afterpaste'], number: {}">
@@ -252,6 +248,52 @@
                                 </div>
                             </div>
                         </div>
+                    </div>
+
+                </div>
+            </div>
+            <div class="settings-tab-container languages" data-tab="languages" data-bind="with: languages">
+                <div class="settings-tab-wrapper">
+                    <div class="tab-header-container">
+                        <img src="img/language.png">
+                        <div class="tab-header-wrapper">
+                            <h1 class="tab-header-title" data-bind="localize: 'choose language for your course'"></h1>
+                            <div class="tab-header-content">
+                                <div class="select-language">
+                                    <div id="selectedLanguage" data-bind="dropdown: { options: languages, value: selectedLanguageCode, optionsValue: 'code', optionsText: 'name' }"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tab-content-container">
+                        <table class="choose-language-table">
+                            <thead>
+                                <tr>
+                                    <th class="choose-language-table-header-text" data-bind="localize: 'defaultText'"></th>
+                                    <th class="choose-language-table-header-text" data-bind="localize: 'translation'"></th>
+                                </tr>
+                            </thead>
+                            <tbody class="choose-language-table-content" data-bind="ifnot: isLanguageLoading">
+                                <!-- ko foreach: selectedLanguageTranslations -->
+                                <tr class="choose-language-table-row">
+                                    <td class="choose-language-table-key" data-bind="text: key"></td>
+                                    <td class="choose-language-table-text-wrapper">
+                                        <div class="input-wrapper">
+                                            <!-- ko if: $parent.isLanguageEditable() -->
+                                            <div class="choose-language-table-input-wrapper">
+                                                <input type="text" class="choose-language-table-input" data-bind="value: value, valueUpdate: ['afterkeydown', 'afterpaste']" />
+                                                <span class="edit-icon"></span>
+                                            </div>
+                                            <!-- /ko -->
+                                            <!-- ko ifnot: $parent.isLanguageEditable() -->
+                                            <span data-bind="text: value"></span>
+                                            <!-- /ko -->
+                                        </div>
+                                    </td>
+                                </tr>
+                                <!-- /ko -->
+                            </tbody>
+                        </table>
                     </div>
                 </div>
             </div>

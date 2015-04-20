@@ -2,7 +2,9 @@
     <header class="content-header">
         <div class="content-header-inner">
             <div class="question-counter">
-                <span data-bind="text: (index + 1) + ' of ' + questionsCount"></span>
+                <span data-bind="text: (index + 1) + ' '"></span>
+                <span class="question-counter-pointer" data-translate-text="[of]"></span>
+                <span data-bind="text: ' ' + questionsCount"></span>
             </div>
             <div class="content-title question-text">
                 <span class="selectable" data-bind="text: title"></span>

@@ -1,6 +1,4 @@
-﻿define([],
-    function () {
-
+﻿define(['translation'], function (translation) {
         "use strict";
 
         var
@@ -13,7 +11,7 @@
         function close() {
             window.close();
 			_.delay(function() {
-				window.alert('Thank you. It is now safe to close this page.');
+			    window.alert(translation.getTextByKey('[thank you message]'));
 			}, 100);
         }
 

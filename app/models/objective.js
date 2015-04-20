@@ -1,5 +1,5 @@
-﻿define(['modules/courseSettings'],
-    function (courseSettings) {
+﻿define(['templateSettings'],
+    function (templateSettings) {
 
         function Objective(spec) {
             this.id = spec.id;
@@ -15,7 +15,7 @@
             var result = _.reduce(this.questions, function (memo, question) { return memo + question.score; }, 0);
             var questionsLength = this.questions.length;
             this.score = questionsLength == 0 ? 0 : Math.floor(result / questionsLength);
-            this.isCompleted = this.score >= courseSettings.masteryScore.score;
+            this.isCompleted = this.score >= templateSettings.masteryScore.score;
         };
 
         return Objective;
