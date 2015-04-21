@@ -8,6 +8,10 @@
     "settingsUrl": "settings/settings.html",
     "languages": [
         {
+            "code": "nl",
+            "url": "lang/nl.json"
+        },
+        {
             "code": "en",
             "url": "lang/en.json"
         },

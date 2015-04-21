@@ -9,6 +9,7 @@
         'custom': 'Custom LRS',
 
         'xx': 'Custom',
+        'nl': 'Dutch',
         'en': 'English',
         'ua': 'Ukrainian',
 
