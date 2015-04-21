@@ -34,7 +34,7 @@
     position: relative;
     padding-top: 20px;
     padding-bottom: 35px;
-    width: 60%;
+    width: 70%;
     min-width: 540px;
     margin: 0 auto;
 }
@@ -212,7 +212,7 @@
     padding: 0 10px;
     text-align: center;
     text-shadow: 1px 1px 1px #FFFFFF;
-    width: 325px;
+    width: 345px;
 }
 
 .xapi-form-btn-holder .btn:after {
@@ -234,18 +234,18 @@
     color: #3a87ad;
     cursor: pointer;
     font-size: 18px;
-    margin: 18px 35px;
+    margin: 18px 15px 18px 35px;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
-    max-width: 205px;
+    max-width: 315px;
 }
 
     .xapi-form-btn-holder .link:hover {
         color: #2e6b89;
     }
 
-@media (max-width: 1255px) {
+@media (max-width: 1275px) {
     .xapi-form-btn-holder .btn {
         width: 100%;
         margin-bottom: 20px;
