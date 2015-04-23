@@ -342,7 +342,7 @@
         }
 
         function createActivityForObjective(objectiveId, objectiveTitle) {
-            var activityId = activityProvider.rootActivityUrl + '?objectiveid=' + objectiveId;
+            var activityId = activityProvider.rootActivityUrl + '#objectives?objective_id=' + objectiveId;
             return createActivity(objectiveTitle, activityId);
         }
     }
