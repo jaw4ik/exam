@@ -258,7 +258,7 @@
                 id: questionUrl,
                 definition: {
                     type: "http://adlnet.gov/expapi/activities/cmi.interaction",
-                    description: {
+                    name: {
                         "en-US": question.title
                     },
                     interactionType: constants.interactionTypes.matching,
