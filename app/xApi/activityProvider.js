@@ -1,5 +1,5 @@
-﻿define(['./models/actor', './models/statement', './models/activity', './configuration/xApiSettings', 'eventManager', './constants', './errorsHandler', './utils/dateTimeConverter', 'xApi/statementQueue'],
-    function (actorModel, statementModel, activityModel, xApiSettings, eventManager, constants, errorsHandler, dateTimeConverter, statementQueue) {
+﻿define(['durandal/system', './models/actor', './models/statement', './models/activity', './configuration/xApiSettings', 'eventManager', './constants', './errorsHandler', './utils/dateTimeConverter', 'xApi/statementQueue'],
+    function (system, actorModel, statementModel, activityModel, xApiSettings, eventManager, constants, errorsHandler, dateTimeConverter, statementQueue) {
         "use strict";
 
         var subscriptions = [],
@@ -12,7 +12,8 @@
                 rootActivityUrl: null,
                 turnOffSubscriptions: turnOffSubscriptions,
                 courseId: null
-            };
+            },
+            sessionId = system.guid();
 
         return activityProvider;
 
@@ -257,7 +258,7 @@
                 id: questionUrl,
                 definition: {
                     type: "http://adlnet.gov/expapi/activities/cmi.interaction",
-                    description: {
+                    name: {
                         "en-US": question.title
                     },
                     interactionType: constants.interactionTypes.matching,
@@ -314,6 +315,7 @@
             var contextExtensions = contextSpec.extensions || {};
             contextExtensions[constants.extenstionKeys.courseId] = activityProvider.courseId;
             contextSpec.extensions = contextExtensions;
+            contextSpec.registration = sessionId;
             return contextSpec;
         }
 
@@ -340,7 +342,7 @@
         }
 
         function createActivityForObjective(objectiveId, objectiveTitle) {
-            var activityId = activityProvider.rootActivityUrl + '?objectiveid=' + objectiveId;
+            var activityId = activityProvider.rootCourseUrl + '#objectives?objective_id=' + objectiveId;
             return createActivity(objectiveTitle, activityId);
         }
     }
