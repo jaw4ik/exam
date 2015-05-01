@@ -1,71 +1,10 @@
 (function (app) {
-    app.LogoModel = LogoModel;
     app.TrackingDataModel = TrackingDataModel;
     app.LrsOption = LrsOption;
     app.LanguagesModel = LanguagesModel;
     app.LanguageModel = LanguageModel;
+    app.MasteryScore = MasteryScore;
 
-    function LogoModel(logoSettings) {
-        var that = this;
-
-        that.url = ko.observable('');
-        that.hasLogo = ko.computed(function () {
-            return that.url() !== '';
-        });
-        that.clear = function () {
-            that.url('');
-        };
-        that.isError = ko.observable(false);
-        that.errorText = ko.observable('');
-        that.errorDescription = ko.observable('');
-        that.isLoading = ko.observable(false);
-
-        that.setDefaultStatus = setDefaultStatus;
-        that.setFailedStatus = setFailedStatus;
-        that.setLoadingStatus = setLoadingStatus;
-        that.setUrl = setUrl;
-        that.getData = getData;
-
-        init(logoSettings);
-
-        return that;
-
-        function init(logoSettings) {
-            if (!logoSettings) {
-                return;
-            }
-
-            that.setUrl(logoSettings.url);
-        }
-
-        function setDefaultStatus() {
-            that.isLoading(false);
-            that.isError(false);
-        }
-
-        function setFailedStatus(reasonTitle, reasonDescription) {
-            that.clear();
-            that.isLoading(false);
-            that.errorText(reasonTitle);
-            that.errorDescription(reasonDescription);
-            that.isError(true);
-        }
-
-        function setLoadingStatus() {
-            that.isLoading(true);
-        }
-
-        function setUrl(url) {
-            that.url(url || '');
-        }
-
-        function getData() {
-            return {
-                url: that.url()
-            };
-        }
-    }
-    
     function TrackingDataModel(xApiSettings) {
         var that = this;
 
@@ -103,7 +42,6 @@
         that.statements = {
             started: ko.observable(true),
             stopped: ko.observable(true),
-            experienced: ko.observable(true),
             mastered: ko.observable(true),
             answered: ko.observable(true),
             passed: ko.observable(true),
@@ -365,7 +303,10 @@
 
             if (translationsObject) {
                 Object.keys(translationsObject).forEach(function (key) {
-                    arr.push({ key: key, value: translationsObject[key] });
+                    arr.push({
+                        key: key,
+                        value: translationsObject[key]
+                    });
                 });
             }
 
@@ -383,6 +324,21 @@
 
             return translationsObj;
         }
+    }
+
+    function MasteryScore(masteryScoreSettings) {
+        var that = this;
+
+        that.score = masteryScoreSettings.score;
+        that.getData = getData;
+
+        return that;
+
+        function getData() {
+            return {
+                score: that.score
+            };
+        };
     }
 
 })(window.app = window.app || {});

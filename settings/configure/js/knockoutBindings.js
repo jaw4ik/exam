@@ -1,19 +1,4 @@
 (function () {
-    ko.bindingHandlers.fadeVisible = {
-        init: function (element, valueAccessor) {
-            var value = valueAccessor();
-            $(element).toggle(ko.unwrap(value));
-        },
-        update: function (element, valueAccessor) {
-            var value = valueAccessor();
-            if (ko.unwrap(value)) {
-                $(element).fadeIn();
-            } else {
-                $(element).fadeOut();
-            }
-        }
-    };
-
     ko.bindingHandlers.number = {
         init: function (element) {
             var $element = $(element),
@@ -21,7 +6,7 @@
             $element.on('keydown', function (e) {
                 var key = e.charCode || e.keyCode || 0;
                 return (key == 8 || key == 9 || key == 46 || (key >= 37 && key <= 40) ||
-                        (key >= 48 && key <= 57) || (key >= 96 && key <= 105));
+                    (key >= 48 && key <= 57) || (key >= 96 && key <= 105));
             });
             $element.on('keyup', function () {
                 if ($(this).val() > maxValue) {
@@ -270,7 +255,7 @@
     };
 
     ko.bindingHandlers.localize = {
-        init: function(element, valueAccessor) {
+        init: function (element, valueAccessor) {
             var $element = $(element),
                 key = ko.unwrap(valueAccessor());
 

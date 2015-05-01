@@ -8,7 +8,7 @@
         identifyUrl = baseUrl + '/api/identify',
         settingsUrl = baseUrl + '/api/course/' + getURLParameter('courseId') + '/template/' + getURLParameter('templateId'),
 
-        templateUrl = location.toString().substring(0, location.toString().indexOf('/settings/settings')) + '/',
+        templateUrl = location.toString().substring(0, location.toString().indexOf('/settings/')) + '/',
         manifestUrl = templateUrl + 'manifest.json';//TODO: Change way of resolving manifest file path
 
     window.egApi = {
@@ -22,31 +22,31 @@
 
     function init() {
         //Mock for debugging
-        //var userDataPromise = $.Deferred().resolve([{ subscription: { accessType: 1, expirationDate: new Date(2016, 1, 1) } }]);
-        //var settingsPromise = $.Deferred().resolve([{}]);
-        //var manifestPromise = $.Deferred().resolve([{}]);
+        var userDataPromise = $.Deferred().resolve([{ subscription: { accessType: 1, expirationDate: new Date(2016, 1, 1) } }]);
+        var settingsPromise = $.getJSON('../../settings.js').then(function (response) { return [{ settings: JSON.stringify(response) }]; });
+        var manifestPromise = $.getJSON(manifestUrl);
 
-        var userDataPromise = $.ajax({
-            url: identifyUrl,
-            cache: false,
-            type: 'POST',
-            contentType: 'application/json',
-            dataType: 'json'
-        });
+        //var userDataPromise = $.ajax({
+        //    url: identifyUrl,
+        //    cache: false,
+        //    type: 'POST',
+        //    contentType: 'application/json',
+        //    dataType: 'json'
+        //});
 
-        var settingsPromise = $.ajax({
-            url: settingsUrl,
-            cache: false,
-            contentType: 'application/json',
-            dataType: 'json'
-        });
+        //var settingsPromise = $.ajax({
+        //    url: settingsUrl,
+        //    cache: false,
+        //    contentType: 'application/json',
+        //    dataType: 'json'
+        //});
 
-        var manifestPromise = $.ajax({
-            url: manifestUrl,
-            cache: false,
-            contentType: 'application/json',
-            dataType: 'json'
-        });
+        //var manifestPromise = $.ajax({
+        //    url: manifestUrl,
+        //    cache: false,
+        //    contentType: 'application/json',
+        //    dataType: 'json'
+        //});
 
         return $.when(manifestPromise, userDataPromise, settingsPromise).done(function (manifestResponse, userDataResponse, settingsResponse) {
             apiData.manifest = getManifestModel(manifestResponse[0]);
