@@ -1,8 +1,7 @@
 (function (app) {
+
     app.TrackingDataModel = TrackingDataModel;
-    app.LrsOption = LrsOption;
     app.LanguagesModel = LanguagesModel;
-    app.LanguageModel = LanguageModel;
     app.MasteryScore = MasteryScore;
 
     function TrackingDataModel(xApiSettings) {
@@ -12,8 +11,8 @@
 
         that.enableXAPI = ko.observable(true);
         that.lrsOptions = [
-            new app.LrsOption('default', true),
-            new app.LrsOption('custom')
+            new LrsOption('default', true),
+            new LrsOption('custom')
         ];
 
         that.selectedLrs = ko.computed(function () {
@@ -132,15 +131,15 @@
                 allowedVerbs: allowedVerbs
             };
         }
-    }
 
-    function LrsOption(name, isSelected) {
-        var that = this;
+        function LrsOption(name, isSelected) {
+            var that = this;
 
-        that.name = name;
-        that.isSelected = ko.observable(isSelected === true);
+            that.name = name;
+            that.isSelected = ko.observable(isSelected === true);
 
-        return that;
+            return that;
+        }
     }
 
     function LanguagesModel(languages, languagesSettings) {
@@ -193,11 +192,11 @@
 
         function init(languages, languagesSettings) {
             ko.utils.arrayForEach(languages || [], function (language) {
-                addLanguage(new app.LanguageModel(language.code, app.localize(language.code), language.url));
+                addLanguage(new LanguageModel(language.code, app.localize(language.code), language.url));
             });
 
             var defaultLanguage = getLanguage(defaultLanguageCode);
-            var customLanguage = new app.LanguageModel(customLanguageCode, app.localize(customLanguageCode), defaultLanguage ? defaultLanguage.resourcesUrl : null, languagesSettings ? languagesSettings.customTranslations : null);
+            var customLanguage = new LanguageModel(customLanguageCode, app.localize(customLanguageCode), defaultLanguage ? defaultLanguage.resourcesUrl : null, languagesSettings ? languagesSettings.customTranslations : null);
 
             addLanguage(customLanguage);
 
@@ -241,102 +240,102 @@
 
             return settingsData;
         }
-    }
 
-    function LanguageModel(code, name, resourcesUrl, translations) {
-        var that = this,
-            _mappedTranslations = [],
-            _customTranslations = translations;
+        function LanguageModel(code, name, resourcesUrl, translations) {
+            var that = this,
+                _mappedTranslations = [],
+                _customTranslations = translations;
 
-        that.code = code;
-        that.name = name;
+            that.code = code;
+            that.name = name;
 
-        that.isLoaded = false;
-        that.load = load;
-        that.resourcesUrl = resourcesUrl;
+            that.isLoaded = false;
+            that.load = load;
+            that.resourcesUrl = resourcesUrl;
 
-        that.setTranslations = setTranslations;
-        that.getTranslations = getTranslations;
-        that.getNotMappedTranslations = getNotMappedTranslations;
+            that.setTranslations = setTranslations;
+            that.getTranslations = getTranslations;
+            that.getNotMappedTranslations = getNotMappedTranslations;
 
-        if (translations) {
-            that.setTranslations(translations);
-        }
+            if (translations) {
+                that.setTranslations(translations);
+            }
 
-        function setTranslations(translations) {
-            _mappedTranslations = map(translations);
-        }
+            function setTranslations(translations) {
+                _mappedTranslations = map(translations);
+            }
 
-        function getTranslations() {
-            return _mappedTranslations;
-        }
+            function getTranslations() {
+                return _mappedTranslations;
+            }
 
-        function getNotMappedTranslations() {
-            return unmap(_mappedTranslations);
-        }
+            function getNotMappedTranslations() {
+                return unmap(_mappedTranslations);
+            }
 
-        function load() {
-            return loadLanguageResources(that.resourcesUrl).then(function (resources) {
-                if (_customTranslations) {
-                    var translationsList = {};
-                    $.each(resources, function (key, value) {
-                        translationsList[key] = typeof _customTranslations[key] == "string" ? _customTranslations[key] : value;
+            function load() {
+                return loadLanguageResources(that.resourcesUrl).then(function (resources) {
+                    if (_customTranslations) {
+                        var translationsList = {};
+                        $.each(resources, function (key, value) {
+                            translationsList[key] = typeof _customTranslations[key] == "string" ? _customTranslations[key] : value;
+                        });
+                        that.setTranslations(translationsList);
+                    } else {
+                        that.setTranslations(resources);
+                    }
+                    that.isLoaded = true;
+                });
+            }
+
+            function loadLanguageResources(url) {
+                return $.ajax({
+                    url: url,
+                    dataType: 'json',
+                    contentType: 'application/json'
+                });
+            }
+
+            function map(translationsObject) {
+                var arr = [];
+
+                if (translationsObject) {
+                    Object.keys(translationsObject).forEach(function (key) {
+                        arr.push({
+                            key: key,
+                            value: translationsObject[key]
+                        });
                     });
-                    that.setTranslations(translationsList);
-                } else {
-                    that.setTranslations(resources);
                 }
-                that.isLoaded = true;
-            });
-        }
 
-        function loadLanguageResources(url) {
-            return $.ajax({
-                url: url,
-                dataType: 'json',
-                contentType: 'application/json'
-            });
-        }
+                return arr;
+            }
 
-        function map(translationsObject) {
-            var arr = [];
+            function unmap(translationsArray) {
+                var translationsObj = {};
 
-            if (translationsObject) {
-                Object.keys(translationsObject).forEach(function (key) {
-                    arr.push({
-                        key: key,
-                        value: translationsObject[key]
+                if (translationsArray) {
+                    translationsArray.forEach(function (translation) {
+                        translationsObj[translation.key] = translation.value;
                     });
-                });
+                }
+
+                return translationsObj;
             }
-
-            return arr;
-        }
-
-        function unmap(translationsArray) {
-            var translationsObj = {};
-
-            if (translationsArray) {
-                translationsArray.forEach(function (translation) {
-                    translationsObj[translation.key] = translation.value;
-                });
-            }
-
-            return translationsObj;
         }
     }
 
     function MasteryScore(masteryScoreSettings) {
         var that = this;
 
-        that.score = masteryScoreSettings.score;
+        that.score = ko.observable((masteryScoreSettings && masteryScoreSettings.score) ? masteryScoreSettings.score : 100);
         that.getData = getData;
 
         return that;
 
         function getData() {
             return {
-                score: that.score
+                score: that.score()
             };
         };
     }

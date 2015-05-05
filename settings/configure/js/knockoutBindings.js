@@ -27,7 +27,7 @@
     ko.bindingHandlers.spinner = {
         init: function (element, valueAccessor) {
             var masteryScore = valueAccessor();
-            $(element).spinner('changed', function (e, newValue) {
+            $(element).spinner('changing', function (e, newValue) {
                 masteryScore(newValue);
             });
 
