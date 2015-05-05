@@ -9,8 +9,8 @@
     output = ".output",
     buildVersion = +new Date();
 
-var addBuildVersion = function () {
-    var doReplace = function (file, callback) {
+function addBuildVersion() {
+    return eventStream.map(function (file, callback) {
         var fileContent = String(file.contents);
         fileContent = fileContent
             .replace(/(\?|\&)v=([0-9]+)/gi, '')                                                                          // remove build version
@@ -19,8 +19,18 @@ var addBuildVersion = function () {
             .replace(/urlArgs: 'v=buildVersion'/gi, 'urlArgs: \'v=' + buildVersion + '\'');                              // replace build version for require config
         file.contents = new Buffer(fileContent);
         callback(null, file);
-    }
-    return eventStream.map(doReplace);
+    });
+};
+
+function removeDebugBlocks() {
+    return eventStream.map(function (file, callback) {
+        var fileContent = String(file.contents);
+        fileContent = fileContent
+            .replace(/(\/\* DEBUG \*\/)([\s\S])*(\/\* END_DEBUG \*\/)/gmi, '') // remove all code between '/* DEBUG */' and '/* END_DEBUG */' comment tags
+            .replace(/(\/\* RELEASE)|(END_RELEASE \*\/)/gmi, ''); // remove '/* RELEASE' and 'END_RELEASE */' tags to uncomment release code
+        file.contents = new Buffer(fileContent);
+        callback(null, file);
+    });
 };
 
 gulp.task('build', ['clean', 'build-app', 'build-settings'], function () {
@@ -33,7 +43,7 @@ gulp.task('clean', function (cb) {
 gulp.task('build-app', ['clean'], function () {
     var assets = useref.assets();
 
-    gulp.src('index.html')        
+    gulp.src('index.html')
         .pipe(assets)
         .pipe(gulpif('*.js', uglify()))
         .pipe(gulpif('*.css', minifyCss()))
@@ -71,26 +81,52 @@ gulp.task('build-app', ['clean'], function () {
        .pipe(gulp.dest(output + '/app'));
 });
 
-gulp.task('build-settings', ['clean'], function () {
-    var assets = useref.assets();
-
-    gulp.src(['settings/settings.html'])         
-      .pipe(assets)
-      .pipe(gulpif('*.js', uglify()))
-      .pipe(gulpif('*.css', minifyCss()))
-      .pipe(assets.restore())
-      .pipe(useref())
-      .pipe(addBuildVersion())
-      .pipe(gulp.dest(output + '/settings'));
-
+gulp.task('build-settings', ['build-design-settings', 'build-configure-settings'], function () {
     gulp.src('settings/css/fonts/**')
       .pipe(gulp.dest(output + '/settings/css/fonts'));
 
+    gulp.src('settings/css/img/**')
+      .pipe(gulp.dest(output + '/settings/css/img'));
+
     gulp.src('settings/css/settings.css')
-      .pipe(addBuildVersion())
       .pipe(minifyCss())
       .pipe(gulp.dest(output + '/settings/css'));
 
-    return gulp.src('settings/img/**')
-      .pipe(gulp.dest(output + '/settings/img'));
+    gulp.src('settings/api.js')
+      .pipe(removeDebugBlocks())
+      .pipe(uglify())
+      .pipe(gulp.dest(output + '/settings'));
+
+});
+
+gulp.task('build-design-settings', ['clean'], function () {
+    var assets = useref.assets();
+
+    gulp.src(['settings/design/design.html'])
+      .pipe(assets)
+      .pipe(gulpif('*.js', uglify()))
+      .pipe(assets.restore())
+      .pipe(useref())
+      .pipe(addBuildVersion())
+      .pipe(gulp.dest(output + '/settings/design'));
+
+    gulp.src('settings/design/img/**')
+      .pipe(gulp.dest(output + '/settings/design/img'));
+
+});
+
+gulp.task('build-configure-settings', ['clean'], function () {
+    var assets = useref.assets();
+
+    gulp.src(['settings/configure/configure.html'])
+      .pipe(assets)
+      .pipe(gulpif('*.js', uglify()))
+      .pipe(assets.restore())
+      .pipe(useref())
+      .pipe(addBuildVersion())
+      .pipe(gulp.dest(output + '/settings/configure'));
+
+    gulp.src('settings/configure/img/**')
+      .pipe(gulp.dest(output + '/settings/configure/img'));
+
 });
