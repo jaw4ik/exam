@@ -1403,7 +1403,7 @@ body {
     width: 100%;
 }
 
-.text-matchig-source-text {
+.text-matching-source-text {
     color: #333333;
     display: table-cell;
     font-family: 'OpenSans';
@@ -1412,7 +1412,7 @@ body {
     vertical-align: middle;
     white-space: pre-wrap;
     width: 100%;
-    word-break: break-all;
+    word-wrap: break-word;
 }
 
 
@@ -1477,7 +1477,7 @@ body {
     vertical-align: middle;
     white-space: pre-wrap;
     width: 100%;
-    word-break: break-all;
+    word-wrap: break-word;
 }
 
 
