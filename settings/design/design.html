@@ -25,6 +25,7 @@
 
 <body>
     <div class="settings-container">
+        <!-- ko ifnot: isError -->
         <div class="settings-tabs-container">
             <div class="settings-tab-wrapper">
                 <div class="tab-header-container">
@@ -87,6 +88,10 @@
                 </div>
             </div>
         </div>
+        <!-- /ko -->
+        <!-- ko if: isError -->
+        <div class="settings-tab-wrapper" data-bind="localize: 'settings are not initialize'"></div>
+        <!-- /ko -->
     </div>
 </body>
 

@@ -25,6 +25,7 @@
 
 <body>
     <div class="settings-container">
+        <!-- ko ifnot: isError -->
         <div class="settings-tabs-container" data-bind="tabs: {}">
             <ul class="settings-tabs-wrapper unstyled">
                 <li class="settings-tabs-item track-and-trace" data-tab-link="track-and-trace" data-bind="localize: 'results tracking'"></li>
@@ -238,6 +239,10 @@
                 </div>
             </div>
         </div>
+        <!-- /ko -->
+        <!-- ko if: isError -->
+        <div class="settings-tab-wrapper" data-bind="localize: 'settings are not initialize'"></div>
+        <!-- /ko -->
     </div>
 </body>
 

@@ -5,6 +5,8 @@
         currentExtraData = null;
 
     var viewModel = {
+        isError: ko.observable(false),
+
         userAccess: null,
         logo: null
     };
@@ -49,11 +51,11 @@
             currentExtraData = viewModel.getCurrentExtraData();
 
         }).fail(function () {
-            api.sendNotificationToEditor(app.localize('settings are not initialize'), false);
+            viewModel.isError(true);
         });
     };
 
-    viewModel.init().done(function () {
+    viewModel.init().always(function () {
         $(document).ready(function () {
             ko.applyBindings(viewModel, $('.settings-container')[0]);
             $(window).on('blur', viewModel.saveChanges);
