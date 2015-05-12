@@ -8,7 +8,7 @@
         identifyUrl = baseUrl + '/api/identify',
         settingsUrl = baseUrl + '/api/course/' + getURLParameter('courseId') + '/template/' + getURLParameter('templateId'),
 
-        templateUrl = location.toString().substring(0, location.toString().indexOf('/settings/settings')) + '/',
+        templateUrl = location.toString().substring(0, location.toString().indexOf('/settings/')) + '/',
         manifestUrl = templateUrl + 'manifest.json';//TODO: Change way of resolving manifest file path
 
     window.egApi = {
@@ -21,11 +21,13 @@
     };
 
     function init() {
-        //Mock for debugging
-        //var userDataPromise = $.Deferred().resolve([{ subscription: { accessType: 1, expirationDate: new Date(2016, 1, 1) } }]);
-        //var settingsPromise = $.Deferred().resolve([{}]);
-        //var manifestPromise = $.Deferred().resolve([{}]);
+        /* DEBUG */
+        var userDataPromise = $.Deferred().resolve([{ subscription: { accessType: 1, expirationDate: new Date(2016, 1, 1) } }]);
+        var settingsPromise = $.getJSON('../../settings.js').then(function (response) { return [{ settings: JSON.stringify(response) }]; });
+        var manifestPromise = $.getJSON(manifestUrl);
+        /* END_DEBUG */
 
+        /* RELEASE
         var userDataPromise = $.ajax({
             url: identifyUrl,
             cache: false,
@@ -47,6 +49,7 @@
             contentType: 'application/json',
             dataType: 'json'
         });
+        END_RELEASE */
 
         return $.when(manifestPromise, userDataPromise, settingsPromise).done(function (manifestResponse, userDataResponse, settingsResponse) {
             apiData.manifest = getManifestModel(manifestResponse[0]);
@@ -157,7 +160,7 @@
     }
 
     function sendNotificationToEditor(message, isSuccess) {
-        postMessageToEditor({ type: 'notification', data: { success: isSuccess || true, message: message } });
+        postMessageToEditor({ type: 'notification', data: { success: isSuccess, message: message } });
     }
 
 })();
