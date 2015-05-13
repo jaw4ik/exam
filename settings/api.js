@@ -110,7 +110,6 @@
         } else {
             //TODO: need to be removed in next implementation
             settings = {
-                logo: {},
                 xApi: {
                     enabled: true,
                     selectedLrs: 'default',
