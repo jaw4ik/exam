@@ -46,14 +46,12 @@
 
             app.upload(function () {
                 setLoadingStatus();
-            })
-                .done(function (url) {
-                    setUrl(url);
-                    setDefaultStatus();
-                })
-                .fail(function (reason) {
-                    setFailedStatus(reason.title, reason.description)
-                });
+            }).done(function (url) {
+                setUrl(url);
+                setDefaultStatus();
+            }).fail(function (reason) {
+                setFailedStatus(reason.title, reason.description);
+            });
         }
 
         function setDefaultStatus() {
@@ -64,12 +62,13 @@
         function setFailedStatus(reasonTitle, reasonDescription) {
             that.clear();
             that.isLoading(false);
+            that.isError(true);
             that.errorText(reasonTitle);
             that.errorDescription(reasonDescription);
-            that.isError(true);
         }
 
         function setLoadingStatus() {
+            that.clear();
             that.isLoading(true);
         }
 
