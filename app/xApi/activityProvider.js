@@ -89,24 +89,27 @@
         function enqueueAnsweredQuestionsStatements(eventData) {
             switch (eventData.type) {
                 case constants.interactionTypes.choice:
-                    enqueueSelectTextQuestionAnsweredStatement(eventData);
+                    enqueueChoiceQuestionAnsweredStatement(eventData);
                     break;
                 case constants.interactionTypes.fillIn:
                     enqueueFillInQuestionAnsweredStatement(eventData);
                     break;
                 case constants.interactionTypes.dragAndDrop:
-                    enqueueDragAndDropTextQuestionAnsweredStatement(eventData);
+                    enqueueDragAndDropQuestionAnsweredStatement(eventData);
                     break;
                 case constants.interactionTypes.matching:
-                    enqueueTextMatchingQuestionAnsweredStatement(eventData);
+                    enqueueMatchingQuestionAnsweredStatement(eventData);
                     break;
                 case constants.interactionTypes.hotspot:
-                    enqueueHotSpotQuestionAnsweredStatement(eventData);
+                    enqueueHotspotQuestionAnsweredStatement(eventData);
+                    break;
+                case constants.interactionTypes.other:
+                    enqueueOtherQuestionAnsweredStatement(eventData);
                     break;
             }
         }
 
-        function enqueueHotSpotQuestionAnsweredStatement(eventData) {
+        function enqueueHotspotQuestionAnsweredStatement(eventData) {
             var question = eventData.question,
                 objective = eventData.objective;
 
@@ -138,7 +141,7 @@
             pushStatementIfSupported(createStatement(constants.verbs.answered, result, object, context));
         }
 
-        function enqueueSelectTextQuestionAnsweredStatement(eventData) {
+        function enqueueChoiceQuestionAnsweredStatement(eventData) {
             var question = eventData.question,
                 objective = eventData.objective;
 
@@ -210,7 +213,7 @@
             pushStatementIfSupported(createStatement(constants.verbs.answered, result, object, context));
         }
 
-        function enqueueDragAndDropTextQuestionAnsweredStatement(eventData) {
+        function enqueueDragAndDropQuestionAnsweredStatement(eventData) {
             var question = eventData.question,
                 objective = eventData.objective;
 
@@ -242,7 +245,7 @@
             pushStatementIfSupported(createStatement(constants.verbs.answered, result, object, context));
         }
 
-        function enqueueTextMatchingQuestionAnsweredStatement(eventData) {
+        function enqueueMatchingQuestionAnsweredStatement(eventData) {
             var question = eventData.question,
                 objective = eventData.objective;
 
@@ -271,6 +274,41 @@
                     target: _.map(question.answers, function (answer) {
                         return { id: answer.value.toLowerCase(), description: { "en-US": answer.value } }
                     })
+                }
+            };
+
+            var parentUrl = activityProvider.rootCourseUrl + '#objectives?objective_id=' + objective.id;
+            var context = createContext({
+                contextActivities: {
+                    parent: [createActivity(objective.title, parentUrl)]
+                }
+            });
+
+            pushStatementIfSupported(createStatement(constants.verbs.answered, result, object, context));
+        }
+
+        function enqueueOtherQuestionAnsweredStatement(eventData) {
+            var question = eventData.question,
+                objective = eventData.objective;
+
+            var questionUrl = activityProvider.rootCourseUrl + '#objective/' + question.objectiveId + '/question/' + question.id;
+            
+            var result = {};
+
+            if(question.score) {
+                result.score = question.score / 100;
+            }
+            console.log(question.answer);
+            result.response = question.answer;
+
+            var object = {
+                id: questionUrl,
+                definition: {
+                    type: "http://adlnet.gov/expapi/activities/cmi.interaction",
+                    name: {
+                        "en-US": question.title
+                    },
+                    interactionType: constants.interactionTypes.other,
                 }
             };
 

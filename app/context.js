@@ -9,6 +9,7 @@
     'models/questions/textMatchingQuestion',
     'models/questions/statementQuestion',
     'models/questions/hotspot',
+    'models/questions/openQuestion',
     'constants'],
     function (Course,
         Objective,
@@ -23,6 +24,7 @@
         TextMatchingQuestion,
         StatementQuestion,
         Hotspot,
+        OpenQuestion,
         constants) {
         "use strict";
 
@@ -93,6 +95,8 @@
                     return mapStatementQuestion(question, objective.id);
                 } else if (question.type == constants.question.types.hotspot) {
                     return mapHotspotQuestion(question, objective.id);
+                } else if (question.type == constants.question.types.openQuestion) {
+                    return mapOpenQuestion(question, objective.id);
                 }
             }).filter(function (question) {
                 return !_.isNullOrUndefined(question);
@@ -188,6 +192,16 @@
                 objectiveId: objectiveId,
                 title: question.title,
                 statements: question.answers,
+                score: 0,
+                hasContent: question.hasContent
+            });
+        }
+
+        function mapOpenQuestion(question, objectiveId) {
+            return new OpenQuestion({
+                id: question.id,
+                objectiveId: objectiveId,
+                title: question.title,
                 score: 0,
                 hasContent: question.hasContent
             });

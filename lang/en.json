@@ -30,5 +30,6 @@
     "[tracking and tracing restart course]": "Restart course",
     "[tracking and tracing continue anyway]": "Continue anyway",
     "[tracking and tracing reporting progress]": "Reporting results...",
-    "[thank you message]": "Thank you, you can close the page now"
+    "[thank you message]": "Thank you, you can close the page now",
+    "[type your answer here]":  "Type your answer here..."
 }

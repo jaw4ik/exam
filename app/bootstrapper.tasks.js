@@ -7,6 +7,7 @@
                 require('bootstrapping/fillInTheBlankAnswersBindingTask'),
                 require('bootstrapping/dragAndDropTextQuestionBindingTask'),
                 require('bootstrapping/textMatchingQuestionBindingTask'),
+                require('bootstrapping/openQuestionBindingTask'),
                 require('bootstrapping/imageWrapBindingTask'),
                 require('bootstrapping/thumbnailBindingHandlerTask'),
                 require('bootstrapping/areaBindingTask'),
