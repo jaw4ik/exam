@@ -34,7 +34,7 @@
 
         this.submit = function () {
             var question = questionRepository.get(this.objectiveId, this.id);
-            question.answer(this.answeredText());
+            question.answer(this.answeredText().trim());
         };
     }
     return ctor;
