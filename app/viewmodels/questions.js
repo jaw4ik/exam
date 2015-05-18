@@ -7,6 +7,7 @@
     './questions/textMatchingQuestion',
     './questions/statementQuestion',
     './questions/hotspot',
+    './questions/openQuestion',
 
     'models/questions/multipleSelectQuestion',
     'models/questions/singleSelectTextQuestion',
@@ -15,7 +16,8 @@
     'models/questions/singleSelectImageQuestion',
     'models/questions/textMatchingQuestion',
     'models/questions/statementQuestion',
-    'models/questions/hotspot'],
+    'models/questions/hotspot',
+    'models/questions/openQuestion'],
     function (app, router, eventManager, settings, questionRepository, courseRepository, constants,
         MultipleSelectQuestionViewModel,
         SingleSelectTextQuestionViewModel,
@@ -25,6 +27,7 @@
         TextMatchingQuestionViewModel,
         StatementQuestionViewModel,
         HotSpotViewModel,
+        OpenQuestionViewModel,
 
         MultipleSelectQuestionModel,
         SingleSelectTextQuestionModel,
@@ -33,7 +36,8 @@
         SingleSelectImageQuestionModel,
         TextMatchingQuestionModel,
         StatementQuestionModel,
-        HotspotModel) {
+        HotspotModel,
+        OpenQuestionModel) {
         "use strict";
 
         var viewModel = {
@@ -84,6 +88,8 @@
                         return new StatementQuestionViewModel(question, key, course.allQuestions.length);
                     } else if (question instanceof HotspotModel) {
                         return new HotSpotViewModel(question, key, course.allQuestions.length);
+                    } else if (question instanceof OpenQuestionModel) {
+                        return new OpenQuestionViewModel(question, key, course.allQuestions.length);
                     }
                 }).filter(function (question) {
                     return !_.isNullOrUndefined(question);

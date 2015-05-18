@@ -1,0 +1,20 @@
+﻿<section class="open-question">
+    <header class="content-header">
+        <div class="content-header-inner">
+            <div class="question-counter">
+                <span data-bind="text: (index + 1) + ' '"></span>
+                <span class="question-counter-pointer" data-translate-text="[of]"></span>
+                <span data-bind="text: ' ' + questionsCount"></span>
+            </div>
+            <div class="content-title question-text">
+                <span class="selectable" data-bind="text: title"></span>
+            </div>
+        </div>
+    </header>
+    <div class="question-content-wrapper" data-bind="visible: hasContent">
+        <div class="question-content" data-bind="html: content, imageWrap: content"></div>
+    </div>
+    <div class="edit-field-wrapper">
+        <textarea class="edit-field" data-bind="autosizeTextArea:{}, value: answeredText" data-translate-placeholder="[type your answer here]"></textarea>
+    </div>
+</section>

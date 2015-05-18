@@ -12,7 +12,8 @@
             singleSelectImage: 'singleSelectImage',
             textMatching: 'textMatching',
             statement: 'statement',
-            hotspot: 'hotspot'
+            hotspot: 'hotspot',
+            openQuestion: 'openQuestion'
         }
     }
 
