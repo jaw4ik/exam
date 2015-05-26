@@ -29,13 +29,13 @@
     };
 
     function init() {
-        /* DEBUG 
+        /* DEBUG */
         var userDataPromise = $.Deferred().resolve([{ subscription: { accessType: 1, expirationDate: new Date(2016, 1, 1) } }]);
         var settingsPromise = $.getJSON('../../settings.js').then(function (response) { return [{ settings: JSON.stringify(response) }]; });
         var manifestPromise = $.getJSON(manifestUrl);
-        END_DEBUG */
+        /* END_DEBUG */
 
-        /* RELEASE */
+        /* RELEASE
         var userDataPromise = $.ajax({
             url: identifyUrl,
             headers: headers,
@@ -60,7 +60,7 @@
             contentType: 'application/json',
             dataType: 'json'
         });
-        /* END_RELEASE */
+        END_RELEASE */
 
         return $.when(manifestPromise, userDataPromise, settingsPromise).done(function (manifestResponse, userDataResponse, settingsResponse) {
             apiData.manifest = getManifestModel(manifestResponse[0]);
@@ -108,9 +108,9 @@
         var user = { accessType: 0 };
         var starterAccessType = 1;
         if (userData.subscription &&
-            userData.subscription.accessType &&
-            userData.subscription.accessType >= starterAccessType &&
-            new Date(userData.subscription.expirationDate) >= new Date()
+			userData.subscription.accessType &&
+			userData.subscription.accessType >= starterAccessType &&
+			new Date(userData.subscription.expirationDate) >= new Date()
         ) {
             user.accessType = userData.subscription.accessType;
         }
