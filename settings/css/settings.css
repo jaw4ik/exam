@@ -572,7 +572,7 @@ input[type="text"] {
 .selector-items-container {
     position: relative;
     display: table-cell;
-    min-width: 280px;
+    min-width: 275px;
     border-right: 1px solid #e9e7e7;
     vertical-align: top;
 }
@@ -618,6 +618,7 @@ input[type="text"] {
             margin-top: -6px;
             width: 10px;
             height: 10px;
+            z-index: 300;
             border-top: 1px solid #e9e7e7;
             border-right: 1px solid #e9e7e7;
             background-color: #fafbfc;
@@ -654,10 +655,10 @@ input[type="text"] {
 }
 
 .selector-item-text {
+    flex: 1;
     margin-left: 10px;
-    vertical-align: middle;
     font-size: 13px;
-}
+    }
 
 .selector-preview-container {
     display: table-cell;
