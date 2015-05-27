@@ -31,5 +31,6 @@
     "[tracking and tracing continue anyway]": "Продовжити",
     "[tracking and tracing reporting progress]": "Надсилаемо прогресс...",
     "[thank you message]": "Дякуємо. Тепер сторінку можна закрити",
-    "[type your answer here]":  "Вкажіть свою відповідь..."
+    "[type your answer here]": "Вкажіть свою відповідь...",
+    "[tracking and tracing hint without skip]": "Будь-ласка, вкажіть необхідні дані та натисніть \"Так, відстежувати мій прогрес\" для того, щоб розпочати курс"
 }
