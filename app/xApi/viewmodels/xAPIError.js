@@ -12,6 +12,10 @@
             },
             
             continueLearning = function () {
+                if (!allowToContinue()) {
+                    return;
+                }
+
                 xApiInitializer.turnOff();
                 router.navigate(navigateBackUrl);
             },
