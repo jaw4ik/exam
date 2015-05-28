@@ -291,8 +291,10 @@ input[type="text"] {
 .settings-row {
     width: 560px;
     padding: 25px 10px;
+    display: -webkit-flex;
     display: flex;
     position: relative;
+    -webkit-flex-wrap: wrap;
     flex-wrap: wrap;
     align-items: center;
 }
@@ -303,6 +305,7 @@ input[type="text"] {
 
 .settings-caption {
     display: inline-block;
+    -webkit-flex-basis: 60%;
     flex-basis: 60%;
     line-height: 22px;
     color: #42515f;
@@ -313,6 +316,7 @@ input[type="text"] {
 
 .settings-column {
     display: inline-block;
+    -webkit-flex-basis: 35%;
     flex-basis: 35%;
     text-align: center;
 }
@@ -591,6 +595,7 @@ input[type="text"] {
 }
 
 .selector-item-container {
+    display: -webkit-flex;
     display: flex;
     align-items: center;
     position: relative;
@@ -630,6 +635,7 @@ input[type="text"] {
 
 .selector-item-btn {
     position: relative;
+    -webkit-flex: none;
     flex: none;
     width: 30px;
     height: 30px;
@@ -656,6 +662,7 @@ input[type="text"] {
 }
 
 .selector-item-text {
+    -webkit-flex: 1;
     flex: 1;
     margin-left: 10px;
     font-size: 13px;
