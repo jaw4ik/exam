@@ -1304,6 +1304,11 @@ input[type="text"] {
     -moz-box-shadow: 0 0 0 1px #d3d2d2;
     box-shadow: 0 0 0 1px #d3d2d2;
 }
+
+.switcher.statement .switch-toggle-slider.off {
+    background: none repeat scroll 0 0 #d3d2d2;
+}
+
 /*#endregion*/
 
 /*#region loader*/
