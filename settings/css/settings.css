@@ -292,6 +292,7 @@ input[type="text"] {
     width: 560px;
     padding: 25px 10px;
     display: flex;
+    position: relative;
     flex-wrap: wrap;
     align-items: center;
 }
