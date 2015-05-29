@@ -32,5 +32,6 @@
     "[tracking and tracing reporting progress]": "Reporting results...",
     "[thank you message]": "Thank you, you can close the page now",
     "[type your answer here]": "Type your answer here...",
-    "[tracking and tracing hint without skip]": "Please enter your credentials and click \"Start and report my results\" to start the course."
+    "[tracking and tracing hint without skip]": "Please enter your credentials and click \"Start and report my results\" to start the course.",
+    "[tracking and tracing error hint without continue]": "Restart the course. Contact your course provider if the problem persists."
 }

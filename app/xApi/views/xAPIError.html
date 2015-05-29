@@ -3,13 +3,18 @@
     <div class="xapi-error-container">
         <div class="xapi-error-container-img"></div>
         <h1 class="xapi-error-container-header" data-translate-text="[tracking and tracing error]">Something is wrong</h1>
+        <!-- ko if: allowToContinue() -->
         <div class="xapi-error-container-description" data-translate-text="[tracking and tracing error hint]">If you continue without restarting, your learning progress will not be reported.</div>
+        <!-- /ko -->
+        <!-- ko ifnot: allowToContinue() -->
+        <div class="xapi-error-container-description" data-translate-text="[tracking and tracing error hint without continue]">Restart the course. Contact your course provider if the problem persists.</div>
+        <!-- /ko -->
         <div class="summary-btn-holder clearfix">
             <!-- ko if: allowToContinue() -->
             <a class="btn default pull-left" data-bind="click: restartCourse" data-translate-text="[tracking and tracing restart course]">Restart course</a>
             <a class="btn default pull-right" data-bind="click: continueLearning" data-translate-text="[tracking and tracing continue anyway]">Continue anyway</a>
             <!-- /ko -->
-            <!-- ko ifnot: allowToContinue -->
+            <!-- ko ifnot: allowToContinue() -->
             <a class="btn default" data-bind="click: restartCourse" data-translate-text="[tracking and tracing restart course]">Restart course</a>
             <!-- /ko -->
         </div>
