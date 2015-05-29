@@ -1,5 +1,5 @@
-﻿define(['plugins/router', 'context', '../configuration/viewConstants', '../errorsHandler', 'xApi/xApiInitializer', 'repositories/courseRepository'],
-    function (router, context, viewConstants, errorsHandler, xApiInitializer, repository) {
+﻿define(['knockout', 'plugins/router', 'context', '../configuration/viewConstants', '../errorsHandler', 'xApi/xApiInitializer', 'repositories/courseRepository', '../configuration/xApiSettings'],
+    function (ko, router, context, viewConstants, errorsHandler, xApiInitializer, repository, xApiSettings) {
 
         "use strict";
 
@@ -35,7 +35,13 @@
                 return value;
             })(),
 
+            allowToSkip = ko.observable(false),
+
             skip = function () {
+                if (!allowToSkip()) {
+                    return;
+                }
+
                 xApiInitializer.turnOff();
                 startCourse();
             },
@@ -74,6 +80,7 @@
             },
 
             activate = function () {
+                allowToSkip(!xApiSettings.xApi.required);
             };
 
         return {
@@ -81,6 +88,8 @@
 
             usermail: usermail,
             username: username,
+
+            allowToSkip: allowToSkip,
 
             skip: skip,
             login: login

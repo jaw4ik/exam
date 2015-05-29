@@ -1,8 +1,10 @@
-﻿define(['plugins/router', '../xApiInitializer'],
-    function (router, xApiInitializer) {
-        
+﻿define(['knockout', 'plugins/router', '../xApiInitializer', '../configuration/xApiSettings'],
+    function (ko, router, xApiInitializer, xApiSettings) {
+
         var
             navigateBackUrl = '',
+
+            allowToContinue = ko.observable(false);
 
             restartCourse = function () {
                 var rootUrl = location.toString().replace(location.hash, '');
@@ -10,15 +12,22 @@
             },
             
             continueLearning = function () {
+                if (!allowToContinue()) {
+                    return;
+                }
+
                 xApiInitializer.turnOff();
                 router.navigate(navigateBackUrl);
             },
 
             activate = function (backUrl) {
                 navigateBackUrl = backUrl;
+                allowToContinue(!xApiSettings.xApi.required);
             };
 
         return {
+            allowToContinue: allowToContinue,
+
             restartCourse: restartCourse,
             continueLearning: continueLearning,
             

@@ -16,8 +16,13 @@
         'custom': 'Custom LRS',
 
         'track and trace settings': 'Track and trace settings',
+        'results tracking option': 'Results tracking:',
+        'results tracking hint': '(will not affect tracking and tracing in SCORM/LMS)',
+        'allow user to skip option': 'Allow user to skip tracking and tracing:',
         'disabled': 'Disabled',
         'enabled': 'Enabled',
+        'allow': 'Allow',
+        'forbid': 'Forbid',
         'advanced settings': 'Advanced settings',
         'report to': 'Report to:',
         'custom lrs settings': 'Custom LRS settings',

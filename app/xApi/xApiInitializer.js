@@ -19,7 +19,6 @@
 
         function init(courseId, actorData, activityName, activityUrl) {
             return Q.all([
-                xApiSettings.init(moduleSettings),
                 requestManager.init(),
                 activityProvider.init(courseId, actorData, activityName, activityUrl)
             ]).spread(function () {
@@ -42,8 +41,11 @@
         function initialize(settings) {
             return Q.fcall(function () {
                 moduleSettings = settings;
-                routingManager.createGuard(xApiInitializer, 'login');
-                routingManager.mapRoutes();
+
+                return xApiSettings.init(moduleSettings).then(function () {
+                    routingManager.createGuard(xApiInitializer, 'login');
+                    routingManager.mapRoutes();
+                });
             });
         }
     }

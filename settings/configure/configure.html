@@ -32,12 +32,12 @@
                 <li class="settings-tabs-item languages" data-tab-link="languages" data-bind="localize: 'template language'"></li>
             </ul>
             <div class="settings-tab-container track-and-trace" data-tab="track-and-trace">
-                <div class="settings-tab-wrapper track-and-trace-settings" data-bind="with: trackingData">
-                    <div class=" tab-header-container">
-                        <img src="img/track.png" />
-                        <div class="tab-header-wrapper">
-                            <h1 class="tab-header-title" data-bind="localize: 'track and trace settings'"></h1>
-                            <div class="tab-header-content">
+                <div class="settings-section" data-bind="with: trackingData">
+                    <h1 class="section-header" data-bind="localize: 'track and trace settings'"></h1>
+                    <div class="section-content">
+                        <div class="settings-row">
+                            <div class="settings-caption" data-bind="localize: 'results tracking option'"></div>
+                            <div class="settings-column">
                                 <div class="switcher">
                                     <div class="switcher-text" data-bind="css: { disabled: enableXAPI() }, localize: 'disabled'"></div>
                                     <div class="switch-toggle-slider" data-bind="switchToggle: { value: enableXAPI }">
@@ -50,11 +50,29 @@
                                     <div class="switcher-text" data-bind="css: { disabled: !enableXAPI() }, localize: 'enabled'"></div>
                                 </div>
                             </div>
+                            <div class="settings-hint" data-bind="localize: 'results tracking hint'"></div>
+                        </div>
+                        <div class="settings-row">
+                            <div class="settings-caption" data-bind="localize: 'allow user to skip option'"></div>
+                            <div class="settings-column">
+                                <div class="switcher">
+                                    <div class="switcher-text" data-bind="css: { disabled: allowToSkipTracking() }, localize: 'forbid'"></div>
+                                    <div class="switch-toggle-slider" data-bind="switchToggle: { value: allowToSkipTracking }">
+                                        <div class="switch-toggle-wrapper">
+                                            <div class="switch-toggle-on"></div>
+                                            <div class="switch-toogle-blob"></div>
+                                            <div class="switch-toggle-off"></div>
+                                        </div>
+                                    </div>
+                                    <div class="switcher-text" data-bind="css: { disabled: !allowToSkipTracking() }, localize: 'allow'"></div>
+                                </div>
+                            </div>
+                            <div class="preview-disabled" data-bind="visible: !enableXAPI()"></div>
                         </div>
                     </div>
-                    <div class="tab-content-container">
-                        <div class="tab-content-title-container" data-bind="click: toggleAdvancedSettings" style="display: inline-block">
-                            <div class="tab-content-title" data-bind="css: { expanded: advancedSettingsExpanded(),  collapsed: !advancedSettingsExpanded() }, localize: 'advanced settings'"></div>
+                    <div class="advanced-settings">
+                        <div class="advanced-settings-title-container" data-bind="click: toggleAdvancedSettings">
+                            <div class="advanced-settings-title" data-bind="css: { expanded: advancedSettingsExpanded(),  collapsed: !advancedSettingsExpanded() }, localize: 'advanced settings'"></div>
                         </div>
                         <div class="template-selector-container" data-bind="visible: advancedSettingsExpanded()">
                             <div class="selector-items-container">
@@ -171,26 +189,21 @@
                         </div>
                     </div>
                 </div>
-                <div class="tab-seperator"></div>
-                <div class="settings-tab-wrapper">
-                    <div class="tab-header-container">
-                        <img src="img/mastery.png" />
-                        <div class="tab-header-wrapper">
-                            <h1 class="tab-header-title" data-bind="localize: 'mastery score settings'"></h1>
-                            <div class="tab-content-container">
-                                <div class="mastery-score-container">
-                                    <div class="mastery-score-title" data-bind="localize: 'mastery score hint'"></div>
-                                    <div data-trigger="spinner" class="spinner" data-bind="spinner: masteryScore.score">
-                                        <a class="spinner-button spinner-down" data-spin="down" data-bind="disableDragNDrop: {}"></a>
-                                        <input type="text" maxlength="3" id="masteryScore" class="content-text-input" data-rule="quantity" data-max="100" data-min="0" data-bind="value: masteryScore.score, valueUpdate: ['afterkeydown', 'afterpaste'], number: {}">
-                                        <a class="spinner-button spinner-up" data-spin="up" data-bind="disableDragNDrop: {}"></a>
-                                        <div class="spiner-seperator"></div>
-                                    </div>
+                <div class="settings-section">
+                    <h1 class="section-header" data-bind="localize: 'mastery score settings'"></h1>
+                    <div class="section-content">
+                        <div class="settings-row">
+                            <div class="settings-caption" data-bind="localize: 'mastery score hint'"></div>
+                            <div class="settings-column">
+                                <div data-trigger="spinner" class="spinner" data-bind="spinner: masteryScore.score">
+                                    <a class="spinner-button spinner-down" data-spin="down" data-bind="disableDragNDrop: {}"></a>
+                                    <input type="text" maxlength="3" id="masteryScore" class="content-text-input" data-rule="quantity" data-max="100" data-min="0" data-bind="value: masteryScore.score, valueUpdate: ['afterkeydown', 'afterpaste'], number: {}">
+                                    <a class="spinner-button spinner-up" data-spin="up" data-bind="disableDragNDrop: {}"></a>
+                                    <div class="spiner-seperator"></div>
                                 </div>
                             </div>
                         </div>
                     </div>
-
                 </div>
             </div>
             <div class="settings-tab-container languages" data-tab="languages" data-bind="with: languages">
