@@ -305,7 +305,6 @@ input[type="text"] {
 }
 
 .settings-caption {
-    display: inline-block;
     -webkit-flex-basis: 60%;
     flex-basis: 60%;
     line-height: 22px;
@@ -316,7 +315,6 @@ input[type="text"] {
 }
 
 .settings-column {
-    display: inline-block;
     -webkit-flex-basis: 35%;
     flex-basis: 35%;
     padding-left: 5%;
