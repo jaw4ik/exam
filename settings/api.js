@@ -1,23 +1,18 @@
-﻿(function () {
+(function () {
     var apiData = {
         isInited: false
     };
 
     var
         baseUrl = location.protocol + '//' + location.host,
-        identifyUrl = baseUrl + '/api/identify',
+        identifyUrl = baseUrl + '/auth/identity',
         settingsUrl = baseUrl + '/api/course/' + getURLParameter('courseId') + '/template/' + getURLParameter('templateId'),
 
         templateUrl = location.toString().substring(0, location.toString().indexOf('/settings/')) + '/',
-        manifestUrl = templateUrl + 'manifest.json'; //TODO: Change way of resolving manifest file path
+        manifestUrl = templateUrl + 'manifest.json', //TODO: Change way of resolving manifest file path
 
-
-    //  token auth support;
-    var token = localStorage['token.settings'];
-    var isTokenAuthSupported = token !== undefined;
-    var headers = isTokenAuthSupported ? { 'Authorization': 'Bearer ' + token } : {};
-    identifyUrl = isTokenAuthSupported ? baseUrl + '/auth/identity' : identifyUrl;
-    //  token auth support;
+        headers = { 'Authorization': 'Bearer ' + (getURLParameter('token') || localStorage['token.settings']) }
+    ;
 
     window.egApi = {
         init: init,
@@ -102,15 +97,13 @@
     }
 
     function getUserModel(userData) {
-        //  token auth support;
-        userData = isTokenAuthSupported ? userData.data : userData;
-        //  token auth support;
+        userData = userData.data;
         var user = { accessType: 0 };
         var starterAccessType = 1;
         if (userData.subscription &&
-			userData.subscription.accessType &&
-			userData.subscription.accessType >= starterAccessType &&
-			new Date(userData.subscription.expirationDate) >= new Date()
+            userData.subscription.accessType &&
+            userData.subscription.accessType >= starterAccessType &&
+            new Date(userData.subscription.expirationDate) >= new Date()
         ) {
             user.accessType = userData.subscription.accessType;
         }
@@ -138,9 +131,8 @@
     }
 
     function getURLParameter(name) {
-        return decodeURI(
-            (RegExp(name + '=' + '(.+?)(&|$)').exec(location.search) || [, null])[1]
-        );
+        var param = RegExp(name + '=' + '(.+?)(&|$)').exec(location.search) || null;
+        return param === null ? null : decodeURI(param[1]);
     }
 
     function saveSettings(settings, extraSettings, successSaveMessage, failSaveMessage) {
