@@ -296,8 +296,8 @@ input[type="text"] {
     position: relative;
     -webkit-flex-wrap: wrap;
     flex-wrap: wrap;
-    -webkit-align-items: center;
-    align-items: center;
+    -webkit-align-items: baseline;
+    align-items: baseline;
 }
 
 .settings-row + .settings-row {
@@ -305,7 +305,6 @@ input[type="text"] {
 }
 
 .settings-caption {
-    display: inline-block;
     -webkit-flex-basis: 60%;
     flex-basis: 60%;
     line-height: 22px;
@@ -316,15 +315,16 @@ input[type="text"] {
 }
 
 .settings-column {
-    display: inline-block;
     -webkit-flex-basis: 35%;
     flex-basis: 35%;
+    padding-left: 5%;
     text-align: center;
 }
 
 .settings-hint {
     color: #42515f;
     font-size: 13px;
+    font-weight: normal;
 }
 
 .advanced-settings-title-container {
@@ -1192,6 +1192,7 @@ input[type="text"] {
 
     .switcher-text.disabled {
         color: #546677;
+        font-weight: normal;
     }
 
 .switch-toggle-slider {

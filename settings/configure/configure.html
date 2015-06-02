@@ -36,7 +36,10 @@
                     <h1 class="section-header" data-bind="localize: 'track and trace settings'"></h1>
                     <div class="section-content">
                         <div class="settings-row">
-                            <div class="settings-caption" data-bind="localize: 'results tracking option'"></div>
+                            <div class="settings-caption">
+                                <div data-bind="localize: 'results tracking option'"></div>
+                                <div class="settings-hint" data-bind="localize: 'results tracking hint'"></div>
+                            </div>
                             <div class="settings-column">
                                 <div class="switcher">
                                     <div class="switcher-text" data-bind="css: { disabled: enableXAPI() }, localize: 'disabled'"></div>
@@ -50,7 +53,6 @@
                                     <div class="switcher-text" data-bind="css: { disabled: !enableXAPI() }, localize: 'enabled'"></div>
                                 </div>
                             </div>
-                            <div class="settings-hint" data-bind="localize: 'results tracking hint'"></div>
                         </div>
                         <div class="settings-row">
                             <div class="settings-caption" data-bind="localize: 'allow user to skip option'"></div>
@@ -193,7 +195,10 @@
                     <h1 class="section-header" data-bind="localize: 'mastery score settings'"></h1>
                     <div class="section-content">
                         <div class="settings-row">
-                            <div class="settings-caption" data-bind="localize: 'mastery score hint'"></div>
+                            <div class="settings-caption">
+                                <div data-bind="localize: 'mastery score caption'"></div>
+                                <div class="settings-hint" data-bind="localize: 'mastery score hint'"></div>
+                            </div>
                             <div class="settings-column">
                                 <div data-trigger="spinner" class="spinner" data-bind="spinner: masteryScore.score">
                                     <a class="spinner-button spinner-down" data-spin="down" data-bind="disableDragNDrop: {}"></a>
