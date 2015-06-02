@@ -40,7 +40,8 @@
 
         //mastery score
         'mastery score settings': 'Mastery score settings',
-        'mastery score hint': 'Mastery score (for each learning objective):',
+        'mastery score caption': 'Mastery score:',
+        'mastery score hint': '(for each learning objective):',
 
         //template language
         'template language': 'Template language',
