@@ -173,22 +173,9 @@ p {
 }
 
 
-ul {
+ul, ol {
     list-style-position: inside;
 }
-
-ol {
-    list-style-type: none;
-}
-
-    ol > li {
-        counter-increment: list-items;
-    }
-
-        ol > li:before {
-            content: counter(list-items) ".";
-            margin-right: 10px;
-        }
 
 /*#endregion common css-styles  */
 
