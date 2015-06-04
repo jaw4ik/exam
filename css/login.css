@@ -204,15 +204,15 @@
     text-align: center;
 }
 
-.xapi-form-btn-holder .btn {
+.xapi-form-btn-holder .btn.default {
+    width: 345px;
+    padding: 0 10px;
+    display: inline-block;
     color: #5C6572;
     font-size: 20px;
-    font-size: 20px;
     -ms-text-shadow: 1px 1px 1px #FFFFFF;
-    padding: 0 10px;
-    text-align: center;
     text-shadow: 1px 1px 1px #FFFFFF;
-    width: 345px;
+    text-align: center;
 }
 
 .xapi-form-btn-holder .btn:after {

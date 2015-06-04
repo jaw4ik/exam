@@ -11,9 +11,16 @@
             </header>
             <div class="xapi-form-holder">
                 <div class="xapi-form-info-message">
+                    <!-- ko if: allowToSkip() -->
                     <span class="xapi-form-info-text" data-translate-text="[tracking and tracing hint]">
                         Please enter your credentials and click "Start and report my progress" to enable progress tracking. Otherwise, click "Do not report, just start".
                     </span>
+                    <!-- /ko -->
+                    <!-- ko ifnot: allowToSkip() -->
+                    <span class="xapi-form-info-text" data-translate-text="[tracking and tracing hint without skip]">
+                        Please enter your credentials and click "Start and report my progress" to start the course.".
+                    </span>
+                    <!-- /ko -->
                 </div>
                 <div class="xapi-form-row name" data-bind="css: { error: !username.isValid() && username.isModified() }">
                     <div class="xapi-form-input-holder">
@@ -30,8 +37,13 @@
                     </div>
                 </div>
                 <div class="xapi-form-btn-holder clearfix">
+                    <!-- ko if: allowToSkip() -->
                     <a class="btn default pull-right" data-bind="click: login"><span data-translate-text="[tracking and tracing start]">Start and report my progress</span></a>
                     <a class="link pull-left" data-bind="click: skip" data-translate-text="[tracking and tracing skip reporting]">Do not report, just start</a>
+                    <!-- /ko -->
+                    <!-- ko ifnot: allowToSkip() -->
+                    <a class="btn default" data-bind="click: login"><span data-translate-text="[tracking and tracing start]">Start and report my progress</span></a>
+                    <!-- /ko -->
                 </div>
             </div>
         </div>

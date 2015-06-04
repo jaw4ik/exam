@@ -16,8 +16,13 @@
         'custom': 'Custom LRS',
 
         'track and trace settings': 'Track and trace settings',
+        'results tracking option': 'Results tracking:',
+        'results tracking hint': '(will not affect tracking and tracing in SCORM/LMS)',
+        'allow user to skip option': 'Allow user to skip tracking and tracing:',
         'disabled': 'Disabled',
         'enabled': 'Enabled',
+        'allow': 'Allow',
+        'forbid': 'Forbid',
         'advanced settings': 'Advanced settings',
         'report to': 'Report to:',
         'custom lrs settings': 'Custom LRS settings',
@@ -35,7 +40,8 @@
 
         //mastery score
         'mastery score settings': 'Mastery score settings',
-        'mastery score hint': 'Mastery score (for each learning objective):',
+        'mastery score caption': 'Mastery score:',
+        'mastery score hint': '(for each learning objective):',
 
         //template language
         'template language': 'Template language',

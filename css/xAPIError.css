@@ -41,10 +41,12 @@
 
     .xapi-error-section .summary-btn-holder {
         padding-top: 70px;
+        text-align: center;
     }
 
         .xapi-error-section .summary-btn-holder > .btn {
             width: 47.5%;
+            display: inline-block;
         }
 
 @media (max-width: 640px) {
