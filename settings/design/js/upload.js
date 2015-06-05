@@ -1,9 +1,7 @@
 (function (app) {
 
     var url = location.protocol + '//' + location.host + '/storage/image/upload';
-    var token = localStorage['token.settings'];
-    var isTokenAuthSupported = token !== undefined;
-    var headers = isTokenAuthSupported ? { 'Authorization': 'Bearer ' + token } : {};
+    var headers = { 'Authorization': 'Bearer ' + (getURLParameter('token') || localStorage['token.settings']) };
 
     var somethingWentWrongMessage = {
         title: 'Something went wrong',
@@ -97,6 +95,11 @@
         }
 
         return true;
+    }
+
+    function getURLParameter(name) {
+        var param = RegExp(name + '=' + '(.+?)(&|$)').exec(location.search) || null;
+        return param === null ? null : decodeURI(param[1]);
     }
 
 })(window.app = window.app || {});
