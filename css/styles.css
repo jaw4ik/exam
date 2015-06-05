@@ -172,6 +172,11 @@ p {
     -ms-user-select: text;
 }
 
+
+ul, ol {
+    list-style-position: inside;
+}
+
 /*#endregion common css-styles  */
 
 /*#region mainframe css-styles  */
@@ -1095,11 +1100,11 @@ body {
 }
 
 .image-wrapper[style*='float: right'] {
-    margin-left: 20px;
+    margin-left: 30px;
 }
 
 .image-wrapper[style*='float: left'] {
-    margin-right: 20px;
+    margin-right: 30px;
 }
 
 /* #region Drag and drop text question */
