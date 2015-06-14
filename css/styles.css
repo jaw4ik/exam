@@ -112,9 +112,9 @@ img {
     border: none;
 }
 
-img:hover {
-    opacity: 1;
-}
+    img:hover {
+        opacity: 1;
+    }
 
 /*#endregion images css-styles  */
 
@@ -309,6 +309,9 @@ body {
     display: table;
     table-layout: fixed;
     margin: 20px 0;
+    background-color: white;
+    border-radius: 4px;
+    border: 1px solid #dddddd;
 }
 
 .intro-title-holder {
@@ -378,6 +381,9 @@ body {
     table-layout: fixed;
     height: 100px;
     width: 100%;
+    background-color: white;
+    border-radius: 4px;
+    border: 1px solid #dddddd;
 }
 
 .page-title {
@@ -583,6 +589,9 @@ body {
 .summary-header {
     padding: 10px;
     text-align: center;
+    background-color: white;
+    border-radius: 4px;
+    border: 1px solid #dddddd;
 }
 
 .summary-progress {
@@ -1099,13 +1108,13 @@ body {
     overflow-y: hidden;
 }
 
-.image-wrapper[style*='float: right'] {
-    margin-left: 30px;
-}
+    .image-wrapper[style*='float: right'] {
+        margin-left: 30px;
+    }
 
-.image-wrapper[style*='float: left'] {
-    margin-right: 30px;
-}
+    .image-wrapper[style*='float: left'] {
+        margin-right: 30px;
+    }
 
 /* #region Drag and drop text question */
 
