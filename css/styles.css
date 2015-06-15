@@ -384,6 +384,7 @@ body {
     background-color: white;
     border-radius: 4px;
     border: 1px solid #dddddd;
+    margin-bottom:45px;
 }
 
 .page-title {
@@ -592,6 +593,7 @@ body {
     background-color: white;
     border-radius: 4px;
     border: 1px solid #dddddd;
+    margin-bottom:45px;
 }
 
 .summary-progress {
