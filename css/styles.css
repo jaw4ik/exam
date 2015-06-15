@@ -314,9 +314,9 @@ body {
     border: 1px solid #dddddd;
     padding: 20px;
     line-height: 34px;
-    -webkit-box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.4);
-    -moz-box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.4);
-    box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.4);
+    -webkit-box-shadow: 0px 0px 15px 0px rgba(0,0,0,0.4);
+    -moz-box-shadow: 0px 0px 15px 0px rgba(0,0,0,0.4);
+    box-shadow: 0px 0px 15px 0px rgba(0,0,0,0.4);
 }
 
 .intro-title-holder {
@@ -393,9 +393,9 @@ body {
     padding: 20px;
     line-height: 34px;
     margin-top: 20px;
-    -webkit-box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.4);
-    -moz-box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.4);
-    box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.4);
+    -webkit-box-shadow: 0px 0px 15px 0px rgba(0,0,0,0.4);
+    -moz-box-shadow: 0px 0px 15px 0px rgba(0,0,0,0.4);
+    box-shadow: 0px 0px 15px 0px rgba(0,0,0,0.4);
 }
 
 .page-title {
@@ -422,9 +422,9 @@ body {
     background-color: white;
     border: 1px solid #dddddd;
     border-radius: 8px;
-    -webkit-box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.4);
-    -moz-box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.4);
-    box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.4);
+    -webkit-box-shadow: 0px 0px 15px 0px rgba(0,0,0,0.4);
+    -moz-box-shadow: 0px 0px 15px 0px rgba(0,0,0,0.4);
+    box-shadow: 0px 0px 15px 0px rgba(0,0,0,0.4);
 }
 
     .content-holder + .content-holder {
@@ -609,9 +609,9 @@ body {
     border: 1px solid #dddddd;
     margin-bottom: 45px;
     margin-top: 20px;
-    -webkit-box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.4);
-    -moz-box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.4);
-    box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.4);
+    -webkit-box-shadow: 0px 0px 15px 0px rgba(0,0,0,0.4);
+    -moz-box-shadow: 0px 0px 15px 0px rgba(0,0,0,0.4);
+    box-shadow: 0px 0px 15px 0px rgba(0,0,0,0.4);
 }
 
 .summary-progress {
