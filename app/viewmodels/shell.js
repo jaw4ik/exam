@@ -1,5 +1,5 @@
-﻿define(['durandal/app', 'plugins/router', 'context', 'eventManager', 'configuration/routes', 'modulesInitializer', 'templateSettings'],
-    function (app, router, context, eventManager, routes, modulesInitializer, templateSettings) {
+﻿define(['durandal/app', 'plugins/router', 'context', 'eventManager', 'configuration/routes', 'modulesInitializer', 'templateSettings','background'],
+    function (app, router, context, eventManager, routes, modulesInitializer, templateSettings, background) {
         
         var
             cssName = ko.computed(function () {
@@ -32,7 +32,9 @@
                     };
                     
                     return modulesInitializer.init().then(function () {
-                        
+
+                        background.apply(templateSettings.background);
+
                         that.logoUrl(templateSettings.logoUrl);
                         
                         return router.map(routes)
@@ -42,7 +44,6 @@
                     });
                 });
             };
-
         return {
             router: router,
             cssName: cssName,

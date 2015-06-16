@@ -112,9 +112,9 @@ img {
     border: none;
 }
 
-img:hover {
-    opacity: 1;
-}
+    img:hover {
+        opacity: 1;
+    }
 
 /*#endregion images css-styles  */
 
@@ -309,6 +309,14 @@ body {
     display: table;
     table-layout: fixed;
     margin: 20px 0;
+    background-color: white;
+    border-radius: 8px;
+    border: 1px solid #dddddd;
+    padding: 20px;
+    line-height: 34px;
+    -webkit-box-shadow: 0px 0px 15px 0px rgba(0,0,0,0.4);
+    -moz-box-shadow: 0px 0px 15px 0px rgba(0,0,0,0.4);
+    box-shadow: 0px 0px 15px 0px rgba(0,0,0,0.4);
 }
 
 .intro-title-holder {
@@ -378,6 +386,16 @@ body {
     table-layout: fixed;
     height: 100px;
     width: 100%;
+    background-color: white;
+    border-radius: 8px;
+    border: 1px solid #dddddd;
+    margin-bottom: 45px;
+    padding: 20px;
+    line-height: 34px;
+    margin-top: 20px;
+    -webkit-box-shadow: 0px 0px 15px 0px rgba(0,0,0,0.4);
+    -moz-box-shadow: 0px 0px 15px 0px rgba(0,0,0,0.4);
+    box-shadow: 0px 0px 15px 0px rgba(0,0,0,0.4);
 }
 
 .page-title {
@@ -403,7 +421,10 @@ body {
     min-width: 600px;
     background-color: white;
     border: 1px solid #dddddd;
-    border-radius: 4px;
+    border-radius: 8px;
+    -webkit-box-shadow: 0px 0px 15px 0px rgba(0,0,0,0.4);
+    -moz-box-shadow: 0px 0px 15px 0px rgba(0,0,0,0.4);
+    box-shadow: 0px 0px 15px 0px rgba(0,0,0,0.4);
 }
 
     .content-holder + .content-holder {
@@ -583,6 +604,14 @@ body {
 .summary-header {
     padding: 10px;
     text-align: center;
+    background-color: white;
+    border-radius: 8px;
+    border: 1px solid #dddddd;
+    margin-bottom: 45px;
+    margin-top: 20px;
+    -webkit-box-shadow: 0px 0px 15px 0px rgba(0,0,0,0.4);
+    -moz-box-shadow: 0px 0px 15px 0px rgba(0,0,0,0.4);
+    box-shadow: 0px 0px 15px 0px rgba(0,0,0,0.4);
 }
 
 .summary-progress {
@@ -1099,13 +1128,13 @@ body {
     overflow-y: hidden;
 }
 
-.image-wrapper[style*='float: right'] {
-    margin-left: 30px;
-}
+    .image-wrapper[style*='float: right'] {
+        margin-left: 30px;
+    }
 
-.image-wrapper[style*='float: left'] {
-    margin-right: 30px;
-}
+    .image-wrapper[style*='float: left'] {
+        margin-right: 30px;
+    }
 
 /* #region Drag and drop text question */
 
