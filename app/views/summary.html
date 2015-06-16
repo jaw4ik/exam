@@ -49,10 +49,10 @@
     </div>
     <div class="summary-btn-holder clearfix">
         <!-- ko ifnot: status() == statuses.readyToFinish -->
-        <a class="btn default" data-bind="css: 'disabled'" data-translate-text="[finish course]">Finish</a>
+        <a class="btn default outer-shadow" data-bind="css: 'disabled'" data-translate-text="[finish course]">Finish</a>
         <!-- /ko -->
         <!-- ko if: status() == statuses.readyToFinish -->
-        <a class="btn default" data-bind="click: finish" data-translate-text="[finish course]">Finish</a>
+        <a class="btn default outer-shadow" data-bind="click: finish" data-translate-text="[finish course]">Finish</a>
         <!-- /ko -->
     </div>
     <!-- ko if: status() == statuses.sendingRequests -->
