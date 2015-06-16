@@ -1,1 +1,21 @@
-{"xApi":{"enabled":true,"required":false,"selectedLrs":"default","lrs":{"uri":"","authenticationRequired":false,"credentials":{"username":"","password":""}},"allowedVerbs":["started","stopped","mastered","answered","passed","failed"]},"masteryScore":{"score":100},"languages":{"selected":"en"},"logo":{"url":"http://abaranov.easygenerator.com/storage/image/0314ba81-ea6e-41db-a239-11eeba3bba82.jpg"},"background":{"image":{"src":"http://abaranov.easygenerator.com/storage/image/1eecb9f1-7636-4fd4-becd-30ffd69defeb.jpeg","type":"fullscreen"}}}
+{
+    "logo": {
+        "url": ""
+    },
+    "background":null,
+    "xApi": {
+        "enabled": false,
+        "lrs": {
+            "uri": "http://cloud.scorm.com/ScormEngineInterface/TCAPI/public/",
+            "credentials": {
+                "username": "",
+                "password": ""
+            },
+          "authenticationRequired": false
+        },
+        "allowedVerbs":["started","stopped","mastered","answered","passed","failed"]
+    },
+    "masteryScore": {
+        "score": 75
+    }
+}
