@@ -17,5 +17,8 @@
     },
     "masteryScore": {
         "score": 75
+    },
+    "languages": {
+        "selected": "en"
     }
 }
