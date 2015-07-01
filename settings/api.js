@@ -25,7 +25,7 @@
 
     function init() {
         /* DEBUG */
-        var userDataPromise = $.Deferred().resolve([{ subscription: { accessType: 1, expirationDate: new Date(2016, 1, 1) } }]);
+        var userDataPromise = $.Deferred().resolve([{ data: { subscription: { accessType: 1, expirationDate: new Date(2016, 1, 1) } } }]);
         var settingsPromise = $.getJSON('../../settings.js').then(function (response) { return [{ settings: JSON.stringify(response) }]; });
         var manifestPromise = $.getJSON(manifestUrl);
         /* END_DEBUG */

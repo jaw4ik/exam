@@ -12,15 +12,33 @@
     "languages": [
         {
             "code": "nl",
+            "name": "Dutch",
             "url": "lang/nl.json"
         },
         {
             "code": "en",
+            "name": "English",
             "url": "lang/en.json"
         },
         {
             "code": "ua",
+            "name": "Ukrainian",
             "url": "lang/ua.json"
+        },
+        {
+            "code": "de",
+            "name": "German",
+            "url": "lang/de.json"
+        },
+        {
+            "code": "fr",
+            "name": "French",
+            "url": "lang/fr.json"
+        },
+        {
+            "code": "pt-br",
+            "name": "Portuguese - Brazil",
+            "url": "lang/pt-br.json"
         }
     ]
 }
