@@ -46,8 +46,8 @@
                 settings = api.getSettings();
 
             viewModel.userAccess = new app.UserAccessModel(user);
-            viewModel.logo = new app.LogoModel(settings.logo);
-            viewModel.background = new app.BackgroundModel(settings.background);
+            viewModel.logo = new app.LogoModel(settings.logo, viewModel.saveChanges);
+            viewModel.background = new app.BackgroundModel(settings.background, viewModel.saveChanges);
 
             currentSettings = viewModel.getCurrentSettingsData(settings);
             currentExtraData = viewModel.getCurrentExtraData();

@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html>
 
 <head>
@@ -7,7 +7,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <link href="../css/settings.css" rel="stylesheet" />
+    <link href="css/design.css" rel="stylesheet" />
     <script src="../api.js"></script>
 
     <!-- build:js js/vendor.min.js -->
@@ -23,154 +23,128 @@
     <!-- endbuild -->
 </head>
 
-<body>
-    <div class="settings-container">
-        <!-- ko ifnot: isError -->
-        <div class="settings-tab-wrapper">
-            <div class="tab-header-container">
-                <img src="img/graphical.png" />
-                <div class="tab-header-wrapper">
-                    <h1 class="tab-header-title" data-bind="localize: 'customize your course'"></h1>
-                    <div class="tab-header-content">
-                        <span class="tab-header-content-text" data-bind="localize: 'look and feel of the course'"></span>
+    <body>
+        <main>
+            <!-- ko ifnot: isError -->
+            <article class="flex direction-column settings-item-container">
+                <header class="settings-item-title" data-bind="localize: 'custom course logo'">Custom course logo:</header>
+                <section class="settings-item-content">
+                    <div class="flex direction-row logo-container">
+                        <input id="imgUrl" class="logo-url-input" type="text" placeholder="Paste image URL here..." data-bind="value: logo.url, valueUpdate: ['afterkeydown', 'afterpaste'], enable: userAccess.hasStarterPlan, event: { blur: saveChanges }" />
+                        <span class="logo-help-text" data-bind="localize: 'or'">or</span>
                     </div>
-                </div>
-            </div>
-            <div class="tab-content-container">
-                <div class="tab-content-row">
-                    <h1 class="template-logo-title" data-bind="localize: 'custom course logo'"></h1>
-                    <div class="tab-content-wrapper">
-                        <div class="has-access">
-                            <div class="template-logo-url-container">
-                                <input class="template-logo-url" type="text" placeholder="Paste image URL here..." id="imgUrl" data-bind="value: logo.url, valueUpdate: ['afterkeydown', 'afterpaste'], enable: userAccess.hasStarterPlan" />
-                                <span class="template-logo-or" data-bind="localize: 'or'"></span>
-                                <a class="btn grey template-logo" data-bind="click: logo.upload">
-                                    <span data-bind="localize: 'upload logo image'"></span>
-                                </a>
-                            </div>
-                            <div class="template-logo-container">
-                                <!-- ko ifnot: logo.hasLogo() -->
-                                <div class="template-logo-wrapper">
-
-                                    <!-- ko ifnot: logo.isError() || logo.isLoading() -->
-                                    <div class="template-logo-empty-img"></div>
-                                    <div class="template-logo-empty-text" data-bind="localize: 'logo hint'"></div>
-                                    <!-- /ko -->
-                                    <!-- ko if: logo.isError() && !logo.isLoading() -->
-                                    <div class="template-logo-error-img"></div>
-                                    <div class="template-logo-empty-text">
-                                        <span data-bind="text: logo.errorText">Unsupported image format</span>
-                                        <p data-bind="text: logo.errorDescription">(Supported formats: jpg, png, bmp)</p>
-                                    </div>
-                                    <!-- /ko -->
-                                    <!-- ko if: logo.isLoading() -->
-                                    <div class="circular-loader x32 align-center grey">
-                                        <div class="circular-loader-item"></div>
-                                        <div class="circular-loader-item"></div>
-                                        <div class="circular-loader-item"></div>
-                                        <div class="circular-loader-item"></div>
-                                        <div class="circular-loader-item"></div>
-                                        <div class="circular-loader-item"></div>
-                                        <div class="circular-loader-item"></div>
-                                        <div class="circular-loader-item"></div>
-                                    </div>
-                                    <!-- /ko -->
-
-                                    <span class="vertical-align-helper"></span>
+                    <div class="flex direction-column logo-container">
+                        <!-- ko ifnot: logo.hasLogo -->
+                        <div class="flex direction-row logo-image-container" data-bind="click: logo.upload">
+                            <figure class="flex direction-column logo-image-wrapper">
+                                <div class="logo-image blue">
+                                    <div class="logo-image gray"></div>
                                 </div>
-                                <!-- /ko -->
-                                <!-- ko if: logo.hasLogo() -->
-                                <div class="template-logo-wrapper not-empty">
-                                    <img class="template-logo" src="" alt="" data-bind="attr: { src: logo.url }" />
-                                </div>
-                                <div class="template-logo-clear-wrapper">
-                                    <div class="template-logo-clear-btn" data-bind="click: logo.clear">
-                                        <div class="tooltip">
-                                            <span class="tooltip-text" data-bind="localize: 'clear logo'"></span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- /ko -->
+                                <figcaption class="logo-upload-text" data-bind="localize: 'upload logo image'"></figcaption>
+                            </figure>
+                        </div>
+                        <!-- /ko -->
+                        <!-- ko if: logo.hasLogo -->
+                        <div class="flex direction-row logo-image-container has-logo">
+                            <figure class="flex direction-column logo-image-wrapper">
+                                <img class="template-logo" src="" alt="" data-bind="attr: {src: logo.url }" />
+                            </figure>
+                            <div class="btn-image-action-container">
+                                <button class="btn-image-action upload" data-bind="click: logo.upload">
+                                    <span class="tooltip">
+                                        <span class="tooltip-text" data-bind="localize: 'logo update'"></span>
+                                    </span>
+                                </button>
+                                <button class="btn-image-action delete" data-bind="click: logo.clear">
+                                    <span class="tooltip">
+                                        <span class="tooltip-text" data-bind="localize: 'logo remove'"></span>
+                                    </span>
+                                </button>
                             </div>
                         </div>
-                        <div class="tab-content-row">
-                            <h2 class="selector-title" data-bind="localize: 'background change'">Change background:</h2>
-                            <div class="tab-content-wrapper">
-                                <div class="has-access">
-                                    <div class="background" data-bind="css: { 'empty': background.image.isEmpty, 'uploading': background.image.isUploading, 'error': background. hasError }">
-                                        <div class="background-image-upload-progress loader-container">
-                                            <div class="circular-loader x32 align-center grey">
-                                                <div class="circular-loader-item"></div>
-                                                <div class="circular-loader-item"></div>
-                                                <div class="circular-loader-item"></div>
-                                                <div class="circular-loader-item"></div>
-                                                <div class="circular-loader-item"></div>
-                                                <div class="circular-loader-item"></div>
-                                                <div class="circular-loader-item"></div>
-                                                <div class="circular-loader-item"></div>
-                                            </div>
-                                        </div>
-                                        <a href="#" class="background-upload" data-bind="click: background.changeImage"></a>
-                                        <div class="background-image" data-bind="background: background.image"></div>
-                                        <a href="#" class="background-change" data-bind="click: background.changeImage">
-                                            <span class="tooltip"><span class="tooltip-text" data-bind="localize: 'background update'"></span></span>
-                                        </a>
-                                        <a href="#" class="background-remove" data-bind="click: background.clearImage">
-                                            <span class="tooltip"><span class="tooltip-text" data-bind="localize: 'background remove'"></span></span>
-                                        </a>
-                                    </div>
-                                    <ul class="unstyled background-position-options">
-                                        <li class="background-position-wrapper">
-                                            <a href="#" class="background-position default" data-bind="click: background.type.default, css: { active: background.type() === 'default' }">
-                                                <div class="tooltip right">
-                                                    <span class="tooltip-text" data-bind="localize: 'background default'">Default</span>
-                                                </div>
-                                            </a>
-                                        </li>
-                                        <li class="background-position-wrapper">
-                                            <a href="#" class="background-position repeat" data-bind="click: background.type.repeat, css: { active: background.type() === 'repeat' }">
-                                                <div class="tooltip right">
-                                                    <span class="tooltip-text" data-bind="localize: 'background repeat'">Repeat</span>
-                                                </div>
-                                            </a>
-                                        </li>
-                                        <li class="background-position-wrapper">
-                                            <a href="#" class="background-position fullscreen" data-bind="click: background.type.fullscreen, css: { active: background.type() === 'fullscreen' }">
-                                                <div class="tooltip right">
-                                                    <span class="tooltip-text" data-bind="localize: 'background fullscreen'">Fullscreen</span>
-                                                </div>
-                                            </a>
-                                        </li>
-                                    </ul>
-                                    <div class="background-error-message">
-                                        <div class="background-error-message-title" data-bind="text: background.errorTitle"></div>
-                                        <div class="background-error-message-description" data-bind="text: background.errorDescription"></div>
-                                    </div>
-                                    <div class="clearfix"></div>
-                                </div>
-                                <div class="no-access" data-bind="fadeVisible: !userAccess.hasStarterPlan">
-                                    <div class="no-access-img"></div>
-                                    <div class="no-access-text" data-bind="localize: 'background upgrade account hint'"></div>
-                                    <div class="no-access-overlay"></div>
-                                    <span class="vertical-align-helper"></span>
-                                </div>
-                            </div>
+                        <!-- /ko -->
+                        <!-- ko if: (!logo.isError() && !logo.isLoading()) || logo.hasLogo() -->
+                        <div class="logo-message-container" data-bind="localize: 'logo hint'">
+                            - recommended size 300x50 px, allowed formats: jpeg, jpg, png, bmp, gif
                         </div>
-                        <div class="no-access" data-bind="fadeVisible: !userAccess.hasStarterPlan">
-                            <div class="no-access-img"></div>
-                            <div class="no-access-text" data-bind="localize: 'upgrade account hint'"></div>
-                            <div class="no-access-overlay"></div>
-                            <span class="vertical-align-helper"></span>
+                        <!-- /ko -->
+                        <!-- ko if: logo.isError() && !logo.isLoading() && !logo.hasLogo() -->
+                        <div class="error-container">
+                            <div class="error-title-container" data-bind="text: logo.errorText"></div>
+                            <div class="error-message-container" data-bind="text: logo.errorDescription"></div>
+                        </div>
+                        <!-- /ko -->
+                    </div>
+                    <div class="flex direction-column no-access-contatiner" data-bind="fadeVisible: !userAccess.hasStarterPlan">
+                        <div class="no-access-img"></div>
+                        <div class="no-access-text" data-bind="localize: 'upgrade account hint'"></div>
+                    </div>
+                </section>
+                <footer class="settings-item-seperator"></footer>
+            </article>
+            <article class="flex direction-column settings-item-container">
+                <header class="settings-item-title" data-bind="localize: 'background change'">
+                    Change background:
+                </header>
+                <section class="settings-item-content flex direction-row" data-bind="css: { 'flex-wrap': background.hasError }">
+                    <div class="background-container" data-bind="css: { 'empty': background.image.isEmpty, 'uploading': background.image.isUploading, 'error': background.hasError }">
+                        <button class="background-upload" data-bind="click: background.changeImage"></button>
+                        <div class="background-image" data-bind="background: background.image"></div>
+                        <div class="btn-image-action-container">
+                            <button class="btn-image-action upload" data-bind="click: background.changeImage">
+                                <span class="tooltip">
+                                    <span class="tooltip-text" data-bind="localize: 'background update'"></span>
+                                </span>
+                            </button>
+                            <button class="btn-image-action delete" data-bind="click: background.clearImage">
+                                <span class="tooltip">
+                                    <span class="tooltip-text" data-bind="localize: 'background remove'"></span>
+                                </span>
+                            </button>
                         </div>
                     </div>
-                </div>
-            </div>
-        </div>
-        <!-- /ko -->
-        <!-- ko if: isError -->
-        <div class="settings-tab-wrapper" data-bind="localize: 'settings are not initialize'"></div>
-        <!-- /ko -->
-    </div>
-</body>
+                    <!-- ko ifnot: background.image.isEmpty -->
+                    <ul class="background-position-options flex direction-column">
+                        <li class="background-position-option">
+                            <button class="background-position-option-btn default" data-bind="click: background.type.default, css: { active: background.type() === 'default' }">
+                                <span class="tooltip">
+                                    <span class="tooltip-text" data-bind="localize: 'background default'"></span>
+                                </span>
+                            </button>
+                        </li>
+                        <li class="background-position-option">
+                            <button class="background-position-option-btn repeat" data-bind="click: background.type.repeat, css: { active: background.type() === 'repeat' }">
+                                <span class="tooltip">
+                                    <span class="tooltip-text" data-bind="localize: 'background repeat'"></span>
+                                </span>
+                            </button>
+                        </li>
+                        <li class="background-position-option">
+                            <button class="background-position-option-btn fullscreen" data-bind="click: background.type.fullscreen, css: { active: background.type() === 'fullscreen' }">
+                                <span class="tooltip">
+                                    <span class="tooltip-text" data-bind="localize: 'background fullscreen'"></span>
+                                </span>
+                            </button>
+                        </li>
+                    </ul>
+                    <!-- /ko -->
+                    <!-- ko if: background.hasError -->
+                    <div class="error-container">
+                        <div class="error-title-container" data-bind="text: background.errorTitle"></div>
+                        <div class="error-message-container" data-bind="text: background.errorDescription"></div>
+                    </div>
+                    <!-- /ko -->
+                    <div class="flex direction-column no-access-contatiner" data-bind="fadeVisible: !userAccess.hasStarterPlan">
+                        <div class="no-access-img"></div>
+                        <div class="no-access-text" data-bind="localize: 'background upgrade account hint'"></div>
+                    </div>
+                </section>
+            </article>
+            <!-- /ko -->
+            <!-- ko if: isError -->
+            <div class="settings-tab-wrapper" data-bind="localize: 'settings are not initialize'"></div>
+            <!-- /ko -->
+        </main>
+    </body>
 
 </html>
