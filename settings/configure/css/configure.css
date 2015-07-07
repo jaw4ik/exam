@@ -160,32 +160,32 @@ input[type="text"] {
     }
 
     .settings-tabs-item.customization:before {
-        background: url("img/sprites_16.png") 0 0 no-repeat;
+        background: url("../img/sprites_16.png") 0 0 no-repeat;
     }
 
     .settings-tabs-item.customization:hover:before,
     .settings-tabs-item.active.customization:before {
-        background: url("img/sprites_16.png") 0 -21px no-repeat;
+        background: url("../img/sprites_16.png") 0 -21px no-repeat;
     }
 
     .settings-tabs-item.track-and-trace:before {
         top: 4px;
-        background: url("img/sprites_16.png") -42px 0 no-repeat;
+        background: url("../img/sprites_16.png") -42px 0 no-repeat;
     }
 
     .settings-tabs-item.track-and-trace:hover:before,
     .settings-tabs-item.active.track-and-trace:before {
-        background: url("img/sprites_16.png") -42px -21px no-repeat;
+        background: url("../img/sprites_16.png") -42px -21px no-repeat;
     }
 
     .settings-tabs-item.languages:before {
         top: 3px;
-        background: url("img/sprites_16.png") -63px 0 no-repeat;
+        background: url("../img/sprites_16.png") -63px 0 no-repeat;
     }
 
     .settings-tabs-item.languages:hover:before,
     .settings-tabs-item.active.languages:before {
-        background: url("img/sprites_16.png") -63px -21px no-repeat;
+        background: url("../img/sprites_16.png") -63px -21px no-repeat;
     }
 
 .settings-tab-container.track-and-trace .selector-preview-container {
@@ -475,12 +475,12 @@ input[type="text"] {
     margin-left: 10px;
     width: 14px;
     height: 14px;
-    background: url("img/sprites_16.png") -85px -1px no-repeat;
+    background: url("../img/sprites_16.png") -85px -1px no-repeat;
     cursor: pointer;
 }
 
     .template-logo-clear-btn:hover {
-        background: url("img/sprites_16.png") -85px -22px no-repeat;
+        background: url("../img/sprites_16.png") -85px -22px no-repeat;
     }
 
         .template-logo-clear-btn:hover .tooltip {
