@@ -70,7 +70,7 @@ q:before, q:after {
 }
 
 /* Don't kill focus outline for keyboard users: http://24ways.org/2009/dont-lose-your-focus */
-a:hover, a:active {
+a:hover, a:active, button{
     outline: none;
 }
 
@@ -165,7 +165,6 @@ main {
     background-color: #44515f;
     background-position: center;
     background-repeat: no-repeat;
-    outline: 0;
     opacity: 0.9;
     cursor: pointer;
     transition: opacity 0.3s linear 0s;
@@ -460,7 +459,6 @@ main {
     background: linear-gradient(-29deg,rgba(224,242,255,1) 50%,rgba(224,242,255,.7) 50%);
     cursor: pointer;
     transition: box-shadow .3s;
-    outline: 0;
     border: 0;
 }
 
@@ -512,7 +510,6 @@ main {
     border-bottom-width: 2px;
     border-radius: 5px;
     background-color: #fff;
-    outline: 0;
     cursor: pointer;
     transition: all 0.3s linear 0s;
 }
