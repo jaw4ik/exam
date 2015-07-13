@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html>
 
 <head>
@@ -106,9 +106,9 @@
                     <!-- ko ifnot: background.image.isEmpty -->
                     <ul class="background-position-options flex direction-column">
                         <li class="background-position-option">
-                            <button class="background-position-option-btn default" data-bind="click: background.type.default, css: { active: background.type() === 'default' }">
+                            <button class="background-position-option-btn fullscreen" data-bind="click: background.type.fullscreen, css: { active: background.type() === 'fullscreen' }">
                                 <span class="tooltip">
-                                    <span class="tooltip-text" data-bind="localize: 'background default'"></span>
+                                    <span class="tooltip-text" data-bind="localize: 'background fullscreen'"></span>
                                 </span>
                             </button>
                         </li>
@@ -120,9 +120,9 @@
                             </button>
                         </li>
                         <li class="background-position-option">
-                            <button class="background-position-option-btn fullscreen" data-bind="click: background.type.fullscreen, css: { active: background.type() === 'fullscreen' }">
+                            <button class="background-position-option-btn original" data-bind="click: background.type.original, css: { active: background.type() === 'original' }">
                                 <span class="tooltip">
-                                    <span class="tooltip-text" data-bind="localize: 'background fullscreen'"></span>
+                                    <span class="tooltip-text" data-bind="localize: 'background original'"></span>
                                 </span>
                             </button>
                         </li>

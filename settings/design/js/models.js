@@ -91,7 +91,7 @@
         var settings = $.extend(true, {
             image: {
                 src: null,
-                type: 'default'
+                type: 'fullscreen'
             }
         }, backgroundSettings);
 
@@ -103,16 +103,16 @@
         });
 
         that.type = ko.observable(settings.image.type);
-        that.type.default = function () {
-            that.type('default');
+        that.type.fullscreen = function () {
+            that.type('fullscreen');
             saveChanges();
         };
         that.type.repeat = function () {
             that.type('repeat');
             saveChanges();
         };
-        that.type.fullscreen = function () {
-            that.type('fullscreen');
+        that.type.original = function () {
+            that.type('original');
             saveChanges();
         };
 
