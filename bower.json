@@ -1,0 +1,19 @@
+{
+  "name": "exam",
+  "version": "1.30.0",
+  "homepage": "https://github.com/easygenerator/exam",
+  "authors": [
+    "easygenerator"
+  ],
+  "moduleType": [
+    "globals"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
