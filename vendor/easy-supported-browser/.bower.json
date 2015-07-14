@@ -1,0 +1,24 @@
+{
+  "name": "easy-supported-browser",
+  "main": "easy-supported-browser.js",
+  "version": "1.0.0",
+  "homepage": "https://github.com/jaw4ik/easy-supported-browser",
+  "authors": [
+    "Yuriy Savchuk <urec.savchuk@gmail.com>"
+  ],
+  "description": "Easygenerator's 'not supported page'",
+  "moduleType": [
+    "globals"
+  ],
+  "license": "Apache",
+  "_release": "1.0.0",
+  "_resolution": {
+    "type": "version",
+    "tag": "1.0.0",
+    "commit": "d5e2b3d01b70a01589a45ca7d9ab2b681850c988"
+  },
+  "_source": "git://github.com/jaw4ik/easy-supported-browser.git",
+  "_target": "~1.0.0",
+  "_originalSource": "easy-supported-browser",
+  "_direct": true
+}
