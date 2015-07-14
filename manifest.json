@@ -1,9 +1,9 @@
 ﻿{
     "name": "Exam",
     "shortDescription": "Use this when you want to create a formal examination",
-    "thumbnail": "img/thumbnail.png",
+    "thumbnail": "preview/thumbnail.png",
     "previewImages": [
-        "img/previewImages/previewExam.jpg"
+        "preview/images/preview.jpg"
     ],
     "settingsUrls": {
         "design": "settings/design/design.html",
