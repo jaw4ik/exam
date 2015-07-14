@@ -28,15 +28,15 @@
     display: block;
     width: 32px;
     height: 32px;
-    background: url(../img/sprite.png) 0 0 no-repeat;
+    background: url(img/sprite.png) 0 0 no-repeat;
 }
 
 .checkbox-icon {
-    background: url(../img/sprite.png) 0 0 no-repeat;
+    background: url(img/sprite.png) 0 0 no-repeat;
 }
 
 .radio-icon {
-    background: url(../img/sprite.png) -37px 0 no-repeat;
+    background: url(img/sprite.png) -37px 0 no-repeat;
 }
 
 .checkbox.checked, .radio.checked {

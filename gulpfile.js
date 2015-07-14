@@ -55,11 +55,11 @@ gulp.task('build-app', ['clean'], function () {
     gulp.src(['settings.js', 'publishSettings.js'])
        .pipe(gulp.dest(output));
 
-    gulp.src('css/fonts/**')
-       .pipe(gulp.dest(output + '/css/fonts'));
+    gulp.src('css/font/**')
+       .pipe(gulp.dest(output + '/css/font'));
 
-    gulp.src('css/images/**')
-    .pipe(gulp.dest(output + '/css/images'));
+    gulp.src('css/img/**')
+    .pipe(gulp.dest(output + '/css/img'));
 
     gulp.src('img/**')
        .pipe(gulp.dest(output + '/img'));

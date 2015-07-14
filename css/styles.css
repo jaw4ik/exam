@@ -6,8 +6,8 @@
     font-weight: normal;
     font-style: normal;
     font-family: 'OpenSans';
-    src: url('./fonts/opensans-regular.eot');
-    src: url('./fonts/opensans-regular.eot?#iefix') format('embedded-opentype'), url('./fonts/opensans-regular.woff') format('woff'), url('./fonts/opensans-regular.ttf') format('truetype'), url('./fonts/opensans-regular.svg#OpenSansRegular') format('svg');
+    src: url('./font/opensans-regular.eot');
+    src: url('./font/opensans-regular.eot?#iefix') format('embedded-opentype'), url('./font/opensans-regular.woff') format('woff'), url('./font/opensans-regular.ttf') format('truetype'), url('./font/opensans-regular.svg#OpenSansRegular') format('svg');
 }
 
 /*===================================
@@ -239,7 +239,7 @@ body {
 
 .top .left, .top .right,
 .bottom .left, .bottom .right {
-    background-image: url(../img/bg-corners.png);
+    background-image: url(img/bg-corners.png);
 }
 
 .top .left {
@@ -248,7 +248,7 @@ body {
 }
 
 .top .middle {
-    background-image: url(../img/bg-top.png);
+    background-image: url(img/bg-top.png);
     background-repeat: repeat-x;
 }
 
@@ -258,7 +258,7 @@ body {
 }
 
 .middle .left {
-    background-image: url(../img/bg-left.png);
+    background-image: url(img/bg-left.png);
     background-repeat: repeat-y;
 }
 
@@ -267,7 +267,7 @@ body {
 }
 
 .middle .right {
-    background-image: url(../img/bg-right.png);
+    background-image: url(img/bg-right.png);
     background-repeat: repeat-y;
 }
 
@@ -277,7 +277,7 @@ body {
 }
 
 .bottom .middle {
-    background-image: url(../img/bg-bottom.png);
+    background-image: url(img/bg-bottom.png);
     background-repeat: repeat-x;
 }
 
@@ -533,17 +533,17 @@ body {
 
         .question-answer .question-answer-checkbox.checked {
             border: 2px solid #666;
-            background: url("../img/checkbox.png") no-repeat scroll center center transparent;
+            background: url("img/checkbox.png") no-repeat scroll center center transparent;
         }
 
         .question-answer .question-answer-checkbox.checked-ok {
             border: 2px solid #eee;
-            background: url("../img/checkbox-ok.png") no-repeat scroll center center transparent;
+            background: url("img/checkbox-ok.png") no-repeat scroll center center transparent;
         }
 
         .question-answer .question-answer-checkbox.checked-fail {
             border: 2px solid #eee;
-            background: url("../img/checkbox-fail.png") no-repeat scroll center center transparent;
+            background: url("img/checkbox-fail.png") no-repeat scroll center center transparent;
         }
 
     .question-answer .question-answer-text {
@@ -565,7 +565,7 @@ body {
 }
 
     .summary-title:before {
-        content: url(../img/progress.png);
+        content: url(img/progress.png);
         position: absolute;
         display: block;
         height: 35px;
@@ -594,7 +594,7 @@ body {
     display: block;
     width: 100%;
     height: 1px;
-    background-image: url(../img/divider.png);
+    background-image: url(img/divider.png);
     -moz-background-size: contain;
     -webkit-background-size: contain;
     background-size: contain;
@@ -863,7 +863,7 @@ body {
         position: absolute;
         top: 0;
         left: 0;
-        background: url(../img/spiner.gif);
+        background: url(img/spiner.gif);
     }
 
 .loader {
@@ -961,7 +961,7 @@ body {
     height: 34px;
     width: 30px;
     margin-right: 15px;
-    background-image: url(../img/previous.png);
+    background-image: url(img/previous.png);
     background-repeat: no-repeat;
     vertical-align: middle;
 }
