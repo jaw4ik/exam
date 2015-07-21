@@ -3,6 +3,7 @@
 
         function Course(spec) {
             this.id = spec.id;
+            this.createdOn = spec.createdOn;
             this.title = spec.title;
             this.hasIntroductionContent = spec.hasIntroductionContent;
             this.content = null;

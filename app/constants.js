@@ -15,7 +15,9 @@
             hotspot: 'hotspot',
             openQuestion: 'openQuestion'
         }
-    }
+    };
+
+    constants.localStorageResultKey = 'course_result';
 
     return constants;
 });
