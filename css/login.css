@@ -23,7 +23,7 @@
 
     .xapi-title:before {
         position: absolute;
-        content: url(images/graphChart.png);
+        content: url(img/graphChart.png);
         display: block;
         width: 32px;
         height: 35px;
@@ -69,7 +69,7 @@
         margin-top: -16px;
         height: 32px;
         width: 32px;
-        background: url(images/info-message.png);
+        background: url(img/info-message.png);
     }
 
 .xapi-form-row {
@@ -85,7 +85,7 @@
         left: -35px;
         width: 22px;
         height: 22px;
-        background: url(images/icons-xApi.png) no-repeat;
+        background: url(img/icons-xApi.png) no-repeat;
     }
 
 .xapi-start-agreement {
@@ -197,7 +197,7 @@
     width: 11px;
     height: 11px;
     font-size: 12px;
-    background: url(images/icons-xApi.png) -6px -67px;
+    background: url(img/icons-xApi.png) -6px -67px;
 }
 
 .xapi-form-btn-holder {
