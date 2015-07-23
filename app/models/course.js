@@ -1,5 +1,5 @@
-﻿define(['eventManager', 'guard', 'eventDataBuilders/courseEventDataBuilder', 'plugins/http'],
-    function (eventManager, guard, eventDataBuilder, http) {
+﻿define(['eventManager', 'guard', 'eventDataBuilders/courseEventDataBuilder', 'plugins/http', 'constants'],
+    function (eventManager, guard, eventDataBuilder, http, constants) {
 
         function Course(spec) {
             this.id = spec.id;
@@ -16,6 +16,8 @@
             this.start = start;
             this.loadContent = loadContent;
             this.isCompleted = false;
+            this.isFinished = false;
+            this.getStatus = getStatus;
         }
 
         function getAllQuestions(objectives) {
@@ -28,7 +30,16 @@
             return _.shuffle(questionsList);
         }
 
+        function getStatus() {
+            if (!this.isFinished) {
+                return constants.course.statuses.inProgress;
+            }
+
+            return this.isCompleted ? constants.course.statuses.completed : constants.course.statuses.failed;
+        }
+
         var finish = function (callback) {
+            this.isFinished = true;
             eventManager.courseFinished(
                 eventDataBuilder.buildCourseFinishedEventData(this), function () {
                     eventManager.turnAllEventsOff();
@@ -44,7 +55,7 @@
             return notAnsweredQuestion.length === 0;
         };
 
-        var start = function() {
+        var start = function () {
             this.score = 0;
             eventManager.courseStarted();
         };

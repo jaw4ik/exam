@@ -67,7 +67,7 @@ define(['durandal/app', 'durandal/viewLocator', 'durandal/system', 'modulesIniti
 
             function initProgressStoring(publishSettings) {
                 if (!isLmsInitizlized()) {
-                    modules['modules/progressStorer'] = true;
+                    modules['modules/progressTracker'] = true;
                 }
 
                 function isLmsInitizlized() {

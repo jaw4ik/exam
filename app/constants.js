@@ -19,5 +19,13 @@
 
     constants.localStorageResultKey = 'course_result';
 
+    constants.course = {
+        statuses: {
+            completed: 'completed',
+            failed: 'failed',
+            inProgress: 'inProgress'
+        }
+    };
+
     return constants;
 });

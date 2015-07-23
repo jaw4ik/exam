@@ -10,12 +10,11 @@
     }
 
     function saveResult() {
-        debugger;
         var resultKey = constants.localStorageResultKey + context.course.id + context.course.createdOn;
 
         var result = {
             score: context.course.score,
-            isCompleted: context.course.isCompleted
+            status: context.course.getStatus()
         };
 
         try {
