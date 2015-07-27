@@ -46,6 +46,8 @@ define(['durandal/app', 'durandal/viewLocator', 'durandal/system', 'modulesIniti
                     _.each(settings.modules, function (module) {
                         modules['../includedModules/' + module.name] = true;
                     });
+
+                    initProgressStoring(settings);
                 });
             }
 
@@ -61,6 +63,22 @@ define(['durandal/app', 'durandal/viewLocator', 'durandal/system', 'modulesIniti
 
             function initTranslations(settings) {
                 return translation.init(settings.languages.selected, settings.languages.customTranslations);
+            }
+
+            function initProgressStoring(publishSettings) {
+                if (!isLmsInitizlized()) {
+                    modules['modules/progressTracker'] = true;
+                }
+
+                function isLmsInitizlized() {
+                    if (publishSettings && publishSettings.modules) {
+                        return _.some(publishSettings.modules, function (module) {
+                            return module.name === 'lms';
+                        });
+                    }
+
+                    return false;
+                }
             }
         });
     }

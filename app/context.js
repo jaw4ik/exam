@@ -57,6 +57,7 @@
 
             return new Course({
                 id: course.id,
+                createdOn: new Date(course.createdOn),
                 title: course.title,
                 hasIntroductionContent: course.hasIntroductionContent,
                 objectives: mapObjectives(course.objectives)
@@ -114,7 +115,7 @@
                 background: question.background,
                 score: 0,
                 hasContent: question.hasContent
-                });
+            });
         }
 
 
