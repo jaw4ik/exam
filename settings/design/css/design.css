@@ -154,7 +154,6 @@ main {
     display: none;
     top: 3px;
     right: 3px;
-    transition: top 0.3s linear 0s;
 }
 
 .btn-image-action {
@@ -363,8 +362,11 @@ main {
 
     .logo-image-container.has-logo:hover .btn-image-action-container {
         display: block;
-        -webkit-animation: bounce 0.3s linear 0s;
-        animation: bounce 0.3s linear 0s;
+    }
+
+    .logo-image-container.has-logo:hover .btn-image-action {
+        -webkit-animation: show-image-action 0.3s linear 0s;
+        animation: show-image-action 0.3s linear 0s;
     }
 
 .logo-image-wrapper {
@@ -439,8 +441,11 @@ main {
 
     .background-container:hover .btn-image-action-container {
         display: block;
-        -webkit-animation: bounce 0.3s linear 0s;
-        animation: bounce 0.3s linear 0s;
+    }
+
+    .background-container:hover .btn-image-action {
+        -webkit-animation: show-image-action 0.3s linear 0s;
+        animation: show-image-action 0.3s linear 0s;
     }
 
     .background-container.empty:hover  .btn-image-action-container,
@@ -584,26 +589,14 @@ main {
 
 /*#region animations*/
 
-@keyframes bounce {
-    0%, 20%, 50%, 80%, 100% {
-	    transform: translateY(0);
-    }
-	40% {
-	    transform: translateY(-10px);
-    }
-	60% {
-	    transform: translateY(-5px);
+@keyframes show-image-action {
+    50% {
+	    box-shadow: 0px 0px 0px 2px #424b56;
     }
 }
-@-webkit-keyframes bounce {
-    0%, 20%, 50%, 80%, 100% {
-	    -webkit-transform: translateY(0);
-    }
-	40% {
-	    -webkit-transform: translateY(-10px);
-    }
-	60% {
-	    -webkit-transform: translateY(-5px);
+@-webkit-keyframes show-image-action {
+	50% {
+	    -webkit-box-shadow: 0px 0px 0px 2px #424b56;
     }
 }
 
