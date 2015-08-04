@@ -24,7 +24,7 @@
 </head>
 
     <body>
-        <main>
+        <main data-bind="template: { afterRender: egApi.showSettings }">
             <!-- ko ifnot: isError -->
             <article class="flex direction-column settings-item-container">
                 <header class="settings-item-title" data-bind="localize: 'custom course logo'">Custom course logo:</header>
