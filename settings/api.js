@@ -179,7 +179,7 @@
     }
 
     function postMessageToEditor(data) {
-        var editorWindow = window.top;
+        var editorWindow = window.parent;
         editorWindow.postMessage(data, '*');
     }
 
