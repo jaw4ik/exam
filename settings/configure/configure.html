@@ -24,7 +24,7 @@
 </head>
 
 <body>
-    <div class="settings-container">
+    <div class="settings-container" data-bind="template: { afterRender: egApi.showSettings }">
         <!-- ko ifnot: isError -->
         <div class="settings-tabs-container" data-bind="tabs: {}">
             <ul class="settings-tabs-wrapper unstyled">

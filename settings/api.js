@@ -20,12 +20,13 @@
         getUser: getUser,
         getSettings: getSettings,
         saveSettings: saveSettings,
-        sendNotificationToEditor: sendNotificationToEditor
+        sendNotificationToEditor: sendNotificationToEditor,
+        showSettings: showSettings
     };
 
     function init() {
         /* DEBUG */
-        var userDataPromise = $.Deferred().resolve([{ data: { subscription: { accessType: 1, expirationDate: new Date(2016, 1, 1) } } }]);
+        var userDataPromise = $.Deferred().resolve([{ subscription: { accessType: 1, expirationDate: new Date(2016, 1, 1) } }]);
         var settingsPromise = $.getJSON('../../settings.js').then(function (response) { return [{ settings: JSON.stringify(response) }]; });
         var manifestPromise = $.getJSON(manifestUrl);
         /* END_DEBUG */
@@ -162,20 +163,24 @@
     }
 
     function freezeEditor() {
-        postMessageToEditor({ type: 'freeze', data: { freezeEditor: true } });
+        postMessageToEditor({ type: 'freeze-editor' });
     }
 
     function unfreezeEditor() {
-        postMessageToEditor({ type: 'freeze', data: { freezeEditor: false } });
-    }
-
-    function postMessageToEditor(data) {
-        var editorWindow = window.top;
-        editorWindow.postMessage(data, editorWindow.location.href);
+        postMessageToEditor({ type: 'unfreeze-editor' });
     }
 
     function sendNotificationToEditor(message, isSuccess) {
         postMessageToEditor({ type: 'notification', data: { success: isSuccess, message: message } });
+    }
+
+    function showSettings() {
+        postMessageToEditor({ type: 'show-settings' });
+    }
+
+    function postMessageToEditor(data) {
+        var editorWindow = window.parent;
+        editorWindow.postMessage(data, '*');
     }
 
 })();
