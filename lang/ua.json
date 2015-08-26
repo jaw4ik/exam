@@ -1,4 +1,4 @@
-﻿{
+{
     "[course]": "Курс:",
     "[start exam]": "Почати тестування",
     "[home]": "Головна",
@@ -10,10 +10,10 @@
     "[result per objective]": "Результат за кожною ціллю",
     "[text matching question hint]": "Перетягніть відповіді з правої колонки до лівої таким чином, щоб вони відповідали визначенням з першої колонки",
     "[text matching question drop here]": "Сюди",
+    "[drag and drop question drop here]": "Сюди",
+    "[drag and drop question all texts are placed]": "Усі тексти вже використані",
     "[statement question true text]": "Вірно",
     "[statement question false text]": "Невірно",
-    "[drag and drop question all texts are placed]": "Усі тексти вже використані",
-    "[drag and drop question drop here]": "Сюди",
     "[fill in the blank choose answer]": "Оберіть варіант...",
     "[page not found title]": "Сторінка не знайдена (404)",
     "[page not found message]": "Вибачте, але сторінку, яку ви шукали, не знайдено. Спробуйте перевірити URL на помилки, використати навігацію вище або посилання на головну сторінку нижче.",
@@ -32,6 +32,6 @@
     "[tracking and tracing reporting progress]": "Надсилаемо прогресс...",
     "[thank you message]": "Дякуємо. Тепер сторінку можна закрити",
     "[type your answer here]": "Вкажіть свою відповідь...",
-    "[tracking and tracing hint without skip]": "Будь-ласка, вкажіть необхідні дані та натисніть \"Так, відстежувати мій прогрес\" для того, щоб розпочати курс",
+    "[tracking and tracing hint without skip]": "Будь-ласка, вкажіть необхідні дані та натисніть \"Так, відстежувати мій \nпрогрес\" для того, щоб розпочати курс",
     "[tracking and tracing error hint without continue]": "Натисніть 'Спробувати ще'. Якщо помилка виникне знову зв'яжіться з організацією, що надала вам курс."
 }

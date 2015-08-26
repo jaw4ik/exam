@@ -1,9 +1,9 @@
-﻿{
-   "[course]": "Cursus:",
+{
+    "[course]": "Cursus:",
     "[start exam]": "Start toets",
     "[home]": "Home",
     "[submit]": "Indienen",
-    "[finish course]": "Beёindig",
+    "[finish course]": "Beëindig",
     "[start]": "Start",
     "[of]": "van",
     "[exam result]": "Toets resultaat",
@@ -14,7 +14,7 @@
     "[drag and drop question all texts are placed]": "Alle teksten zijn geplaatst",
     "[statement question true text]": "Waar",
     "[statement question false text]": "Onwaar",
-    "[fill in the blank choose answer]": "Kies het antwoord...",
+    "[fill in the blank choose answer]": "Kies het antwoord…",
     "[page not found title]": "Pagina niet gevonden (404)",
     "[page not found message]": "Sorry, de pagina de je wilt openen is niet gevonden. Controleer de URL op fouten of klik op de 'Home' button. Neem contact op met de docent als dit niet werkt.",
     "[tracking and tracing header]": "Uw gegevens voor het vastleggen van de resultaten",
@@ -29,6 +29,9 @@
     "[tracking and tracing error hint]": "Als je doorgaat zullen je leerresultaten niet worden vastgelegd. Probeer opnieuw te starten. Neem contact op met de docent als dit niet werkt.",
     "[tracking and tracing restart course]": "Herstart cursus",
     "[tracking and tracing continue anyway]": "Ga door",
-    "[tracking and tracing reporting progress]": "Resultaten worden opgeslagen...",
-    "[thank you message]": "Bedankt, je kan nu de pagina sluiten"
+    "[tracking and tracing reporting progress]": "resultaten worden opgeslagen",
+    "[thank you message]": "Bedankt, je kan nu de pagina sluiten",
+    "[type your answer here]": "Typ uw antwoord hier...",
+    "[tracking and tracing hint without skip]": "Vul uw gegevens in en klik op ‘Start en rapporteer mijn resultaten’ om de cursus te beginnen",
+    "[tracking and tracing error hint without continue]": "Herstart de cursus. Neem contact op met uw cursusleider als het probleem niet is opgelost."
 }
