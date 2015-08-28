@@ -6,6 +6,7 @@ var gulp = require('gulp'),
     eventStream = require('event-stream'),
     useref = require('gulp-useref'),
     gulpif = require('gulp-if'),
+    bower = require('gulp-bower'),
     output = ".output",
     buildVersion = +new Date();
 
@@ -33,14 +34,28 @@ function removeDebugBlocks() {
     });
 };
 
-gulp.task('build', ['clean', 'build-app', 'build-settings', 'assets'], function () {
+gulp.task('build', ['pre-build', 'build-app', 'build-settings'], function () {
 });
 
 gulp.task('clean', function (cb) {
     del([output], cb);
 });
 
-gulp.task('build-app', ['clean'], function () {
+gulp.task('bower', ['clean'], function () {
+    return bower({ cmd: 'update' });
+});
+
+gulp.task('assets', ['clean', 'bower'], function () {
+    gulp.src('vendor/easy-supported-browser/css/img/**')
+        .pipe(gulp.dest(output + '/css/img'));
+    gulp.src('vendor/easy-supported-browser/css/font/**')
+        .pipe(gulp.dest(output + '/css/font'));
+});
+
+gulp.task('pre-build', ['clean', 'bower', 'assets'], function () {
+});
+
+gulp.task('build-app', ['pre-build'], function () {
     var assets = useref.assets();
 
     gulp.src('index.html')
@@ -53,26 +68,26 @@ gulp.task('build-app', ['clean'], function () {
         .pipe(gulp.dest(output));
 
     gulp.src(['settings.js', 'publishSettings.js'])
-       .pipe(gulp.dest(output));
+        .pipe(gulp.dest(output));
 
     gulp.src('css/font/**')
-       .pipe(gulp.dest(output + '/css/font'));
+        .pipe(gulp.dest(output + '/css/font'));
 
     gulp.src('css/img/**')
-    .pipe(gulp.dest(output + '/css/img'));
+        .pipe(gulp.dest(output + '/css/img'));
 
     gulp.src('img/**')
-       .pipe(gulp.dest(output + '/img'));
+        .pipe(gulp.dest(output + '/img'));
 
     gulp.src(['js/require.js'])
-       .pipe(gulp.dest(output + '/js'));
+        .pipe(gulp.dest(output + '/js'));
 
     gulp.src('lang/*.json')
-       .pipe(gulp.dest(output + '/lang'));
+        .pipe(gulp.dest(output + '/lang'));
 
     gulp.src('manifest.json')
         .pipe(gulp.dest(output));
-        
+
     gulp.src('preview/**')
         .pipe(gulp.dest(output + '/preview'));
 
@@ -80,67 +95,60 @@ gulp.task('build-app', ['clean'], function () {
         {
             minify: true
         })
-       .pipe(addBuildVersion())
-       .pipe(gulp.dest(output + '/app'));
-});
-
-gulp.task('assets', ['clean'], function () {
-    gulp.src('vendor/easy-supported-browser/css/img/**')
-        .pipe(gulp.dest(output + '/css/img'));
-    gulp.src('vendor/easy-supported-browser/css/font/**')
-        .pipe(gulp.dest(output + '/css/font'));
+        .pipe(addBuildVersion())
+        .pipe(gulp.dest(output + '/app'));
 });
 
 gulp.task('build-settings', ['build-design-settings', 'build-configure-settings'], function () {
     gulp.src('settings/api.js')
-      .pipe(removeDebugBlocks())
-      .pipe(uglify())
-      .pipe(gulp.dest(output + '/settings'));
+        .pipe(removeDebugBlocks())
+        .pipe(uglify())
+        .pipe(gulp.dest(output + '/settings'));
 
 });
 
-gulp.task('build-design-settings', ['clean'], function () {
+gulp.task('build-design-settings', ['pre-build'], function () {
     var assets = useref.assets();
 
     gulp.src(['settings/design/design.html'])
-      .pipe(assets)
-      .pipe(gulpif('*.js', uglify()))
-      .pipe(assets.restore())
-      .pipe(useref())
-      .pipe(addBuildVersion())
-      .pipe(gulp.dest(output + '/settings/design'));
+        .pipe(assets)
+        .pipe(gulpif('*.js', uglify()))
+        .pipe(assets.restore())
+        .pipe(useref())
+        .pipe(addBuildVersion())
+        .pipe(gulp.dest(output + '/settings/design'));
 
     gulp.src('settings/design/css/fonts/**')
-      .pipe(gulp.dest(output + '/settings/design/css/fonts'));
-    
+        .pipe(gulp.dest(output + '/settings/design/css/fonts'));
+
     gulp.src('settings/design/css/design.css')
-      .pipe(minifyCss())
-      .pipe(gulp.dest(output + '/settings/design/css'));
+        .pipe(minifyCss())
+        .pipe(gulp.dest(output + '/settings/design/css'));
 
 });
 
-gulp.task('build-configure-settings', ['clean'], function () {
+gulp.task('build-configure-settings', ['pre-build'], function () {
     var assets = useref.assets();
 
     gulp.src(['settings/configure/configure.html'])
-      .pipe(assets)
-      .pipe(gulpif('*.js', uglify()))
-      .pipe(assets.restore())
-      .pipe(useref())
-      .pipe(addBuildVersion())
-      .pipe(gulp.dest(output + '/settings/configure'));
+        .pipe(assets)
+        .pipe(gulpif('*.js', uglify()))
+        .pipe(assets.restore())
+        .pipe(useref())
+        .pipe(addBuildVersion())
+        .pipe(gulp.dest(output + '/settings/configure'));
 
     gulp.src('settings/configure/img/**')
-      .pipe(gulp.dest(output + '/settings/configure/img'));
-    
+        .pipe(gulp.dest(output + '/settings/configure/img'));
+
     gulp.src('settings/configure/css/img/**')
-      .pipe(gulp.dest(output + '/settings/configure/css/img'));
-    
+        .pipe(gulp.dest(output + '/settings/configure/css/img'));
+
     gulp.src('settings/configure/css/fonts/**')
-      .pipe(gulp.dest(output + '/settings/configure/css/fonts'));
-    
+        .pipe(gulp.dest(output + '/settings/configure/css/fonts'));
+
     gulp.src('settings/configure/css/configure.css')
-      .pipe(minifyCss())
-      .pipe(gulp.dest(output + '/settings/configure/css'));
+        .pipe(minifyCss())
+        .pipe(gulp.dest(output + '/settings/configure/css'));
 
 });
